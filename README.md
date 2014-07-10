@@ -22,9 +22,24 @@ $ gulp
 ```
 
 
-Run
----
+Debug
+-----
 
 ```Bash
 $ make port=PORT
+```
+
+
+Deploy
+------
+
+```Bash
+# start server
+$ make start-uwsgi port=PORT
+
+# reload uwsgi
+$ make reload-uwsgi
+
+# stop uwsgi
+$ make stop-uwsgi
 ```
