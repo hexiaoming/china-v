@@ -14,8 +14,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'base',
-    'backend',
-    'admin',
     "django_tables2"
 )
 
@@ -39,7 +37,7 @@ WSGI_APPLICATION = 'base.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django_mysqlpool.backends.mysqlpool',
-        'NAME': 'fury',
+        'NAME': 'chinav',
         'USER': 'root',
         'PASSWORD': 'nameLR9969',
         'HOST': 'localhost',

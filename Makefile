@@ -1,4 +1,4 @@
-host:=0.0.0.0
+host:=127.0.0.1
 port:=9000
 activate_venv=source venv/bin/activate
 
@@ -25,7 +25,7 @@ collectstatic:
 	$(activate_venv) \
     && ./manage.py collectstatic --noinput
 
-database:=
+database:=chinav
 password:=
 db:
 	-mysql -u root --password=$(password) -e \
