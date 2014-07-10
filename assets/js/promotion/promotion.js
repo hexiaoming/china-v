@@ -60,5 +60,30 @@ define(function(require) {
         });
         Vboard.change_pic();    
         
+        },
+        "post_to_check_num":function(){
+            $.post("",{
+                "circle":$(".circle_num").val(),
+                "top":$(".top_num").val()
+            },function(data){
+                if(data.back=='success'){
+                    location.href="/promotion/mobvet/";
+                }
+                else {
+                    location.href="/promotion/proerror/";
+                }
+            });
+        }
+	};
+	$(function(){
+		$(".go_check").click(function(){
+            if(porvet.check()){
+                porvet.post_to_check_num(); 
+            }
+            else {
+                
+            }
+        });
+		
 	});
 });
