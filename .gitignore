@@ -56,3 +56,4 @@ docs/_build/
 venv
 node_modules
 assets/components
+nohup.out

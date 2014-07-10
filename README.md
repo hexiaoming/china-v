@@ -1,22 +1,26 @@
 china-voice
 ===========
 
+
 Prepare
 -------
 
 ```Bash
 $ npm install -g bower gulp
+$ virtualenv venv --python=python2.7
 ```
 
 
-Install
+Build
 -------
 
 ```Bash
 $ pip install -r requirements.txt
 $ npm install
 $ bower install
+$ gulp
 ```
+
 
 Run
 ---
