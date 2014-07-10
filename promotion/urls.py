@@ -15,4 +15,3 @@ urlpatterns = patterns('promotion.views',
     url(r'^promotion/studentlist/$','studentlist')
 )
 
-

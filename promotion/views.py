@@ -17,6 +17,7 @@ from promotion.do import *
 def index(request):
 	if request.method == 'GET':
 		return render(request,"promotion/promotion.html")
+
 @ensure_csrf_cookie
 @require_GET
 
