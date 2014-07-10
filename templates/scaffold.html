@@ -19,25 +19,18 @@
     <!-- poly fill scripts -->
     <!--[if lt IE 9]>
     <script type="text/javascript" 
-        src="{{ STATIC_URL }}/console-polyfill/index.js"></script>
+        src="{{ STATIC_URL }}components/console-polyfill/index.js"></script>
     <script type="text/javascript" 
-        src="{{ STATIC_URL }}/html5shiv/dist/html5shiv.js"></script>
+        src="{{ STATIC_URL }}components/html5shiv/dist/html5shiv.js"></script>
     <script type="text/javascript" 
-        src="{{ STATIC_URL }}/respond/dest/respond.min.js"></script>
+        src="{{ STATIC_URL }}components/respond/dest/respond.min.js"></script>
     <script type="text/javascript" 
-        src="{{ STATIC_URL }}/es5-shim/es5-shim.min.js"></script>
+        src="{{ STATIC_URL }}components/es5-shim/es5-shim.min.js"></script>
     <![endif]-->
     {% endblock %}
 </head>
 <body>
     {% block content %}{% endblock %}
     {% block js %}{% endblock %}
-
-<!--
-<script type="text/javascript">
-var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F77e5a465d7fba80c2baf8b5730b232b6' type='text/javascript'%3E%3C/script%3E"));
-</script>
--->
 </body>
 </html>

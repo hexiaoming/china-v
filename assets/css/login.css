@@ -6164,9 +6164,9 @@ button.close {
   }
 }
 body {
-  background: #ededed;
+  background: #eeeeee;
 }
-.container {
+body .container {
   box-sizing: content-box;
   margin-top: 150px;
   max-width: 362px;
@@ -6175,16 +6175,16 @@ body {
   border: 1px solid #d8d8d8;
   border-radius: 5px;
 }
-#password-wrap {
+body .form #password-wrap {
   margin-top: 20px;
 }
-.form .checkbox {
+body .form .checkbox {
   margin-top: 30px;
 }
-#submit {
+body .form #submit {
   width: 200px;
 }
-.links {
+body .links {
   color: gray;
   margin-left: auto;
   margin-right: auto;
