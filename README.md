@@ -6,8 +6,14 @@ Prepare
 -------
 
 ```Bash
+# need bower gulp & virtualenv
 $ npm install -g bower gulp
 $ virtualenv venv --python=python2.7
+
+# install dependencies
+$ pip install -r requirements.txt
+$ npm install
+$ bower install
 ```
 
 
@@ -15,9 +21,6 @@ Build
 -------
 
 ```Bash
-$ pip install -r requirements.txt
-$ npm install
-$ bower install
 $ gulp
 ```
 
