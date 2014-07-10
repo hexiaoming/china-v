@@ -1,5 +1,19 @@
 var gulp = require("gulp");
+var less = require("gulp-less");
 
-gulp.task('hello', function() {
-    console.log("World!");
+gulp.task('less', function() {
+    return gulp.src("assets/less/login.less")
+            .pipe(less({
+                paths: [
+                    'assets/less',
+                    'assets/components'
+                ]
+            }))
+            .on('error', console.error)
+            .pipe(gulp.dest("assets/css"));
 });
+
+gulp.task("watch-less", function() {
+    gulp.watch("assets/less/*.less", ["less"]);
+});
+

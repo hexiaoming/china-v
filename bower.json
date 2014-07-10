@@ -20,6 +20,11 @@
     "django-csrf-support": "~0.0.3",
     "select2": "~3.5.0",
     "backbone": "~1.1.2",
-    "requirejs": "~2.1.14"
+    "requirejs": "~2.1.14",
+    "console-polyfill": "~0.1.1",
+    "jquery-placeholder": "~2.0.8",
+    "multiline": "~0.3.4",
+    "jquery.cookie": "~1.4.1",
+    "jQuery.serializeObject": "~2.0.3"
   }
 }
