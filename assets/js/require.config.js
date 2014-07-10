@@ -12,17 +12,15 @@ var require = {
         'django-csrf-support': 'components/django-csrf-support/index',
         'underscore': 'components/underscore/underscore',
         'multiline': 'components/multiline/browser',
-<<<<<<< HEAD
         'backbone': 'components/backbone',
 
         'ajax_upload': 'ajax_upload/js/ajax-upload-widget',
         'login': 'js/login',
         'students': 'js/backend/students'
-=======
         'login': 'js/login',
         'promotion': 'js/promotion/promotion',
         'swiper': 'components/swiper/dist/idangerous.swiper.min'
->>>>>>> 5db5252e9e3ef21cfef65789b52cb81845c78c99
+        'login': 'js/login',
     },
     shim: {
         'jquery-placeholder': {
