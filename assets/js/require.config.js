@@ -11,8 +11,8 @@ var require = {
         'django-csrf-support': 'components/django-csrf-support/index',
         'underscore': 'components/underscore/underscore',
         'multiline': 'components/multiline/browser',
-
-        'login': 'js/login'
+        'login': 'js/login',
+        'promotion': 'js/promotion/promotion'
     },
     shim: {
         'jquery-placeholder': {
