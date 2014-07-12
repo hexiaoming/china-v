@@ -13,6 +13,18 @@ gulp.task('less', function() {
             .pipe(gulp.dest("assets/css"));
 });
 
+gulp.task('less', function() {
+    return gulp.src("assets/less/promotion.less")
+            .pipe(less({
+                paths: [
+                    'assets/less',
+                    'assets/components'
+                ]
+            }))
+            .on('error', console.error)
+            .pipe(gulp.dest("assets/css"));
+});
+
 gulp.task("watch-less", function() {
     gulp.watch("assets/less/*.less", ["less"]);
 });

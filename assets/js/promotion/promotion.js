@@ -1,8 +1,10 @@
 define(function(require) {
     require('jquery');
     require('bootstrap');
+    require('swiper');
+    require('django-csrf-support');
 	$=jQuery.noConflict();
-	var porvet = {
+	var provet = {
 		"check_circle":function() {
 			var text = $(".circle_num").val();
             var regu = /^\d{3}$/;
@@ -26,36 +28,37 @@ define(function(require) {
 			}
 		},
         "check":function(){
-            if(porvet.check_top()&&porvet.check_circle()){
+            if(provet.check_top()&&provet.check_circle()){
                 return true;
             }
             else {
                 return false;
             }
-        },
-        "post_to_check_num":function(){
-            $.post("",{
-                "circle":$(".circle_num").val(),
-                "top":$(".top_num").val()
-            },function(data){
-                if(data.back=='success'){
-                    location.href="/promotion/mobvet/";
-                }
-                else {
-                    location.href="/promotion/proerror/";
-                }
-            });
         }
 	};
+    var Vboard = {
+        "get_Json" : function()  {
+
+        },
+        "change_pic": function()    {
+            var mySwiper = new Swiper('.swiper-container',{
+            //Your options here:
+            mode:'vertical',
+            loop: true
+            //etc..
+          });  
+        }
+    };
+
 	$(function(){
+
 		$(".go_check").click(function(){
-            if(porvet.check()){
-                porvet.post_to_check_num(); 
-            }
-            else {
-                
+            if(!provet.check()){
+
+                   
             }
         });
-		
+        Vboard.change_pic();    
+        
 	});
 });

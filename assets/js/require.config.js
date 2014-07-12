@@ -12,7 +12,8 @@ var require = {
         'underscore': 'components/underscore/underscore',
         'multiline': 'components/multiline/browser',
         'login': 'js/login',
-        'promotion': 'js/promotion/promotion'
+        'promotion': 'js/promotion/promotion',
+        'swiper': 'components/swiper/dist/idangerous.swiper.min'
     },
     shim: {
         'jquery-placeholder': {

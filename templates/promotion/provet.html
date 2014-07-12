@@ -1,9 +1,11 @@
 {% extends "promotion/promotion_header.html" %}
 {% block promotion %}
 
+<form action="/promotion/pro_mobvet/" method="post">{% csrf_token %}
 <input type="text" class="form-control input-sm circle_num" placeholder="输入拉环括号内3位码"/>
 <input type="text" class="form-control input-sm top_num" placeholder="输入罐顶8位码"/>
-<button class="btn btn-sm btn-default go_check">马上验证</button> 
+<input class="btn btn-sm btn-default go_check" type="submit"/>
+</form> 
 {% endblock %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/require.config.js">
 </script>

@@ -1,4 +1,25 @@
 {% extends "promotion/promotion_header.html" %}
+{% block css %}
+<link rel="stylesheet" href="{{ STATIC_URL }}components/swiper/dist/idangerous.swiper.css"/>
+{% endblock %}
 {% block promotion %}
 
+<div class="swiper-container">
+  <div class="swiper-wrapper">
+      {% for i in students %}
+      <!--First Slide-->
+      <div class="swiper-slide"> 
+        <!-- Any HTML content of the first slide goes here -->
+        <img id="board_img" src="{{ STATIC_URL }}promotion/image/1.jpg"></img>
+      </div>
+      {% endfor %}
+      
+      
+  </div>
+</div>
+{% if dovet == 'pro' %}
+<button class="btn btn-sm btn-default">投票</button>
+{% endif %}
 {% endblock %}
+
+
