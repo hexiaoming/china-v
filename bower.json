@@ -15,7 +15,7 @@
   ],
   "dependencies": {
     "jquery": "1.11.0",
-    "bootstrap": "~3.2.0",
+    "bootstrap": "https://github.com/limijiaoyin/bootstrap.git#plus-lock",
     "html5shiv": "~3.7.0",
     "respond": "~1.4.2",
     "underscore": "~1.6.0",
@@ -27,6 +27,9 @@
     "jquery-placeholder": "~2.0.8",
     "multiline": "~0.3.4",
     "jquery.cookie": "~1.4.1",
-    "jQuery.serializeObject": "~2.0.3"
+    "jQuery.serializeObject": "~2.0.3",
+    "font-awesome": "~4.1.0",
+    "jquery.iframe-transport": "~1.0.0",
+    "when": "~3.3.1"
   }
 }

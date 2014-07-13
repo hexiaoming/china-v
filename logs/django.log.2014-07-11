@@ -1,0 +1,392 @@
+DEBUG 2014-07-10 17:23:59,388 util (0.103) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'epe48i1u8gpm953preqyvecra26fb5pf'  AND `django_session`.`expire_date` > '2014-07-10 17:23:58' ); args=('epe48i1u8gpm953preqyvecra26fb5pf', u'2014-07-10 17:23:58')
+ERROR 2014-07-10 17:23:59,394 base Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/yangchen/china-v/backend/views.py", line 19, in welcome
+    if not request.user.is_authenticated():
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/utils/functional.py", line 213, in inner
+    self._setup()
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/utils/functional.py", line 298, in _setup
+    self._wrapped = self._setupfunc()
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/contrib/auth/middleware.py", line 18, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/contrib/auth/middleware.py", line 10, in get_user
+    request._cached_user = auth.get_user(request)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/contrib/auth/__init__.py", line 140, in get_user
+    user_id = request.session[SESSION_KEY]
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/contrib/sessions/backends/base.py", line 47, in __getitem__
+    return self._session[key]
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/contrib/sessions/backends/base.py", line 173, in _get_session
+    self._session_cache = self.load()
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/contrib/sessions/backends/db.py", line 20, in load
+    expire_date__gt=timezone.now()
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/models/manager.py", line 151, in get
+    return self.get_queryset().get(*args, **kwargs)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/models/query.py", line 304, in get
+    num = len(clone)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/models/query.py", line 77, in __len__
+    self._fetch_all()
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/models/query.py", line 857, in _fetch_all
+    self._result_cache = list(self.iterator())
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/models/query.py", line 220, in iterator
+    for row in compiler.results_iter():
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 713, in results_iter
+    for rows in self.execute_sql(MULTI):
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 786, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/backends/util.py", line 69, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/backends/util.py", line 53, in execute
+    return self.cursor.execute(sql, params)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/utils.py", line 99, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/backends/util.py", line 53, in execute
+    return self.cursor.execute(sql, params)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/backends/mysql/base.py", line 124, in execute
+    return self.cursor.execute(query, args)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/MySQLdb/cursors.py", line 205, in execute
+    self.errorhandler(self, exc, value)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/MySQLdb/connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+ProgrammingError: (1146, "Table 'chinav.django_session' doesn't exist")
+DEBUG 2014-07-10 17:23:59,624 util (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'epe48i1u8gpm953preqyvecra26fb5pf'  AND `django_session`.`expire_date` > '2014-07-10 17:23:59' ); args=('epe48i1u8gpm953preqyvecra26fb5pf', u'2014-07-10 17:23:59')
+DEBUG 2014-07-10 17:23:59,626 util (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'epe48i1u8gpm953preqyvecra26fb5pf'  AND `django_session`.`expire_date` > '2014-07-10 17:23:59' ); args=('epe48i1u8gpm953preqyvecra26fb5pf', u'2014-07-10 17:23:59')
+DEBUG 2014-07-10 17:23:59,629 util (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'epe48i1u8gpm953preqyvecra26fb5pf'  AND `django_session`.`expire_date` > '2014-07-10 17:23:59' ); args=('epe48i1u8gpm953preqyvecra26fb5pf', u'2014-07-10 17:23:59')
+DEBUG 2014-07-10 17:23:59,631 util (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'epe48i1u8gpm953preqyvecra26fb5pf'  AND `django_session`.`expire_date` > '2014-07-10 17:23:59' ); args=('epe48i1u8gpm953preqyvecra26fb5pf', u'2014-07-10 17:23:59')
+DEBUG 2014-07-10 17:23:59,868 util (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'epe48i1u8gpm953preqyvecra26fb5pf'  AND `django_session`.`expire_date` > '2014-07-10 17:23:58' ) LIMIT 21; args=('epe48i1u8gpm953preqyvecra26fb5pf', u'2014-07-10 17:23:58')
+DEBUG 2014-07-10 17:23:59,869 util (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` LIMIT 21; args=()
+DEBUG 2014-07-10 17:23:59,875 util (0.005) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'epe48i1u8gpm953preqyvecra26fb5pf'  AND `django_session`.`expire_date` > '2014-07-10 17:23:58' ) LIMIT 21; args=('epe48i1u8gpm953preqyvecra26fb5pf', u'2014-07-10 17:23:58')
+DEBUG 2014-07-10 17:23:59,877 util (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'epe48i1u8gpm953preqyvecra26fb5pf'  AND `django_session`.`expire_date` > '2014-07-10 17:23:58' ) LIMIT 21; args=('epe48i1u8gpm953preqyvecra26fb5pf', u'2014-07-10 17:23:58')
+DEBUG 2014-07-10 17:23:59,878 util (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'epe48i1u8gpm953preqyvecra26fb5pf'  AND `django_session`.`expire_date` > '2014-07-10 17:23:58' ) LIMIT 21; args=('epe48i1u8gpm953preqyvecra26fb5pf', u'2014-07-10 17:23:58')
+WARNING 2014-07-10 17:24:00,902 base Not Found: /favicon.ico
+DEBUG 2014-07-10 17:24:01,800 util (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'epe48i1u8gpm953preqyvecra26fb5pf'  AND `django_session`.`expire_date` > '2014-07-10 17:24:01' ); args=('epe48i1u8gpm953preqyvecra26fb5pf', u'2014-07-10 17:24:01')
+ERROR 2014-07-10 17:24:01,800 base Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/yangchen/china-v/backend/views.py", line 19, in welcome
+    if not request.user.is_authenticated():
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/utils/functional.py", line 213, in inner
+    self._setup()
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/utils/functional.py", line 298, in _setup
+    self._wrapped = self._setupfunc()
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/contrib/auth/middleware.py", line 18, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/contrib/auth/middleware.py", line 10, in get_user
+    request._cached_user = auth.get_user(request)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/contrib/auth/__init__.py", line 140, in get_user
+    user_id = request.session[SESSION_KEY]
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/contrib/sessions/backends/base.py", line 47, in __getitem__
+    return self._session[key]
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/contrib/sessions/backends/base.py", line 173, in _get_session
+    self._session_cache = self.load()
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/contrib/sessions/backends/db.py", line 20, in load
+    expire_date__gt=timezone.now()
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/models/manager.py", line 151, in get
+    return self.get_queryset().get(*args, **kwargs)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/models/query.py", line 304, in get
+    num = len(clone)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/models/query.py", line 77, in __len__
+    self._fetch_all()
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/models/query.py", line 857, in _fetch_all
+    self._result_cache = list(self.iterator())
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/models/query.py", line 220, in iterator
+    for row in compiler.results_iter():
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 713, in results_iter
+    for rows in self.execute_sql(MULTI):
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 786, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/backends/util.py", line 69, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/backends/util.py", line 53, in execute
+    return self.cursor.execute(sql, params)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/utils.py", line 99, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/backends/util.py", line 53, in execute
+    return self.cursor.execute(sql, params)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/backends/mysql/base.py", line 124, in execute
+    return self.cursor.execute(query, args)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/MySQLdb/cursors.py", line 205, in execute
+    self.errorhandler(self, exc, value)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/MySQLdb/connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+ProgrammingError: (1146, "Table 'chinav.django_session' doesn't exist")
+DEBUG 2014-07-10 17:24:01,827 util (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'epe48i1u8gpm953preqyvecra26fb5pf'  AND `django_session`.`expire_date` > '2014-07-10 17:24:01' ); args=('epe48i1u8gpm953preqyvecra26fb5pf', u'2014-07-10 17:24:01')
+DEBUG 2014-07-10 17:24:01,828 util (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'epe48i1u8gpm953preqyvecra26fb5pf'  AND `django_session`.`expire_date` > '2014-07-10 17:24:01' ); args=('epe48i1u8gpm953preqyvecra26fb5pf', u'2014-07-10 17:24:01')
+DEBUG 2014-07-10 17:24:01,829 util (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'epe48i1u8gpm953preqyvecra26fb5pf'  AND `django_session`.`expire_date` > '2014-07-10 17:24:01' ); args=('epe48i1u8gpm953preqyvecra26fb5pf', u'2014-07-10 17:24:01')
+DEBUG 2014-07-10 17:24:01,830 util (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'epe48i1u8gpm953preqyvecra26fb5pf'  AND `django_session`.`expire_date` > '2014-07-10 17:24:01' ); args=('epe48i1u8gpm953preqyvecra26fb5pf', u'2014-07-10 17:24:01')
+DEBUG 2014-07-10 17:24:01,875 util (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'epe48i1u8gpm953preqyvecra26fb5pf'  AND `django_session`.`expire_date` > '2014-07-10 17:24:01' ) LIMIT 21; args=('epe48i1u8gpm953preqyvecra26fb5pf', u'2014-07-10 17:24:01')
+DEBUG 2014-07-10 17:24:01,876 util (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` LIMIT 21; args=()
+DEBUG 2014-07-10 17:24:01,877 util (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'epe48i1u8gpm953preqyvecra26fb5pf'  AND `django_session`.`expire_date` > '2014-07-10 17:24:01' ) LIMIT 21; args=('epe48i1u8gpm953preqyvecra26fb5pf', u'2014-07-10 17:24:01')
+DEBUG 2014-07-10 17:24:01,877 util (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'epe48i1u8gpm953preqyvecra26fb5pf'  AND `django_session`.`expire_date` > '2014-07-10 17:24:01' ) LIMIT 21; args=('epe48i1u8gpm953preqyvecra26fb5pf', u'2014-07-10 17:24:01')
+DEBUG 2014-07-10 17:24:01,878 util (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'epe48i1u8gpm953preqyvecra26fb5pf'  AND `django_session`.`expire_date` > '2014-07-10 17:24:01' ) LIMIT 21; args=('epe48i1u8gpm953preqyvecra26fb5pf', u'2014-07-10 17:24:01')
+DEBUG 2014-07-10 17:24:24,785 util (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'epe48i1u8gpm953preqyvecra26fb5pf'  AND `django_session`.`expire_date` > '2014-07-10 17:24:24' ); args=('epe48i1u8gpm953preqyvecra26fb5pf', u'2014-07-10 17:24:24')
+ERROR 2014-07-10 17:24:24,786 base Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/yangchen/china-v/backend/views.py", line 19, in welcome
+    if not request.user.is_authenticated():
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/utils/functional.py", line 213, in inner
+    self._setup()
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/utils/functional.py", line 298, in _setup
+    self._wrapped = self._setupfunc()
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/contrib/auth/middleware.py", line 18, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/contrib/auth/middleware.py", line 10, in get_user
+    request._cached_user = auth.get_user(request)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/contrib/auth/__init__.py", line 140, in get_user
+    user_id = request.session[SESSION_KEY]
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/contrib/sessions/backends/base.py", line 47, in __getitem__
+    return self._session[key]
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/contrib/sessions/backends/base.py", line 173, in _get_session
+    self._session_cache = self.load()
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/contrib/sessions/backends/db.py", line 20, in load
+    expire_date__gt=timezone.now()
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/models/manager.py", line 151, in get
+    return self.get_queryset().get(*args, **kwargs)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/models/query.py", line 304, in get
+    num = len(clone)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/models/query.py", line 77, in __len__
+    self._fetch_all()
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/models/query.py", line 857, in _fetch_all
+    self._result_cache = list(self.iterator())
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/models/query.py", line 220, in iterator
+    for row in compiler.results_iter():
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 713, in results_iter
+    for rows in self.execute_sql(MULTI):
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 786, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/backends/util.py", line 69, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/backends/util.py", line 53, in execute
+    return self.cursor.execute(sql, params)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/utils.py", line 99, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/backends/util.py", line 53, in execute
+    return self.cursor.execute(sql, params)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/backends/mysql/base.py", line 124, in execute
+    return self.cursor.execute(query, args)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/MySQLdb/cursors.py", line 205, in execute
+    self.errorhandler(self, exc, value)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/MySQLdb/connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+ProgrammingError: (1146, "Table 'chinav.django_session' doesn't exist")
+DEBUG 2014-07-10 17:24:24,815 util (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'epe48i1u8gpm953preqyvecra26fb5pf'  AND `django_session`.`expire_date` > '2014-07-10 17:24:24' ); args=('epe48i1u8gpm953preqyvecra26fb5pf', u'2014-07-10 17:24:24')
+DEBUG 2014-07-10 17:24:24,816 util (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'epe48i1u8gpm953preqyvecra26fb5pf'  AND `django_session`.`expire_date` > '2014-07-10 17:24:24' ); args=('epe48i1u8gpm953preqyvecra26fb5pf', u'2014-07-10 17:24:24')
+DEBUG 2014-07-10 17:24:24,818 util (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'epe48i1u8gpm953preqyvecra26fb5pf'  AND `django_session`.`expire_date` > '2014-07-10 17:24:24' ); args=('epe48i1u8gpm953preqyvecra26fb5pf', u'2014-07-10 17:24:24')
+DEBUG 2014-07-10 17:24:24,819 util (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'epe48i1u8gpm953preqyvecra26fb5pf'  AND `django_session`.`expire_date` > '2014-07-10 17:24:24' ); args=('epe48i1u8gpm953preqyvecra26fb5pf', u'2014-07-10 17:24:24')
+DEBUG 2014-07-10 17:24:24,893 util (0.003) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'epe48i1u8gpm953preqyvecra26fb5pf'  AND `django_session`.`expire_date` > '2014-07-10 17:24:24' ) LIMIT 21; args=('epe48i1u8gpm953preqyvecra26fb5pf', u'2014-07-10 17:24:24')
+DEBUG 2014-07-10 17:24:24,894 util (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` LIMIT 21; args=()
+DEBUG 2014-07-10 17:24:24,894 util (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'epe48i1u8gpm953preqyvecra26fb5pf'  AND `django_session`.`expire_date` > '2014-07-10 17:24:24' ) LIMIT 21; args=('epe48i1u8gpm953preqyvecra26fb5pf', u'2014-07-10 17:24:24')
+DEBUG 2014-07-10 17:24:24,898 util (0.003) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'epe48i1u8gpm953preqyvecra26fb5pf'  AND `django_session`.`expire_date` > '2014-07-10 17:24:24' ) LIMIT 21; args=('epe48i1u8gpm953preqyvecra26fb5pf', u'2014-07-10 17:24:24')
+DEBUG 2014-07-10 17:24:24,898 util (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'epe48i1u8gpm953preqyvecra26fb5pf'  AND `django_session`.`expire_date` > '2014-07-10 17:24:24' ) LIMIT 21; args=('epe48i1u8gpm953preqyvecra26fb5pf', u'2014-07-10 17:24:24')
+DEBUG 2014-07-10 17:24:27,630 util (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'epe48i1u8gpm953preqyvecra26fb5pf'  AND `django_session`.`expire_date` > '2014-07-10 17:24:27' ); args=('epe48i1u8gpm953preqyvecra26fb5pf', u'2014-07-10 17:24:27')
+ERROR 2014-07-10 17:24:27,630 base Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/core/handlers/base.py", line 112, in get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/views/decorators/http.py", line 41, in inner
+    return func(request, *args, **kwargs)
+  File "/home/yangchen/china-v/backend/views.py", line 19, in welcome
+    if not request.user.is_authenticated():
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/utils/functional.py", line 213, in inner
+    self._setup()
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/utils/functional.py", line 298, in _setup
+    self._wrapped = self._setupfunc()
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/contrib/auth/middleware.py", line 18, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/contrib/auth/middleware.py", line 10, in get_user
+    request._cached_user = auth.get_user(request)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/contrib/auth/__init__.py", line 140, in get_user
+    user_id = request.session[SESSION_KEY]
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/contrib/sessions/backends/base.py", line 47, in __getitem__
+    return self._session[key]
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/contrib/sessions/backends/base.py", line 173, in _get_session
+    self._session_cache = self.load()
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/contrib/sessions/backends/db.py", line 20, in load
+    expire_date__gt=timezone.now()
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/models/manager.py", line 151, in get
+    return self.get_queryset().get(*args, **kwargs)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/models/query.py", line 304, in get
+    num = len(clone)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/models/query.py", line 77, in __len__
+    self._fetch_all()
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/models/query.py", line 857, in _fetch_all
+    self._result_cache = list(self.iterator())
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/models/query.py", line 220, in iterator
+    for row in compiler.results_iter():
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 713, in results_iter
+    for rows in self.execute_sql(MULTI):
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/models/sql/compiler.py", line 786, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/backends/util.py", line 69, in execute
+    return super(CursorDebugWrapper, self).execute(sql, params)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/backends/util.py", line 53, in execute
+    return self.cursor.execute(sql, params)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/utils.py", line 99, in __exit__
+    six.reraise(dj_exc_type, dj_exc_value, traceback)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/backends/util.py", line 53, in execute
+    return self.cursor.execute(sql, params)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/django/db/backends/mysql/base.py", line 124, in execute
+    return self.cursor.execute(query, args)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/MySQLdb/cursors.py", line 205, in execute
+    self.errorhandler(self, exc, value)
+  File "/home/yangchen/china-v/venv/lib/python2.7/site-packages/MySQLdb/connections.py", line 36, in defaulterrorhandler
+    raise errorclass, errorvalue
+ProgrammingError: (1146, "Table 'chinav.django_session' doesn't exist")
+DEBUG 2014-07-10 17:24:27,659 util (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'epe48i1u8gpm953preqyvecra26fb5pf'  AND `django_session`.`expire_date` > '2014-07-10 17:24:27' ); args=('epe48i1u8gpm953preqyvecra26fb5pf', u'2014-07-10 17:24:27')
+DEBUG 2014-07-10 17:24:27,660 util (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'epe48i1u8gpm953preqyvecra26fb5pf'  AND `django_session`.`expire_date` > '2014-07-10 17:24:27' ); args=('epe48i1u8gpm953preqyvecra26fb5pf', u'2014-07-10 17:24:27')
+DEBUG 2014-07-10 17:24:27,661 util (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'epe48i1u8gpm953preqyvecra26fb5pf'  AND `django_session`.`expire_date` > '2014-07-10 17:24:27' ); args=('epe48i1u8gpm953preqyvecra26fb5pf', u'2014-07-10 17:24:27')
+DEBUG 2014-07-10 17:24:27,662 util (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'epe48i1u8gpm953preqyvecra26fb5pf'  AND `django_session`.`expire_date` > '2014-07-10 17:24:27' ); args=('epe48i1u8gpm953preqyvecra26fb5pf', u'2014-07-10 17:24:27')
+DEBUG 2014-07-10 17:24:27,716 util (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'epe48i1u8gpm953preqyvecra26fb5pf'  AND `django_session`.`expire_date` > '2014-07-10 17:24:27' ) LIMIT 21; args=('epe48i1u8gpm953preqyvecra26fb5pf', u'2014-07-10 17:24:27')
+DEBUG 2014-07-10 17:24:27,717 util (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` LIMIT 21; args=()
+DEBUG 2014-07-10 17:24:27,718 util (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'epe48i1u8gpm953preqyvecra26fb5pf'  AND `django_session`.`expire_date` > '2014-07-10 17:24:27' ) LIMIT 21; args=('epe48i1u8gpm953preqyvecra26fb5pf', u'2014-07-10 17:24:27')
+DEBUG 2014-07-10 17:24:27,718 util (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'epe48i1u8gpm953preqyvecra26fb5pf'  AND `django_session`.`expire_date` > '2014-07-10 17:24:27' ) LIMIT 21; args=('epe48i1u8gpm953preqyvecra26fb5pf', u'2014-07-10 17:24:27')
+DEBUG 2014-07-10 17:24:27,719 util (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'epe48i1u8gpm953preqyvecra26fb5pf'  AND `django_session`.`expire_date` > '2014-07-10 17:24:27' ) LIMIT 21; args=('epe48i1u8gpm953preqyvecra26fb5pf', u'2014-07-10 17:24:27')
+DEBUG 2014-07-10 17:24:44,915 util (0.126) SHOW TABLES; args=None
+DEBUG 2014-07-10 17:24:45,069 util (0.146) CREATE TABLE `django_admin_log` (
+    `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `action_time` datetime NOT NULL,
+    `user_id` integer NOT NULL,
+    `content_type_id` integer,
+    `object_id` longtext,
+    `object_repr` varchar(200) NOT NULL,
+    `action_flag` smallint UNSIGNED NOT NULL,
+    `change_message` longtext NOT NULL
+)
+;; args=None
+DEBUG 2014-07-10 17:24:45,081 util (0.011) CREATE TABLE `auth_permission` (
+    `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `name` varchar(50) NOT NULL,
+    `content_type_id` integer NOT NULL,
+    `codename` varchar(100) NOT NULL,
+    UNIQUE (`content_type_id`, `codename`)
+)
+;; args=None
+DEBUG 2014-07-10 17:24:45,100 util (0.019) CREATE TABLE `auth_group_permissions` (
+    `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `group_id` integer NOT NULL,
+    `permission_id` integer NOT NULL,
+    UNIQUE (`group_id`, `permission_id`)
+)
+;; args=None
+DEBUG 2014-07-10 17:24:45,193 util (0.093) ALTER TABLE `auth_group_permissions` ADD CONSTRAINT `permission_id_refs_id_6ba0f519` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`);; args=None
+DEBUG 2014-07-10 17:24:45,196 util (0.002) CREATE TABLE `auth_group` (
+    `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `name` varchar(80) NOT NULL UNIQUE
+)
+;; args=None
+DEBUG 2014-07-10 17:24:45,222 util (0.026) ALTER TABLE `auth_group_permissions` ADD CONSTRAINT `group_id_refs_id_f4b32aac` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`);; args=None
+DEBUG 2014-07-10 17:24:45,230 util (0.008) CREATE TABLE `auth_user_groups` (
+    `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `user_id` integer NOT NULL,
+    `group_id` integer NOT NULL,
+    UNIQUE (`user_id`, `group_id`)
+)
+;; args=None
+DEBUG 2014-07-10 17:24:45,242 util (0.011) ALTER TABLE `auth_user_groups` ADD CONSTRAINT `group_id_refs_id_274b862c` FOREIGN KEY (`group_id`) REFERENCES `auth_group` (`id`);; args=None
+DEBUG 2014-07-10 17:24:45,245 util (0.003) CREATE TABLE `auth_user_user_permissions` (
+    `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `user_id` integer NOT NULL,
+    `permission_id` integer NOT NULL,
+    UNIQUE (`user_id`, `permission_id`)
+)
+;; args=None
+DEBUG 2014-07-10 17:24:45,276 util (0.031) ALTER TABLE `auth_user_user_permissions` ADD CONSTRAINT `permission_id_refs_id_35d9ac25` FOREIGN KEY (`permission_id`) REFERENCES `auth_permission` (`id`);; args=None
+DEBUG 2014-07-10 17:24:45,280 util (0.003) CREATE TABLE `auth_user` (
+    `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `password` varchar(128) NOT NULL,
+    `last_login` datetime NOT NULL,
+    `is_superuser` bool NOT NULL,
+    `username` varchar(30) NOT NULL UNIQUE,
+    `first_name` varchar(30) NOT NULL,
+    `last_name` varchar(30) NOT NULL,
+    `email` varchar(75) NOT NULL,
+    `is_staff` bool NOT NULL,
+    `is_active` bool NOT NULL,
+    `date_joined` datetime NOT NULL
+)
+;; args=None
+DEBUG 2014-07-10 17:24:45,288 util (0.007) ALTER TABLE `django_admin_log` ADD CONSTRAINT `user_id_refs_id_c0d12874` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);; args=None
+DEBUG 2014-07-10 17:24:45,290 util (0.002) ALTER TABLE `auth_user_groups` ADD CONSTRAINT `user_id_refs_id_40c41112` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);; args=None
+DEBUG 2014-07-10 17:24:45,295 util (0.005) ALTER TABLE `auth_user_user_permissions` ADD CONSTRAINT `user_id_refs_id_4dc23c39` FOREIGN KEY (`user_id`) REFERENCES `auth_user` (`id`);; args=None
+DEBUG 2014-07-10 17:24:45,300 util (0.004) CREATE TABLE `django_content_type` (
+    `id` integer AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    `name` varchar(100) NOT NULL,
+    `app_label` varchar(100) NOT NULL,
+    `model` varchar(100) NOT NULL,
+    UNIQUE (`app_label`, `model`)
+)
+;; args=None
+DEBUG 2014-07-10 17:24:45,328 util (0.027) ALTER TABLE `django_admin_log` ADD CONSTRAINT `content_type_id_refs_id_93d2d1f8` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`);; args=None
+DEBUG 2014-07-10 17:24:45,334 util (0.006) ALTER TABLE `auth_permission` ADD CONSTRAINT `content_type_id_refs_id_d043b34a` FOREIGN KEY (`content_type_id`) REFERENCES `django_content_type` (`id`);; args=None
+DEBUG 2014-07-10 17:24:45,337 util (0.002) CREATE TABLE `django_session` (
+    `session_key` varchar(40) NOT NULL PRIMARY KEY,
+    `session_data` longtext NOT NULL,
+    `expire_date` datetime NOT NULL
+)
+;; args=None
+DEBUG 2014-07-10 17:24:45,408 util (0.031) SELECT `django_content_type`.`id`, `django_content_type`.`name`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`model` = 'logentry'  AND `django_content_type`.`app_label` = 'admin' ); args=('logentry', u'admin')
+DEBUG 2014-07-10 17:24:45,440 util (0.032) INSERT INTO `django_content_type` (`name`, `app_label`, `model`) VALUES ('log entry', 'admin', 'logentry'); args=[u'log entry', u'admin', 'logentry']
+DEBUG 2014-07-10 17:24:45,447 util (0.000) SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON ( `auth_permission`.`content_type_id` = `django_content_type`.`id` ) WHERE `auth_permission`.`content_type_id` IN (1) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(1,)
+DEBUG 2014-07-10 17:24:45,450 util (0.001) INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add log entry', 1, 'add_logentry'), ('Can change log entry', 1, 'change_logentry'), ('Can delete log entry', 1, 'delete_logentry'); args=(u'Can add log entry', 1, u'add_logentry', u'Can change log entry', 1, u'change_logentry', u'Can delete log entry', 1, u'delete_logentry')
+DEBUG 2014-07-10 17:24:45,452 util (0.000) SELECT `django_content_type`.`id`, `django_content_type`.`name`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'admin'  ORDER BY `django_content_type`.`name` ASC; args=(u'admin',)
+DEBUG 2014-07-10 17:24:45,453 util (0.000) SELECT `django_content_type`.`id`, `django_content_type`.`name`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`model` = 'permission'  AND `django_content_type`.`app_label` = 'auth' ); args=('permission', u'auth')
+DEBUG 2014-07-10 17:24:45,454 util (0.000) INSERT INTO `django_content_type` (`name`, `app_label`, `model`) VALUES ('permission', 'auth', 'permission'); args=[u'permission', u'auth', 'permission']
+DEBUG 2014-07-10 17:24:45,455 util (0.000) SELECT `django_content_type`.`id`, `django_content_type`.`name`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`model` = 'group'  AND `django_content_type`.`app_label` = 'auth' ); args=('group', u'auth')
+DEBUG 2014-07-10 17:24:45,458 util (0.000) INSERT INTO `django_content_type` (`name`, `app_label`, `model`) VALUES ('group', 'auth', 'group'); args=[u'group', u'auth', 'group']
+DEBUG 2014-07-10 17:24:45,464 util (0.000) SELECT `django_content_type`.`id`, `django_content_type`.`name`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`model` = 'user'  AND `django_content_type`.`app_label` = 'auth' ); args=('user', u'auth')
+DEBUG 2014-07-10 17:24:45,465 util (0.000) INSERT INTO `django_content_type` (`name`, `app_label`, `model`) VALUES ('user', 'auth', 'user'); args=[u'user', u'auth', 'user']
+DEBUG 2014-07-10 17:24:45,478 util (0.011) SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON ( `auth_permission`.`content_type_id` = `django_content_type`.`id` ) WHERE `auth_permission`.`content_type_id` IN (2, 3, 4) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(2, 3, 4)
+DEBUG 2014-07-10 17:24:45,479 util (0.000) INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add permission', 2, 'add_permission'), ('Can change permission', 2, 'change_permission'), ('Can delete permission', 2, 'delete_permission'), ('Can add group', 3, 'add_group'), ('Can change group', 3, 'change_group'), ('Can delete group', 3, 'delete_group'), ('Can add user', 4, 'add_user'), ('Can change user', 4, 'change_user'), ('Can delete user', 4, 'delete_user'); args=(u'Can add permission', 2, u'add_permission', u'Can change permission', 2, u'change_permission', u'Can delete permission', 2, u'delete_permission', u'Can add group', 3, u'add_group', u'Can change group', 3, u'change_group', u'Can delete group', 3, u'delete_group', u'Can add user', 4, u'add_user', u'Can change user', 4, u'change_user', u'Can delete user', 4, u'delete_user')
+DEBUG 2014-07-10 17:24:45,486 util (0.005) SELECT `django_content_type`.`id`, `django_content_type`.`name`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'auth'  ORDER BY `django_content_type`.`name` ASC; args=(u'auth',)
+DEBUG 2014-07-10 17:24:45,487 util (0.000) SELECT `django_content_type`.`id`, `django_content_type`.`name`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`model` = 'contenttype'  AND `django_content_type`.`app_label` = 'contenttypes' ); args=('contenttype', u'contenttypes')
+DEBUG 2014-07-10 17:24:45,488 util (0.000) INSERT INTO `django_content_type` (`name`, `app_label`, `model`) VALUES ('content type', 'contenttypes', 'contenttype'); args=[u'content type', u'contenttypes', 'contenttype']
+DEBUG 2014-07-10 17:24:45,489 util (0.000) SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON ( `auth_permission`.`content_type_id` = `django_content_type`.`id` ) WHERE `auth_permission`.`content_type_id` IN (5) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(5,)
+DEBUG 2014-07-10 17:24:45,490 util (0.000) INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add content type', 5, 'add_contenttype'), ('Can change content type', 5, 'change_contenttype'), ('Can delete content type', 5, 'delete_contenttype'); args=(u'Can add content type', 5, u'add_contenttype', u'Can change content type', 5, u'change_contenttype', u'Can delete content type', 5, u'delete_contenttype')
+DEBUG 2014-07-10 17:24:45,491 util (0.000) SELECT `django_content_type`.`id`, `django_content_type`.`name`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'contenttypes'  ORDER BY `django_content_type`.`name` ASC; args=(u'contenttypes',)
+DEBUG 2014-07-10 17:24:45,492 util (0.000) SELECT `django_content_type`.`id`, `django_content_type`.`name`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE (`django_content_type`.`model` = 'session'  AND `django_content_type`.`app_label` = 'sessions' ); args=('session', u'sessions')
+DEBUG 2014-07-10 17:24:45,492 util (0.000) INSERT INTO `django_content_type` (`name`, `app_label`, `model`) VALUES ('session', 'sessions', 'session'); args=[u'session', u'sessions', 'session']
+DEBUG 2014-07-10 17:24:45,494 util (0.000) SELECT `auth_permission`.`content_type_id`, `auth_permission`.`codename` FROM `auth_permission` INNER JOIN `django_content_type` ON ( `auth_permission`.`content_type_id` = `django_content_type`.`id` ) WHERE `auth_permission`.`content_type_id` IN (6) ORDER BY `django_content_type`.`app_label` ASC, `django_content_type`.`model` ASC, `auth_permission`.`codename` ASC; args=(6,)
+DEBUG 2014-07-10 17:24:45,494 util (0.000) INSERT INTO `auth_permission` (`name`, `content_type_id`, `codename`) VALUES ('Can add session', 6, 'add_session'), ('Can change session', 6, 'change_session'), ('Can delete session', 6, 'delete_session'); args=(u'Can add session', 6, u'add_session', u'Can change session', 6, u'change_session', u'Can delete session', 6, u'delete_session')
+DEBUG 2014-07-10 17:24:45,495 util (0.000) SELECT `django_content_type`.`id`, `django_content_type`.`name`, `django_content_type`.`app_label`, `django_content_type`.`model` FROM `django_content_type` WHERE `django_content_type`.`app_label` = 'sessions'  ORDER BY `django_content_type`.`name` ASC; args=(u'sessions',)
+DEBUG 2014-07-10 17:24:45,530 util (0.023) CREATE INDEX `django_admin_log_6340c63c` ON `django_admin_log` (`user_id`);; args=None
+DEBUG 2014-07-10 17:24:45,535 util (0.005) CREATE INDEX `django_admin_log_37ef4eb4` ON `django_admin_log` (`content_type_id`);; args=None
+DEBUG 2014-07-10 17:24:45,542 util (0.006) CREATE INDEX `auth_permission_37ef4eb4` ON `auth_permission` (`content_type_id`);; args=None
+DEBUG 2014-07-10 17:24:45,544 util (0.002) CREATE INDEX `auth_group_permissions_5f412f9a` ON `auth_group_permissions` (`group_id`);; args=None
+DEBUG 2014-07-10 17:24:45,549 util (0.005) CREATE INDEX `auth_group_permissions_83d7f98b` ON `auth_group_permissions` (`permission_id`);; args=None
+DEBUG 2014-07-10 17:24:45,559 util (0.009) CREATE INDEX `auth_user_groups_6340c63c` ON `auth_user_groups` (`user_id`);; args=None
+DEBUG 2014-07-10 17:24:45,569 util (0.010) CREATE INDEX `auth_user_groups_5f412f9a` ON `auth_user_groups` (`group_id`);; args=None
+DEBUG 2014-07-10 17:24:45,576 util (0.006) CREATE INDEX `auth_user_user_permissions_6340c63c` ON `auth_user_user_permissions` (`user_id`);; args=None
+DEBUG 2014-07-10 17:24:45,583 util (0.007) CREATE INDEX `auth_user_user_permissions_83d7f98b` ON `auth_user_user_permissions` (`permission_id`);; args=None
+DEBUG 2014-07-10 17:24:45,591 util (0.007) CREATE INDEX `django_session_b7b81f0c` ON `django_session` (`expire_date`);; args=None
+DEBUG 2014-07-10 17:24:45,957 util (0.000) SET foreign_key_checks=0; args=None
+DEBUG 2014-07-10 17:24:45,989 util (0.000) SET foreign_key_checks=1; args=None
+DEBUG 2014-07-10 17:24:47,564 util (0.007) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'epe48i1u8gpm953preqyvecra26fb5pf'  AND `django_session`.`expire_date` > '2014-07-10 17:24:47' ); args=('epe48i1u8gpm953preqyvecra26fb5pf', u'2014-07-10 17:24:47')
+DEBUG 2014-07-10 17:24:47,567 util (0.000) SELECT (1) AS `a` FROM `django_session` WHERE `django_session`.`session_key` = 'itb6ham4d19ea7g478x38m3fjiailim9'  LIMIT 1; args=(u'itb6ham4d19ea7g478x38m3fjiailim9',)
+DEBUG 2014-07-10 17:24:47,574 util (0.000) INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES ('itb6ham4d19ea7g478x38m3fjiailim9', 'ODYxZDNlZTIxZGZmYmIwYTIwYjRkMmEzYzM5ODQxOWE0ZmI5ODE1ZDp7fQ==', '2014-07-24 17:24:47'); args=(u'itb6ham4d19ea7g478x38m3fjiailim9', u'ODYxZDNlZTIxZGZmYmIwYTIwYjRkMmEzYzM5ODQxOWE0ZmI5ODE1ZDp7fQ==', u'2014-07-24 17:24:47')
+DEBUG 2014-07-10 17:24:47,586 util (0.009) UPDATE `django_session` SET `session_data` = 'ODYxZDNlZTIxZGZmYmIwYTIwYjRkMmEzYzM5ODQxOWE0ZmI5ODE1ZDp7fQ==', `expire_date` = '2014-07-24 17:24:47' WHERE `django_session`.`session_key` = 'itb6ham4d19ea7g478x38m3fjiailim9' ; args=(u'ODYxZDNlZTIxZGZmYmIwYTIwYjRkMmEzYzM5ODQxOWE0ZmI5ODE1ZDp7fQ==', u'2014-07-24 17:24:47', u'itb6ham4d19ea7g478x38m3fjiailim9')
+DEBUG 2014-07-10 17:26:02,678 util (0.005) SELECT `auth_user`.`id`, `auth_user`.`password`, `auth_user`.`last_login`, `auth_user`.`is_superuser`, `auth_user`.`username`, `auth_user`.`first_name`, `auth_user`.`last_name`, `auth_user`.`email`, `auth_user`.`is_staff`, `auth_user`.`is_active`, `auth_user`.`date_joined` FROM `auth_user` WHERE `auth_user`.`username` = 'yangchen' ; args=(u'yangchen',)
+DEBUG 2014-07-10 17:26:04,973 util (0.000) SELECT `auth_user`.`id`, `auth_user`.`password`, `auth_user`.`last_login`, `auth_user`.`is_superuser`, `auth_user`.`username`, `auth_user`.`first_name`, `auth_user`.`last_name`, `auth_user`.`email`, `auth_user`.`is_staff`, `auth_user`.`is_active`, `auth_user`.`date_joined` FROM `auth_user` WHERE `auth_user`.`username` = 'root' ; args=('root',)
+DEBUG 2014-07-10 17:26:11,044 util (0.000) INSERT INTO `auth_user` (`password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES ('pbkdf2_sha256$12000$FbUYNz4U3ZqY$sziMtjFXuBQ68QHe/2sWxuptq6u2KHdt6wxk5t8btYY=', '2014-07-10 17:26:10', 1, 'root', '', '', '', 1, 1, '2014-07-10 17:26:10'); args=[u'pbkdf2_sha256$12000$FbUYNz4U3ZqY$sziMtjFXuBQ68QHe/2sWxuptq6u2KHdt6wxk5t8btYY=', u'2014-07-10 17:26:10', True, 'root', u'', u'', u'', True, True, u'2014-07-10 17:26:10']
+WARNING 2014-07-10 17:26:16,482 csrf Forbidden (CSRF token missing or incorrect.): /login
+DEBUG 2014-07-10 17:29:18,594 util (0.013) SELECT `auth_user`.`id`, `auth_user`.`password`, `auth_user`.`last_login`, `auth_user`.`is_superuser`, `auth_user`.`username`, `auth_user`.`first_name`, `auth_user`.`last_name`, `auth_user`.`email`, `auth_user`.`is_staff`, `auth_user`.`is_active`, `auth_user`.`date_joined` FROM `auth_user` WHERE `auth_user`.`username` = 'root' ; args=(u'root',)
+DEBUG 2014-07-10 17:29:18,662 util (0.001) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = 'itb6ham4d19ea7g478x38m3fjiailim9'  AND `django_session`.`expire_date` > '2014-07-10 17:29:18' ); args=('itb6ham4d19ea7g478x38m3fjiailim9', u'2014-07-10 17:29:18')
+DEBUG 2014-07-10 17:29:18,669 util (0.000) SELECT (1) AS `a` FROM `django_session` WHERE `django_session`.`session_key` = '5xfghx2hzneukru2l8q1axyv9ao6qpyi'  LIMIT 1; args=(u'5xfghx2hzneukru2l8q1axyv9ao6qpyi',)
+DEBUG 2014-07-10 17:29:18,673 util (0.003) INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES ('5xfghx2hzneukru2l8q1axyv9ao6qpyi', 'ODYxZDNlZTIxZGZmYmIwYTIwYjRkMmEzYzM5ODQxOWE0ZmI5ODE1ZDp7fQ==', '2014-07-24 17:29:18'); args=(u'5xfghx2hzneukru2l8q1axyv9ao6qpyi', u'ODYxZDNlZTIxZGZmYmIwYTIwYjRkMmEzYzM5ODQxOWE0ZmI5ODE1ZDp7fQ==', u'2014-07-24 17:29:18')
+DEBUG 2014-07-10 17:29:18,678 util (0.004) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE `django_session`.`session_key` = 'itb6ham4d19ea7g478x38m3fjiailim9' ; args=('itb6ham4d19ea7g478x38m3fjiailim9',)
+DEBUG 2014-07-10 17:29:18,690 util (0.003) DELETE FROM `django_session` WHERE `session_key` IN ('itb6ham4d19ea7g478x38m3fjiailim9'); args=(u'itb6ham4d19ea7g478x38m3fjiailim9',)
+DEBUG 2014-07-10 17:29:18,700 util (0.005) UPDATE `auth_user` SET `last_login` = '2014-07-10 17:29:18' WHERE `auth_user`.`id` = 1 ; args=(u'2014-07-10 17:29:18', 1)
+DEBUG 2014-07-10 17:29:18,733 util (0.000) UPDATE `django_session` SET `session_data` = 'YjRmNWRiODU2MWI2MDNlNDMwMTMzN2NiMGNiNTM0MjY3ZmVlNzZkZDp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=', `expire_date` = '2014-07-24 17:29:18' WHERE `django_session`.`session_key` = '5xfghx2hzneukru2l8q1axyv9ao6qpyi' ; args=(u'YjRmNWRiODU2MWI2MDNlNDMwMTMzN2NiMGNiNTM0MjY3ZmVlNzZkZDp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0=', u'2014-07-24 17:29:18', u'5xfghx2hzneukru2l8q1axyv9ao6qpyi')
+DEBUG 2014-07-10 17:29:18,753 util (0.000) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = '5xfghx2hzneukru2l8q1axyv9ao6qpyi'  AND `django_session`.`expire_date` > '2014-07-10 17:29:18' ); args=('5xfghx2hzneukru2l8q1axyv9ao6qpyi', u'2014-07-10 17:29:18')
+DEBUG 2014-07-10 17:29:18,755 util (0.000) SELECT `auth_user`.`id`, `auth_user`.`password`, `auth_user`.`last_login`, `auth_user`.`is_superuser`, `auth_user`.`username`, `auth_user`.`first_name`, `auth_user`.`last_name`, `auth_user`.`email`, `auth_user`.`is_staff`, `auth_user`.`is_active`, `auth_user`.`date_joined` FROM `auth_user` WHERE `auth_user`.`id` = 1 ; args=(1,)
+DEBUG 2014-07-11 12:16:38,054 util (0.052) SELECT `django_session`.`session_key`, `django_session`.`session_data`, `django_session`.`expire_date` FROM `django_session` WHERE (`django_session`.`session_key` = '5xfghx2hzneukru2l8q1axyv9ao6qpyi'  AND `django_session`.`expire_date` > '2014-07-11 12:16:37' ); args=('5xfghx2hzneukru2l8q1axyv9ao6qpyi', u'2014-07-11 12:16:37')
+DEBUG 2014-07-11 12:16:38,132 util (0.001) SELECT `auth_user`.`id`, `auth_user`.`password`, `auth_user`.`last_login`, `auth_user`.`is_superuser`, `auth_user`.`username`, `auth_user`.`first_name`, `auth_user`.`last_name`, `auth_user`.`email`, `auth_user`.`is_staff`, `auth_user`.`is_active`, `auth_user`.`date_joined` FROM `auth_user` WHERE `auth_user`.`id` = 1 ; args=(1,)
