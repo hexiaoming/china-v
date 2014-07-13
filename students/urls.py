@@ -5,5 +5,6 @@ urlpatterns = patterns('students.views',
     url(r'^$', 'index'),
     url(r'^add$', 'add_student'),
     url(r'^edit$', 'edit_student'),
-    url(r'^delete$', 'delete_student')
+    url(r'^delete$', 'delete_student'),
+    url(r'^turn$', 'turn')
 )

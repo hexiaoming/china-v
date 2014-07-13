@@ -35,6 +35,12 @@ class StudentForm(forms.ModelForm):
 class StudentTable(tables.Table):
     ops = tables.columns.TemplateColumn(verbose_name=u'操作', template_name='student_ops.html', orderable=False)
 
+    def render_name(request, value, record):
+        result = value
+        if record.playing:
+            result = result + "&nbsp;&nbsp;<span class='playing'></span>"
+        return mark_safe(result)
+
     def render_avatar(request, value):
         return mark_safe("<a href='%s'><img class='img-thumbnail' src='%s'></a>" % (value, value))
 
@@ -109,4 +115,17 @@ def edit_student(request):
 def delete_student(request):
     pk = request.POST.get("pk", '')
     Student.objects.filter(pk=pk).delete()
+    return {'ret_code': 0}
+
+
+@require_POST
+@as_json
+def turn(request):
+    import time
+    time.sleep(2)
+    pk = request.POST.get("pk", '')
+    students = Student.objects.filter(pk=pk)
+    if len(students) > 0:
+        Student.objects.filter(playing=True).update(playing=False)
+        students.update(playing=True)
     return {'ret_code': 0}

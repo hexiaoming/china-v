@@ -3,6 +3,7 @@ define(function(require) {
     require('bootstrap');
     require('jquery-placeholder');
     require('django-csrf-support');
+    var multiline = require("multiline");
     var when = require('components/when/when');
     var _ = require("underscore");
 
@@ -31,6 +32,12 @@ define(function(require) {
 
     function deleteStudent(pk) {
         return when($.post("/backend/students/delete", {
+            pk: pk
+        }, "json")).then(utils.mapErrors, utils.throwNetError);
+    }
+
+    function turnToPlay(pk) {
+        return when($.post("/backend/students/turn", {
             pk: pk
         }, "json")).then(utils.mapErrors, utils.throwNetError);
     }
@@ -156,6 +163,61 @@ define(function(require) {
         $("table").on("click", ".delete", function() {
             modal.setId($(this).parent().data('pk'));
             modal.show();
+        });
+    });
+
+    $(function() {
+        var tpl = _.template(multiline(function() {
+            /*@preserve
+        <div class="modal fade">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class='loader'>
+                        <img src='/static/img/loading.gif'>
+                    </div>
+                    <div class='alert' style='margin-bottom: 0px;display: none'></div> 
+                </div>
+            </div>
+        </div>
+        </div>
+        */
+            console.log
+        }));
+        var $loading = $(tpl().trim());
+
+        $loading.clear = function() {
+            $loading.find('.alert')
+                .hide()
+                .removeClass('danger')
+                .removeClass('success')
+                .empty('');
+            $loading.find('.loader').show();
+        }
+        $loading.tip = function(type, content) {
+            $loading.clear();
+            $loading.find('.loader').hide();
+            $loading.find('.alert').addClass('alert-' + type).html(content).fadeIn();
+        };
+        $loading.appendTo(document.body);
+        $loading.modal('hide');
+        $loading.on('hidden', function() {
+            $loading.clear();
+            $loading.modal('hide')
+        });
+
+        $("table").on("click", ".turn", function() {
+            var $this = $(this);
+            $loading.modal('show');
+            $loading.modal('lock');
+            turnToPlay($this.parent().data('pk')).then(function() {
+                $loading.tip('success', '操作成功');
+                utils.reload(1000);
+            }, function() {
+                $loading.tip('danger', '操作失败！');
+            }).ensure(function() {
+                $loading.modal('unlock');
+            });
         });
     });
 });
