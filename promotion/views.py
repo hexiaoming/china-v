@@ -9,6 +9,9 @@ import django.contrib.auth as auth
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django_render_json import json, render_json
 import re
+import time
+from promotion.models import *
+from promotion.do import *
 # Create your views here.
 @require_GET
 def index(request):
@@ -26,6 +29,22 @@ def mobvet(request):
 	if request.method == 'GET':
 		return render(request,"promotion/mobvet.html")
 
+@require_POST
+@ensure_csrf_cookie
+def mobvet_post(request):
+	if request.method == 'POST':
+		mobile = request.POST.get('mobile',None)
+		m = Mobvet.objects.create(mobile=str(mobile),timestamp=str(time.time()))
+		m.save()
+		try:
+			q =	student.objects.all()
+
+		except student.DoesNotExist:
+			return render_json({"reason":"no students please import data"})
+		return render(request,"promotion/Vboard.html",{"dovet":"mob","result":q})
+	else:
+		return render(request,"promotion/proerror.html")
+
 @require_GET
 def instruction(request):
 	if request.method == 'GET':
@@ -34,7 +53,11 @@ def instruction(request):
 @require_GET
 def Vboard(request):
 	if request.method == 'GET':
-		return render(request,"promotion/Vboard.html")
+		try:
+			q =	student.objects.all()
+		except student.DoesNotExist:
+			return render_json({"reason":"no students please import data"})
+		return render(request,"promotion/Vboard.html",{"dovet":"dir","result":q})
 
 @require_GET
 def proerror(request):
@@ -48,17 +71,45 @@ def pro_mobvet(request):
 	if request.method == 'POST':
 		circle = request.POST.get('circle',None)
 		top = request.POST.get('top',None)
-			#展示填写手机信息页面，并把circle，top，传入模板作为hidden的元素
-		return render(request,"promotion/pro_mobvet.html",{"circle":circle,"top":top})
+		#罐投票验证
+		if check_pro_num():
+			return render(request,"promotion/pro_mobvet.html",{"circle":str(circle),"top":str(top)})
+		else:
+			return render(request,"/promotion/proerror/")
 	else:
 		return redirect("/promotion/proerror/")
 
-@require_POST
+@require_POST	
 @ensure_csrf_cookie
 def vet(request):
 	#此页面只允许使用post的方式进行访问，如果方式有问题，则返回错误页面
 	if request.method == 'POST':
 		mobile = request.POST.get('mobile',None)
-		return render(request,"promotion/Vboard.html",{"dovet":"pro"})
+		circle = request.POST.get('circle',None)
+		top = request.POST.get('top',None)
+		timestamp = time.time()
+		if check_pro_num_mobile():
+			p = Provet.objects.create(circle_num=str(circle),top_num=str(top),mobile=str(mobile),timestamp=str(timestamp))
+			p.save()
+			try:
+				q =	student.objects.all()
+			except student.DoesNotExist:
+				return render_json({"reason":"no students please import data"})
+			return render(request,"promotion/Vboard.html",{"dovet":"pro"})
+		else:
+			return redirect("/promotion/proerror/")
 	else:
-		return redirect("/promotion/proerror/")	
+		return redirect("/promotion/proerror/")
+
+
+@require_GET
+def vboard_show(request):
+	#这个是显示最V榜单
+	res = getVboard()
+	return render(request,"promotion/vboard_show.html",{"res":res})
+
+@require_GET
+def studentlist(request):
+	#学员展示页面
+	studentlist = getStudents()
+	return render(request,"promotion/studentlist.html",{"studentlist":studentlist})

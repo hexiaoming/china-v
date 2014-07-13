@@ -49,12 +49,12 @@ define(function(require) {
           });  
         }
     };
-
 	$(function(){
-
+      $(".student .avatar").css({
+          "height":$(".student .avatar").css("width")
+      });   
 		$(".go_check").click(function(){
-            if(!provet.check()){
-
+            if(!provet.check()){ß
                    
             }
         });

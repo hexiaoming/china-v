@@ -2,6 +2,8 @@
 {% block promotion %}
 <form action="/promotion/vet/" method="post">{% csrf_token %}
 <input type="text" class="form-control input-sm" name="mobile" placeholder="请输入手机号"/>
+<input type="hidden" value="{{ circle }}" name="circle" />
+<input type="hidden" value="{{ top }}" name="top" />
 <input type="submit" class="btn btn-sm btn-primary" >
 </form>
 {% endblock %}
