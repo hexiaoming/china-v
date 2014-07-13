@@ -4,6 +4,7 @@ import logging
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_GET, require_http_methods, require_POST
+from django.views.decorators.csrf import csrf_exempt
 
 from django_tables2 import RequestConfig 
 from django.utils.safestring import mark_safe
@@ -12,7 +13,7 @@ import django_tables2 as tables
 import django_active_tab as active_tab
 from django import forms
 
-from students.models import Student
+from students.models import Student, VoteRecord
 from ajax_upload.widgets import AjaxClearableFileInput
 
 logger = logging.getLogger(__name__)
@@ -72,8 +73,11 @@ def index(request):
     if searching:
         table.empty_text = u'没有搜索结果'
 
+    student = Student.objects.getPlayingStudent()
+
     return render(request, "students.html", {
         'table': table,
+        'student': student,
         'form': StudentForm()
     })
 
@@ -120,12 +124,62 @@ def delete_student(request):
 
 @require_POST
 @as_json
-def turn(request):
-    import time
-    time.sleep(2)
+def play(request):
+    #import time
+    #time.sleep(2)
     pk = request.POST.get("pk", '')
     students = Student.objects.filter(pk=pk)
-    if len(students) > 0:
+    if Student.objects.getPlayingStudent():
+        logger.debug("Some student is playing")
         Student.objects.filter(playing=True).update(playing=False)
-        students.update(playing=True)
+    logger.debug("Student to play")
+    students.update(playing=True)
     return {'ret_code': 0}
+
+
+@require_POST
+@as_json
+def stop(request):
+    #import time
+    #time.sleep(2)
+    Student.objects.filter(playing=True).update(playing=False)
+    return {'ret_code': 0}
+
+
+class VoteForm(forms.ModelForm):
+    class Meta:
+        exclude=('student',)
+        model = VoteRecord
+
+
+def plusVote(student):
+    # TODO add to redis
+    pass
+
+
+@require_POST
+@csrf_exempt
+@as_json
+def vote(request):
+    student = Student.objects.getPlayingStudent()
+    if not student:
+        logger.warn("no playing student!")
+        return {'ret_code': 2001}
+
+    form = VoteForm(request.POST)
+    if not form.is_valid():
+        logger.warn("vote form in valid")
+        logger.warn("errors")
+        logger.warn(form.errors)
+        return {'ret_code': 1002}
+
+    record = form.save(commit=False)
+    record.student = student
+    record.save()
+    plusVote(student)
+    return {'ret_code': 0}
+
+
+@require_GET
+def rank(request):
+    return render(request, "rank.html")

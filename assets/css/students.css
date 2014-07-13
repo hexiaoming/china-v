@@ -7461,6 +7461,7 @@ form {
 }
 td .img-thumbnail {
   max-width: 200px;
+  max-height: 200px;
 }
 span.playing {
   display: inline-block;

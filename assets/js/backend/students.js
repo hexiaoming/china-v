@@ -36,10 +36,15 @@ define(function(require) {
         }, "json")).then(utils.mapErrors, utils.throwNetError);
     }
 
-    function turnToPlay(pk) {
-        return when($.post("/backend/students/turn", {
+    function startPlaying(pk) {
+        return when($.post("/backend/students/play", {
             pk: pk
         }, "json")).then(utils.mapErrors, utils.throwNetError);
+    }
+
+    function stopPlaying() {
+        return when($.post("/backend/students/stop", {}, "json"))
+            .then(utils.mapErrors, utils.throwNetError);
     }
 
     var StudentForm = Backbone.View.extend(_.extend({}, formProto, vaFormProto, {
@@ -210,9 +215,22 @@ define(function(require) {
             var $this = $(this);
             $loading.modal('show');
             $loading.modal('lock');
-            turnToPlay($this.parent().data('pk')).then(function() {
+            startPlaying($this.parent().data('pk')).then(function() {
                 $loading.tip('success', '操作成功');
                 utils.reload(1000);
+            }, function() {
+                $loading.tip('danger', '操作失败！');
+            }).ensure(function() {
+                $loading.modal('unlock');
+            });
+        });
+
+        $("#stop-student").click(function() {
+            $loading.modal('show');
+            $loading.modal('lock');
+            stopPlaying().then(function() {
+                $loading.tip('success', '操作成功');
+                utils.reload(500);
             }, function() {
                 $loading.tip('danger', '操作失败！');
             }).ensure(function() {
