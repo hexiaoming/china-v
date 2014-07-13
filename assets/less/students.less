@@ -1,0 +1,42 @@
+@import "bootstrap/less/bootstrap.less";
+@import "base-font.less";
+@import "parsley.less";
+@import "label-required.less";
+@import "panel-btn.less";
+@import "simple-upload.less";
+@import "table-custom.less";
+@import "bootstrap-form.less";
+@import "table-sort.less";
+@import "search.less";
+@import "toolbar.less";
+
+
+@import "/static/ajax_upload/css/ajax-upload-widget.css";
+
+td .img-thumbnail {
+    max-width: 200px;
+}
+
+span.playing {
+    display: inline-block;
+    vertical-align: middle;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: @brand-success;
+}
+
+td.ops {
+    width: 135px;
+}
+
+.loader {
+    .size(64px, 40px);
+    .center-block();
+    line-height: 40px;
+    img {
+        display: inline-block;
+        vertical-align: middle
+    }
+}
+

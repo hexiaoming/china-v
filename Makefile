@@ -1,9 +1,9 @@
-host:=127.0.0.1
+host:=0.0.0.0
 port:=9000
 activate_venv=source venv/bin/activate
 
 debug:
-	$(activate_venv) && nohup ./manage.py runserver $(host):$(port) &
+	$(activate_venv) && ./manage.py runserver $(host):$(port)
 
 start-uwsgi:
 	$(activate_venv) \

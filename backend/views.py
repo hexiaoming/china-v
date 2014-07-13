@@ -20,12 +20,7 @@ def welcome(request):
         logger.warn("welcome: user is not authenticated")
         return redirect("/login")
     else:
-        return redirect("/backend/")
-
-
-@require_GET
-def index(request):
-    return render_json({'content': 'hello!'});
+        return redirect("/backend/students")
 
 
 @require_GET
