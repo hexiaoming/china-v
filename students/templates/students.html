@@ -14,6 +14,14 @@
         <button class="btn btn-primary" id="create-student">
             <span class="glyphicon glyphicon-plus"></span>&nbsp;创建学员
         </button>
+
+        <button class="btn btn-default" id="stop-student"
+            {% if not student %} disabled="disabled" {% endif %}>
+            <span class="glyphicon glyphicon-stop"></span>&nbsp;停止表演
+        </button>
+        {% if student %}
+        &nbsp;<span class='text-info'>{{ student.name }}</span> 正在表演
+        {% endif %}
     </div>
     <div class="panel panel-default">
         <div class="panel-heading">
