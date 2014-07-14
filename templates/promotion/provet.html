@@ -1,14 +1,11 @@
 {% extends "promotion/promotion_header.html" %}
 {% block promotion %}
-
 <form action="/promotion/pro_mobvet/" method="post">{% csrf_token %}
 <input type="text" class="form-control input-sm circle_num" placeholder="输入拉环括号内3位码" name="circle"/>
 <input type="text" class="form-control input-sm top_num" placeholder="输入罐顶8位码" name="top"/>
 <input class="btn btn-sm btn-default go_check" type="submit"/>
 </form> 
 {% endblock %}
-<script type="text/javascript" src="{{ STATIC_URL }}js/require.config.js">
-</script>
-<script type="text/javascript" src="{{ STATIC_URL }}components/requirejs/require.js">
-</script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/require.config.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}components/requirejs/require.js"></script>
 <script>require(["promotion"])</script>

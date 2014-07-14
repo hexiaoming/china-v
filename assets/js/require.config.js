@@ -16,11 +16,10 @@ var require = {
 
         'ajax_upload': 'ajax_upload/js/ajax-upload-widget',
         'login': 'js/login',
-        'students': 'js/backend/students'
+        'students': 'js/backend/students',
         'login': 'js/login',
         'promotion': 'js/promotion/promotion',
         'swiper': 'components/swiper/dist/idangerous.swiper.min'
-        'login': 'js/login',
     },
     shim: {
         'jquery-placeholder': {
