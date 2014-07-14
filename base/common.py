@@ -14,6 +14,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'base',
+    'shake',
     'ajax_upload',
     'students',
     'backend',

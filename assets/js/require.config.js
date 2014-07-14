@@ -13,10 +13,13 @@ var require = {
         'underscore': 'components/underscore/underscore',
         'multiline': 'components/multiline/browser',
         'backbone': 'components/backbone',
+        'shake': 'components/shake.js/shake',
+
 
         'ajax_upload': 'ajax_upload/js/ajax-upload-widget',
         'login': 'js/login',
-        'students': 'js/backend/students'
+        'students': 'js/backend/students',
+        'shake-vote': 'js/shake/vote'
     },
     shim: {
         'jquery-placeholder': {

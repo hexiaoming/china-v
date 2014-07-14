@@ -1,0 +1,47 @@
+@import "bootstrap/less/bootstrap.less";
+@import "base-font.less";
+
+.container {
+    position: absolute;
+    padding: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+
+    .entry {
+        display: block;
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        width: 280px;
+        height: 280px;
+        margin-left: -140px;
+
+        img {
+            padding: 0px;
+            border: none;
+        }
+    }
+
+    .button-bar {
+        position: absolute;
+        bottom: 0px;
+        width: 100%;
+        height: 50px;
+
+        .btn {
+            position: absolute;
+            width: 45%;
+            top: 8px;
+
+            &.left {
+                left: 10px;
+            }
+
+            &.right {
+                right: 10px;
+            }
+        }
+    }
+}

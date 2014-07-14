@@ -4,7 +4,7 @@ import logging
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_GET, require_http_methods, require_POST
-from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_exempt, ensure_csrf_cookie
 
 from django_tables2 import RequestConfig 
 from django.utils.safestring import mark_safe
@@ -57,6 +57,7 @@ class StudentTable(tables.Table):
 
 @require_GET
 @login_required
+@ensure_csrf_cookie
 @active_tab("students")
 def index(request):
     data = Student.objects.all().order_by('-pk');
@@ -158,7 +159,6 @@ def plusVote(student):
 
 
 @require_POST
-@csrf_exempt
 @as_json
 def vote(request):
     student = Student.objects.getPlayingStudent()
