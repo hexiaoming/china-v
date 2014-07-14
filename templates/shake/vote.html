@@ -13,14 +13,10 @@
 </head>
 <body>
     <div class="container">
-        <div class="votes h1">1001</div>
+        <div class="votes h1">{{ vote|default:"0" }}</div>
     </div>
 
-    <div class="loader" style="">
-        <img src="{{ STATIC_URL }}/img/loading.gif" alt="">
-    </div>
-    <div class="loader-overlay" style="">
-    </div>
+    
     <script type="text/javascript" src="{{ STATIC_URL }}js/require.config.js">
     </script>
     <script type="text/javascript" src="{{ STATIC_URL }}components/requirejs/require.js">

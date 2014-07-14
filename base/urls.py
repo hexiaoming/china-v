@@ -5,8 +5,9 @@ urlpatterns = patterns('',
     url(r'^ajax-upload/', include('ajax_upload.urls')),
     url(r'', include('backend.urls')),
     url(r'^backend/students/', include('students.urls')),
+    url(r'^backend/votes/', include('shake.urls')),
     url(r'^students/', include('students.front_urls')),
-    url(r'^shake/', include('shake.urls'))
+    url(r'^shake/', include('shake.front_urls'))
 )
 
 

@@ -19,3 +19,5 @@ django-render-json
 django-render-csv
 django-auth-json
 django-active-tab
+
+redis

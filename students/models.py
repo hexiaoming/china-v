@@ -1,5 +1,6 @@
 #coding: utf-8
 from django.db import models
+from r import redis
 
 class StudentManager(models.Manager):
     def getPlayingStudent(self):
@@ -13,12 +14,23 @@ class Student(models.Model):
     playing = models.BooleanField(verbose_name=u'是否在表演', editable=False, default=False)
     objects = StudentManager()
 
+    def getVote(self):
+        result = redis.zscore('votes', str(self.pk))
+        return 0 if result is None else int(result)
+
+    def addVote(self):
+        redis.zincrby('votes', str(self.pk))
+        return self.getVote()
+
+    def __unicode__(self):
+        return self.name
+
 
 class VoteRecord(models.Model):
-    student = models.ForeignKey(Student)
-    datetime = models.DateTimeField(auto_now_add=True)
-    ip = models.CharField(max_length=20)
-    audience = models.CharField(max_length=50)
+    student = models.ForeignKey(Student, verbose_name=u'学员')
+    datetime = models.DateTimeField(auto_now_add=True, verbose_name=u'投票时间')
+    ip = models.CharField(verbose_name='ip', max_length=20)
+    audience = models.CharField(max_length=50, verbose_name=u'观众')
 
 
 LOTTERIES = (

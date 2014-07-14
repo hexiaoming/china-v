@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.conf import settings
 
-urlpatterns = patterns('shake.views',
+urlpatterns = patterns('shake.front_views',
     url(r'^$', 'index'),
-    url(r'^votes.csv$', 'exports')
+    url(r'^vote$', 'vote')
 )

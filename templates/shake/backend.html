@@ -1,0 +1,32 @@
+{% extends "scaffold.html" %}
+{% load django_tables2 %}
+
+{% block title %}学员管理{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/students.css">
+{% endblock %}
+
+{% block content %}
+{% include "navbar.html" with nav=request.nav %}
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a href="votes.csv" class="btn btn-default btn-xs pull-right">导出数据</a>
+            投票记录
+        </div>
+        <div class="panel-body">
+            {% render_table table "table_template.html" %}   
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+
+<script type="text/javascript" src="{{ STATIC_URL }}js/require.config.js">
+</script>
+<script type="text/javascript" src="{{ STATIC_URL }}components/requirejs/require.js">
+</script>
+<script>require(["login"]);</script>
+{% endblock %}

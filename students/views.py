@@ -1,17 +1,19 @@
 #coding: utf-8
+import time
 import logging
 
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_GET, require_http_methods, require_POST
 from django.views.decorators.csrf import csrf_exempt, ensure_csrf_cookie
+from django.utils.safestring import mark_safe
+from django import forms
 
 from django_tables2 import RequestConfig 
-from django.utils.safestring import mark_safe
-from django_render_json import json as as_json
 import django_tables2 as tables
+from django_render_json import json as as_json
+from django_render_json import render_json
 import django_active_tab as active_tab
-from django import forms
 
 from students.models import Student, VoteRecord
 from ajax_upload.widgets import AjaxClearableFileInput
@@ -149,35 +151,50 @@ def stop(request):
 
 class VoteForm(forms.ModelForm):
     class Meta:
-        exclude=('student',)
+        exclude=('student','datetime')
         model = VoteRecord
 
 
-def plusVote(student):
-    # TODO add to redis
-    pass
+CODE_NO_PLAYING_STUDENT = 2001
 
 
-@require_POST
-@as_json
+@csrf_exempt
 def vote(request):
-    student = Student.objects.getPlayingStudent()
-    if not student:
-        logger.warn("no playing student!")
-        return {'ret_code': 2001}
+    if request.method == 'POST':
+        student = Student.objects.getPlayingStudent()
+        if not student:
+            logger.warn("no playing student!")
+            return render_json({'ret_code': CODE_NO_PLAYING_STUDENT})
 
-    form = VoteForm(request.POST)
-    if not form.is_valid():
-        logger.warn("vote form in valid")
-        logger.warn("errors")
-        logger.warn(form.errors)
-        return {'ret_code': 1002}
+        form = VoteForm({
+            'ip': request.META['REMOTE_ADDR'],
+            'audience': request.POST['audience']
+        })
+        
+        if not form.is_valid():
+            logger.warn("vote form in valid")
+            logger.warn("errors")
+            logger.warn(form.errors)
+            return render_json({'ret_code': 1002})
 
-    record = form.save(commit=False)
-    record.student = student
-    record.save()
-    plusVote(student)
-    return {'ret_code': 0}
+        logger.debug(form.cleaned_data['audience'])
+        record = form.save(commit=False)
+        record.student = student
+        record.save()
+        vote = student.addVote()
+        return render_json({
+            'ret_code': 0,
+            'count': vote
+        })
+    else:
+        student = Student.objects.getPlayingStudent()
+        if not student:
+            return render_json({'ret_code': CODE_NO_PLAYING_STUDENT})
+
+        return render_json({
+            'ret_code': 0, 
+            'count': student.getVote()
+        })
 
 
 @require_GET
