@@ -1,0 +1,46 @@
+{% extends "promotion/promotion_header.html" %}
+{% block css %}
+<link rel="stylesheet" href="{{ STATIC_URL }}components/swiper/dist/idangerous.swiper.css"/>
+<link rel="stylesheet" href="{{ STATIC_URL }}components/bootstrap/dist/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="{{ STATIC_URL }}css/promotion.css"/>
+{% endblock %}
+{% block promotion %}
+<div class="main">
+<div class="swiper-container">
+  <div class="swiper-wrapper">
+  		{% if dovet == 'mob' %}
+  		{% for i in result %}
+      	<div class="swiper-slide"> 
+        	<!-- Any HTML content of the first slide goes here -->
+        	<img class="board_img" src="{{ i.photo }}"></img>
+			{% if dovet == 'mob' %}
+			<button class="btn btn-sm btn-default" data-value="1">投票</button>
+			{% endif %}
+      	</div>
+      	{% endfor %}     
+      	{% endif %}
+      	{% if dovet == 'por' %}
+  		{% for i in result %}
+      	<div class="swiper-slide"> 
+        	<!-- Any HTML content of the first slide goes here -->
+        	<img class="board_img" src="{{ i.photo }}"></img>
+			{% if dovet == 'por' %}
+			<button class="btn btn-sm btn-default" data-value="1">投票</button>
+			{% endif %}
+      	</div>
+      	{% endfor %}     
+      	{% endif %}
+      	{% if dovet == 'dir' %}
+  		{% for i in result %}
+      	<div class="swiper-slide"> 
+        	<!-- Any HTML content of the first slide goes here -->
+        	<img class="board_img" src="{{ i.photo }}"></img>
+      	</div>
+      	{% endfor %}     
+      	{% endif %}
+  </div>
+</div>
+</div>
+{% endblock %}
+
+
