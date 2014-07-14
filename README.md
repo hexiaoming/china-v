@@ -13,7 +13,8 @@ $ virtualenv venv --python=python2.7
 # install dependencies
 $ pip install -r requirements.txt
 $ npm install
-$ bower install
+$ bower instal
+$ pip install xlrd
 ```
 
 
