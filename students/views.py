@@ -161,6 +161,8 @@ CODE_NO_PLAYING_STUDENT = 2001
 @csrf_exempt
 def vote(request):
     if request.method == 'POST':
+        #import time
+        #time.sleep(5)
         student = Student.objects.getPlayingStudent()
         if not student:
             logger.warn("no playing student!")
@@ -170,7 +172,7 @@ def vote(request):
             'ip': request.META['REMOTE_ADDR'],
             'audience': request.POST['audience']
         })
-        
+
         if not form.is_valid():
             logger.warn("vote form in valid")
             logger.warn("errors")

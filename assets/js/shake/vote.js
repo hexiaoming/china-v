@@ -7,9 +7,8 @@ define(function(require) {
     var Backbone = require('backbone/backbone');
     var token = require('js/shake/token');
 
-    var refreshing = true;
-    var refreshTask = -1;
     var voting = false;
+    var timestamp = new Date().getTime();
     var $votes;
 
     var $loaderOverlay = $('<div class="loader-overlay" style="display: none;"></div>');
@@ -42,12 +41,10 @@ define(function(require) {
     var loader = new Loader();
 
     function stopRrefreshVotes() {
-        refreshing = false;
-        clearTimeout(refreshTask);
+        timestamp = new Date().getTime();
     }
 
     function startRefreshVotes() {
-        refreshing = true;
         refreshVotes();
     }
 
@@ -62,20 +59,17 @@ define(function(require) {
     }
 
     function refreshVotes() {
-        refreshTask = setTimeout(function() {
-            if (!refreshing) {
-                return;
-            }
-            
-            console.log("refresh votes");
+        setTimeout(function() {
+            var _timestamp = new Date().getTime();
+            timestamp = _timestamp;
             getVotes().then(function(data) {
-                if (data.ret_code === 0) {
+                if (data.ret_code === 0 && timestamp === _timestamp) {
                     $votes.html(data.count);
                 }
             }).always(function() {
                 refreshVotes();
             });
-        }, 5000);
+        }, 2000);
     }
 
     function onShake() {
@@ -83,17 +77,17 @@ define(function(require) {
             return console.log("Voting, ignore shake event!");
         }
 
+        var _timestamp = new Date().getTime();
+        timestamp = _timestamp;
         loader.show();
         voting = true;
-        stopRrefreshVotes();
         vote().then(function(data) {
-            if (data.ret_code === 0) {
+            if (data.ret_code === 0 && timestamp === _timestamp) {
                 $votes.html(data.count);
             }
         }).always(function() {
             loader.hide();
             voting = false;
-            startRefreshVotes();
         });
     }
 
