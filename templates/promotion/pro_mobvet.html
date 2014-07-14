@@ -1,9 +1,9 @@
 {% extends "promotion/promotion_header.html" %}
 {% block promotion %}
-<form action="/promotion/vet/" method="post">{% csrf_token %}
-<input type="text" class="form-control input-sm" name="mobile" placeholder="请输入手机号"/>
+<form action="/promotion/vet/1/" method="post">{% csrf_token %}
+<input type="text" class="form-control input-sm" name="mobile" placeholder="请输入您的手机号"/>
 <input type="hidden" value="{{ circle }}" name="circle" />
 <input type="hidden" value="{{ top }}" name="top" />
-<input type="submit" class="btn btn-sm btn-primary" >
+<input type="submit" class="btn btn-sm btn-primary pro_mob_check" >
 </form>
 {% endblock %}

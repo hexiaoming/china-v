@@ -10,11 +10,14 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 from django_render_json import json, render_json
 import re
 import time
+from students.models import *
 from promotion.models import *
 from promotion.do import *
+from itertools import chain
 # Create your views here.
 @require_GET
 def index(request):
+	request.session.clear()	
 	if request.method == 'GET':
 		return render(request,"promotion/promotion.html")
 @ensure_csrf_cookie
@@ -29,21 +32,31 @@ def mobvet(request):
 	if request.method == 'GET':
 		return render(request,"promotion/mobvet.html")
 
-@require_POST
+
 @ensure_csrf_cookie
-def mobvet_post(request):
+def mobvet_post(request,studentid):
 	if request.method == 'POST':
 		mobile = request.POST.get('mobile',None)
 		m = Mobvet.objects.create(mobile=str(mobile),timestamp=str(time.time()))
+		request.session['mobile']=str(mobile)
 		m.save()
 		try:
-			q =	student.objects.all()
+			q =	Student.objects.all()
+			q = chain(q[int(studentid)-1::],q[0:int(studentid)-1])
 
-		except student.DoesNotExist:
+		except Student.DoesNotExist:
 			return render_json({"reason":"no students please import data"})
-		return render(request,"promotion/Vboard.html",{"dovet":"mob","result":q})
+
+		return render(request,"promotion/Vboard.html",{"dovet":"mob","result":q,"studentid":studentid})
 	else:
-		return render(request,"promotion/proerror.html")
+		try:
+			q =	Student.objects.all()
+			q = chain(q[int(studentid)-1::],q[0:int(studentid)-1])
+
+		except Student.DoesNotExist:
+			return render_json({"reason":"no students please import data"})
+
+		return render(request,"promotion/Vboard.html",{"dovet":"mob","result":q,"studentid":studentid})
 
 @require_GET
 def instruction(request):
@@ -51,13 +64,14 @@ def instruction(request):
 		return render(request,"promotion/instruction.html")
 
 @require_GET
-def Vboard(request):
+def Vboard(request,studentid):
 	if request.method == 'GET':
 		try:
-			q =	student.objects.all()
-		except student.DoesNotExist:
+			q =	Student.objects.all()
+			q = chain(q[int(studentid)-1::],q[0:int(studentid)-1])
+		except Student.DoesNotExist:
 			return render_json({"reason":"no students please import data"})
-		return render(request,"promotion/Vboard.html",{"dovet":"dir","result":q})
+		return render(request,"promotion/Vboard.html",{"dovet":"dir","result":q,"studentid":studentid})
 
 @require_GET
 def proerror(request):
@@ -79,28 +93,39 @@ def pro_mobvet(request):
 	else:
 		return redirect("/promotion/proerror/")
 
-@require_POST	
+	
 @ensure_csrf_cookie
-def vet(request):
-	#此页面只允许使用post的方式进行访问，如果方式有问题，则返回错误页面
+def vet(request,studentid):
 	if request.method == 'POST':
 		mobile = request.POST.get('mobile',None)
 		circle = request.POST.get('circle',None)
 		top = request.POST.get('top',None)
 		timestamp = time.time()
+		#存session
+		request.session['mobile']=str(mobile)
+		request.session['top']=str(top)
+		request.session['circle']=str(circle)
+		#结束
 		if check_pro_num_mobile():
 			p = Provet.objects.create(circle_num=str(circle),top_num=str(top),mobile=str(mobile),timestamp=str(timestamp))
 			p.save()
-			try:
-				q =	student.objects.all()
-			except student.DoesNotExist:
-				return render_json({"reason":"no students please import data"})
-			return render(request,"promotion/Vboard.html",{"dovet":"pro"})
+			q =	getStudents()
+			return render(request,"promotion/Vboard.html",{"dovet":"pro","result":q})
 		else:
 			return redirect("/promotion/proerror/")
 	else:
-		return redirect("/promotion/proerror/")
-
+		mobile = request.session.get('mobile')
+		top = request.session.get('top')
+		circle = request.session.get('circle')
+		if ""==mobile:
+			return redirect("/promotion/proerror/")
+		elif ""==top or ""==circle:
+			return redirect("/promotion/proerror/")
+		else:
+			#跳回本页面
+			q =	Student.objects.all()
+			q = chain(q[int(studentid)-1::],q[0:int(studentid)-1])
+			return render(request,"promotion/Vboard.html",{"dovet":"pro","result":q})
 
 @require_GET
 def vboard_show(request):
@@ -111,5 +136,8 @@ def vboard_show(request):
 @require_GET
 def studentlist(request):
 	#学员展示页面
+	mobile = request.session.get('mobile')
+	circle = request.session.get('circle')
+	top = request.session.get('top')
 	studentlist = getStudents()
-	return render(request,"promotion/studentlist.html",{"studentlist":studentlist})
+	return render(request,"promotion/studentlist.html",{"studentlist":studentlist,"type":"none","mobile":mobile,"circle":circle,"top":top})

@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
-    <meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta content="width=device-width,initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" name="viewport">
+    
+    {% block js %}	
+	<script type="text/javascript" src="{{ STATIC_URL }}js/require.config.js">
+	</script>
+	<script type="text/javascript" src="{{ STATIC_URL }}components/requirejs/require.js">
+	</script>
+	<script>require(["promotion"])</script>
+	{% endblock %}
 	{% block css %}
     <link rel="stylesheet" 
         href="{{ STATIC_URL }}components/bootstrap/dist/css/bootstrap.min.css">
@@ -15,10 +22,3 @@
 	{% endblock %}
 </body>
 </html>
-{% block js %}
-<script type="text/javascript" src="{{ STATIC_URL }}js/require.config.js">
-</script>
-<script type="text/javascript" src="{{ STATIC_URL }}components/requirejs/require.js">
-</script>
-<script>require(["promotion"])</script>
-{% endblock %}

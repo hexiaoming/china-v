@@ -2,7 +2,7 @@
   margin: 0 auto;
 }
 .board_img {
-  width: 480px;
+  width: 100%;
 }
 .swipe {
   overflow: hidden;
