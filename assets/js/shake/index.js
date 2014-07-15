@@ -3,10 +3,17 @@ define(function(require) {
     require("bootstrap");
     require("velocity");
     require("shake");
+    var wechatShare = require('wechat-share');
     var _ = require("underscore");
     var multiline = require("multiline");
     var Backbone = require('backbone/backbone');
     var token = require('js/shake/token');
+
+    wechatShare({
+        link: window.location.href,
+        desc: '中国好声音',
+        title: '全民摇一摇'
+    });
 
     function getVotes() {
         return $.get("/students/vote", {}, "json");
@@ -47,6 +54,10 @@ define(function(require) {
         $(".button-bar .left").click(function() {
             $rules.velocity('fadeIn');
             $rulesOverlay.velocity('fadeIn');
+        });
+
+        $(".button-bar .right").click(function() {
+            window.location = "./rank";
         });
 
         $entry.find("a").click(function(e) {
@@ -96,7 +107,7 @@ define(function(require) {
             },
 
             onShare: function() {
-                
+
             },
 
             onVote: function() {

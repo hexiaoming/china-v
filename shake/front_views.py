@@ -11,3 +11,9 @@ def index(request):
     return render(request, "shake/index.html", {
         'vote': student.getVote() if student else None
     })
+
+
+@require_GET
+def rank(request):
+    return render(request, "shake/rank.html")
+    

@@ -17,6 +17,7 @@ var require = {
         'ajax_upload': 'ajax_upload/js/ajax-upload-widget',
         'swiper': 'components/swiper/dist/idangerous.swiper.min',
         'velocity': 'components/velocity/jquery.velocity.min',
+        'wechat-share': 'components/wechat-share/browser',
 
         'login': 'js/login',
         'students': 'js/backend/students',
