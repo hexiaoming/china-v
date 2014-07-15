@@ -105,10 +105,15 @@ define(function(require) {
                 'click a[href=#vote]': 'onVote',
                 'click a[href=#share]': 'onShare',
                 'click a[href=#rank]': 'onRank',
+                'click a[href=#lottery]': 'onLottery',
             },
 
             onRank: function() {
                 window.location = "./rank";
+            },
+
+            onLottery: function() {
+                window.location = "./lottery";
             },
 
             onShare: function() {
