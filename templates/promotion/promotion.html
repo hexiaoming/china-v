@@ -2,12 +2,24 @@
 {% block promotion %}
 
 <div class="main">
-<p>
-	<a class="btn btn-default" href="provet/">罐码投票通道</a><a class="btn btn-default" href="mobvet/">直接投票通道</a>
-</p>
-<p>
-	<a class="btn btn-default" href="instruction/">活动说明</a><a class="btn btn-default" href="studentlist/">最V榜单</a>
-</p>
-</div>
+<ul class="bottom clearfix">
+<li>
+	<a class="skew-button shew-button-left pull-right provet_link" href="javascript:;">罐码投票</a>
+</li>
+<li>
+	<a class="skew-button shew-button-right pull-left mobvet_link" href="javascript:;">直接投票</a>
+</li>
+</ul>
+<ul class="hold-bottom clearfix">
+	<li class="left-bottom-li">
+		<a class="bottom-left instruction_link" href="javascript:;">活动说明</a>
+	</li>
 
+	<li class="right-bottom-li">
+		<a class="bottom-right vboard_link" href="studentlist/">最V榜单</a>
+	</li>
+</ul>
+
+</div>
+<div class="pop-window" style="display:none"></div>
 {% endblock %}

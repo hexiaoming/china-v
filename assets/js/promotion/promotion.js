@@ -4,6 +4,7 @@ define(function(require) {
     require('swiper');
     require('django-csrf-support');
 	$=jQuery.noConflict();
+    
 	var provet = {
 		check_circle:function() {
 			var text = $(".circle_num").val();
@@ -80,9 +81,27 @@ define(function(require) {
         proticket : function()  {
 
         }
+    };
+    var ajax_window = {
+        show_window :function(src) {
+            var height = document.documentElement.clientHeight;
+            var pop_height ;
+            $.get(src,function(data){
+                $(".pop-window").html($(data).nextAll("div").html());
+                pop_height = $(".pop-window").css("height");
+                pop_height = pop_height.substr(0,pop_height.length-2);
+                
+                height = (height - pop_height)/2;
+                $(".pop-window").css({"top":height+"px"});
+                
+                $(".pop-window").fadeIn();
+
+            },"html");
+        }
     }
 	$(function(){
         //跳转到相应学员
+       
         $(".board_img").css({
             width:document.documentElement.clientWidth,
             height:document.documentElement.clientHeight
@@ -143,5 +162,22 @@ define(function(require) {
 
             }
         }) ;
+       
+        $(".instruction_link").click(function(){
+            ajax_window.show_window("instruction/");
+        });
+        $(".provet_link").click(function(){
+            ajax_window.show_window("provet/");
+        });
+        $(".mobvet_link").click(function(){
+            ajax_window.show_window("mobvet/");
+        });
+        
+        $(document).on("click",".pop-close",function(){
+            $(".pop-window").fadeOut(function(){
+                $(".pop-window").html("");
+            });
+            
+        });
 	});
 });

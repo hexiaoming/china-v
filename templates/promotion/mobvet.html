@@ -1,7 +1,16 @@
 {% extends "promotion/promotion_header.html" %}
 {% block promotion %}
-<form action="/promotion/mobvet_post/1/" method="post">{% csrf_token %}
-<input type="text" class="form-control input-sm" name="mobile" placeholder="请输入您的手机号"/>
-<button class="btn btn-sm btn-default">马上投票</button> 
-</form>
+<div class="pop-window">
+<div class="pop-window-header">
+<img class="pop-close" src="/static/promotion/image/plus.png"/>
+<p class="title">请输入您的手机号</p>
+<p class="little">每个手机号每天只能参与一次投票</p>
+</div>
+<!--<form action="/promotion/mobvet_post/1/" method="post">-->{% csrf_token %}
+<input type="text" name="mobile" placeholder="请输入您的手机号"/>
+<div class="button_area">
+<button class="skew-button">马上投票</button> 
+</div>
+<!--</form>-->
+</div>
 {% endblock %}
