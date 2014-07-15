@@ -19,7 +19,6 @@ var require = {
         'velocity': 'components/velocity/jquery.velocity.min',
         'wechat-share': 'components/wechat-share/browser',
 
-        'login': 'js/login',
         'students': 'js/backend/students',
         'shake-vote': 'js/shake/vote',
         'login': 'js/login',
