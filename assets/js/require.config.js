@@ -19,7 +19,7 @@ var require = {
 
         'login': 'js/login',
         'students': 'js/backend/students',
-        'shake-vote': 'js/shake/vote'
+        'shake-vote': 'js/shake/vote',
         'login': 'js/login',
         'promotion': 'js/promotion/promotion'
     },
