@@ -1,10 +1,20 @@
 {% extends "promotion/promotion_header.html" %}
 {% block promotion %}
-<form action="/promotion/pro_mobvet/" method="post">{% csrf_token %}
-<input type="text" class="form-control input-sm circle_num" placeholder="输入拉环括号内3位码" name="circle"/>
-<input type="text" class="form-control input-sm top_num" placeholder="输入罐顶8位码" name="top"/>
-<input class="btn btn-sm btn-default go_check" type="submit"/>
-</form> 
+<div class="pop-window">
+<!--<form action="/promotion/pro_mobvet/" method="post">-->{% csrf_token %}
+<div class="pop-window-header">
+<img class="pop-close" src="/static/promotion/image/plus.png"/>
+<p class="title">请输入您的罐码验证</p>
+<p class="little">每罐码限用一次投票</p>
+</div>
+<input type="text" class="circle_num" placeholder="输入拉环括号内3位码" name="circle"/>
+<input type="text" class="top_num" placeholder="输入罐顶8位码" name="top"/>
+<div class="button_area">
+<input class="skew-button go_check" type="submit" value="马上验证"/>
+</div>
+<!--</form>-->
+</div>
+ 
 {% endblock %}
 <script type="text/javascript" src="{{ STATIC_URL }}js/require.config.js"></script>
 <script type="text/javascript" src="{{ STATIC_URL }}components/requirejs/require.js"></script>

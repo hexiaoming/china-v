@@ -1,4 +1,13 @@
 {% extends "promotion/promotion_header.html" %}
 {% block promotion %}
-我是错误页面
+<div class="pop-window">
+<div class="pop-window-header">
+<p class="title">对不起您输入的罐码有误<br>请重新输入</p>
+<br><br>
+</div>
+<!--<form action="/promotion/mobvet_post/1/" method="post">-->{% csrf_token %}
+
+<button class="skew-button">重新输入</button> 
+<!--</form>-->
+</div>
 {% endblock %}
