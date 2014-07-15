@@ -1,0 +1,56 @@
+{% extends "promotion/promotion_header.html" %}
+{% block css %}
+<link rel="stylesheet" href="{{ STATIC_URL }}components/swiper/dist/idangerous.swiper.css"/>
+<link rel="stylesheet" href="{{ STATIC_URL }}components/bootstrap/dist/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="{{ STATIC_URL }}css/promotion.css"/>
+{% endblock %}
+{% block promotion %}
+
+<div class="swiper-container">
+  <div class="swiper-wrapper">
+    {% if dovet == 'mob' %}
+      {% for i in result %}
+  		  <div class="swiper-slide"> 
+        	<!-- Any HTML content of the first slide goes here -->
+        	
+        	<img class="board_img" src="{{ i.avatar }}"></img>
+    			<a href="/promotion/studentlist/" class="btn btn-default btn-vboard">最V榜单</a>
+    			<button class="btn btn-sm btn-default postticket" data-value="1" data-type="mob" class="postticket">投票</button>
+    		  
+      	</div>
+      	
+    	{% endfor %}     
+    	{% endif %}
+
+    	{% if dovet == 'pro' %}
+
+  		{% for i in result %}
+  		
+      	<div class="swiper-slide"> 
+        	<!-- Any HTML content of the first slide goes here -->
+        	
+        	<img class="board_img" src="{{ i.avatar }}" />
+          <a href="/promotion/studentlist/" class="btn btn-default btn-vboard">最V榜单</a>
+          <button class="btn btn-sm btn-default postticket" data-value="1" data-type="pro">投票</button>
+		      
+      	</div> 
+
+      	{% endfor %}     
+      	{% endif %}
+      	{% if dovet == 'dir' %}
+    		{% for i in result %}
+        	<div class="swiper-slide"> 
+          
+          	<!-- Any HTML content of the first slide goes here -->
+          	<img class="board_img" src="{{ i.avatar }}" />
+            <a href="/promotion/studentlist/" class="btn btn-default btn-vboard">最V榜单</a>
+        	</div>
+     
+      	{% endfor %}     
+      	{% endif %}
+  </div>
+</div>
+
+{% endblock %}
+
+

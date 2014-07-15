@@ -1,0 +1,7 @@
+{% extends "promotion/promotion_header.html" %}
+{% block promotion %}
+<form action="/promotion/mobvet_post/1/" method="post">{% csrf_token %}
+<input type="text" class="form-control input-sm" name="mobile" placeholder="请输入您的手机号"/>
+<button class="btn btn-sm btn-default">马上投票</button> 
+</form>
+{% endblock %}

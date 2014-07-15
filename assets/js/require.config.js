@@ -14,12 +14,14 @@ var require = {
         'multiline': 'components/multiline/browser',
         'backbone': 'components/backbone',
         'shake': 'components/shake.js/shake',
-
-
         'ajax_upload': 'ajax_upload/js/ajax-upload-widget',
+        'swiper': 'components/swiper/dist/idangerous.swiper.min',
+
         'login': 'js/login',
         'students': 'js/backend/students',
         'shake-vote': 'js/shake/vote'
+        'login': 'js/login',
+        'promotion': 'js/promotion/promotion'
     },
     shim: {
         'jquery-placeholder': {

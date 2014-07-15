@@ -1,0 +1,30 @@
+.main {
+  margin: 0 auto;
+}
+.board_img {
+  width: 100%;
+}
+.swipe {
+  overflow: hidden;
+  visibility: hidden;
+  position: relative;
+}
+.swipe-wrap {
+  overflow: hidden;
+  position: relative;
+}
+.swipe-wrap > div {
+  float: left;
+  width: 100%;
+  position: relative;
+}
+.main .studentlist .student {
+  width: 32.7%;
+  display: inline-block;
+}
+.main .studentlist .student .avatar {
+  width: 100%;
+}
+.main .studentlist .student p {
+  text-align: center;
+}

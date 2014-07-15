@@ -18,6 +18,7 @@ INSTALLED_APPS = (
     'ajax_upload',
     'students',
     'backend',
+    'promotion',
     "django_tables2"
 )
 
@@ -28,6 +29,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+ 
 )
 
 ROOT_URLCONF = 'base.urls'

@@ -1,0 +1,23 @@
+{% extends "promotion/promotion_header.html" %}
+{% block css %}
+<link rel="stylesheet" href="{{ STATIC_URL }}components/swiper/dist/idangerous.swiper.css"/>
+<link rel="stylesheet" href="{{ STATIC_URL }}components/bootstrap/dist/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="{{ STATIC_URL }}css/promotion.css"/>
+{% endblock %}
+{% block promotion %}
+<div class="main">
+<a href="/promotion/studentlist/">最V榜单</a> 
+<div class="swiper-container">
+  <div class="swiper-wrapper">
+        {% for i in res %}
+      	<div class="swiper-slide"> 
+        	<!-- Any HTML content of the first slide goes here -->
+        	<img class="board_img" src="{{ i.avatar }}"></img>
+      	</div>
+      	{% endfor %}
+  </div>
+</div>
+</div>
+{% endblock %}
+
+
