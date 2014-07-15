@@ -1,3 +1,9 @@
+body {
+  background-image: url("/static/promotion/image/background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #930e68;
+}
 .main {
   margin: 0 auto;
 }
@@ -18,12 +24,43 @@
   width: 100%;
   position: relative;
 }
+.firstThree {
+  width: 100%;
+  padding: 0;
+  position: absolute;
+  bottom: 19%;
+}
+.firstThree li {
+  list-style: none;
+  border-top: 6px solid #800e5e;
+}
+.firstThree li div {
+  height: 100px;
+}
 .main .studentlist .student {
-  width: 32.7%;
+  margin: 10px;
   display: inline-block;
 }
-.main .studentlist .student .avatar {
-  width: 100%;
+@media screen and (max-width: 435px) {
+  .main .studentlist .student .avatar {
+    width: 122px;
+    height: 122px;
+    border-radius: 50%;
+  }
+}
+@media screen and (max-width: 360px) {
+  .main .studentlist .student .avatar {
+    width: 97px;
+    height: 97px;
+    border-radius: 50%;
+  }
+}
+@media screen and (max-width: 320px) {
+  .main .studentlist .student .avatar {
+    width: 84px;
+    height: 84px;
+    border-radius: 50%;
+  }
 }
 .main .studentlist .student p {
   text-align: center;
@@ -51,6 +88,11 @@
   text-align: center;
   line-height: 200%;
 }
+.bottom_div {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
 .skew-button {
   -webkit-transform: skew(-20deg, 0deg);
   transform: skew(-20deg, 0deg);
@@ -60,7 +102,7 @@
   background: #711a46;
   margin: 10px 20px 10px 20px;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 14px;
   color: yellow;
   font-family: "Microsoft YaHei";
 }
@@ -77,8 +119,9 @@
 .bottom {
   width: 100%;
   position: absolute;
-  bottom: 10%;
+  bottom: 8.5%;
   padding: 0;
+  z-index: 1;
 }
 .bottom li {
   float: left;
@@ -93,6 +136,7 @@
   position: absolute;
   padding-bottom: 20px;
   left: 5%;
+  z-index: 999;
   text-align: center;
 }
 .pop-window .pop-window-header {
@@ -124,7 +168,7 @@
 .pop-window .pop-window-header .content {
   width: 100%;
   float: left;
-  font-size: 16px;
+  font-size: 12px;
   color: #fff;
 }
 .pop-window .pop-window-header .content .yellow {
@@ -156,4 +200,11 @@
   -moz-filter: blur(10px);
   -ms-filter: blur(10px);
   filter: blur(10px);
+}
+.vboard-title {
+  width: 100%;
+  margin-top: 20px;
+}
+.vboard-title img {
+  width: 100%;
 }

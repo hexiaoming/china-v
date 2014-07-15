@@ -17,8 +17,6 @@ var require = {
         'ajax_upload': 'ajax_upload/js/ajax-upload-widget',
         'swiper': 'components/swiper/dist/idangerous.swiper.min',
         'velocity': 'components/velocity/jquery.velocity.min',
-
-        'login': 'js/login',
         'students': 'js/backend/students',
         'shake-vote': 'js/shake/vote',
         'login': 'js/login',

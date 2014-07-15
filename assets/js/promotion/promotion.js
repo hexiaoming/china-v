@@ -3,6 +3,7 @@ define(function(require) {
     require('bootstrap');
     require('swiper');
     require('django-csrf-support');
+    require('velocity');
 	$=jQuery.noConflict();
     
 	var provet = {
@@ -94,18 +95,13 @@ define(function(require) {
                 height = (height - pop_height)/2;
                 $(".pop-window").css({"top":height+"px"});
                 
-                $(".pop-window").fadeIn();
+                $(".pop-window").velocity("fadeIn");
 
-            },"html");
+            },"html");  
         }
     }
 	$(function(){
         //跳转到相应学员
-       
-        $(".board_img").css({
-            width:document.documentElement.clientWidth,
-            height:document.documentElement.clientHeight
-        });
         var mySwiper = new Swiper('.swiper-container',{
             //Your options here:
             loop:true,
@@ -164,17 +160,17 @@ define(function(require) {
         }) ;
        
         $(".instruction_link").click(function(){
-            ajax_window.show_window("instruction/");
+            ajax_window.show_window("/promotion/instruction/");
         });
         $(".provet_link").click(function(){
-            ajax_window.show_window("provet/");
+            ajax_window.show_window("/promotion/provet/");
         });
         $(".mobvet_link").click(function(){
-            ajax_window.show_window("mobvet/");
+            ajax_window.show_window("/promotion/mobvet/");
         });
         
         $(document).on("click",".pop-close",function(){
-            $(".pop-window").fadeOut(function(){
+            $(".pop-window").velocity('fadeOut',function(){
                 $(".pop-window").html("");
             });
             
