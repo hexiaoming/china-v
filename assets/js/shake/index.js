@@ -103,7 +103,12 @@ define(function(require) {
 
             events: {
                 'click a[href=#vote]': 'onVote',
-                'click a[href=#share]': 'onShare'
+                'click a[href=#share]': 'onShare',
+                'click a[href=#rank]': 'onRank',
+            },
+
+            onRank: function() {
+                window.location = "./rank";
             },
 
             onShare: function() {
