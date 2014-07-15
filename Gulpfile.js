@@ -2,19 +2,7 @@ var gulp = require("gulp");
 var less = require("gulp-less");
 
 gulp.task('less', function() {
-    return gulp.src(["assets/less/{login,students,shake,vote}.less"])
-            .pipe(less({
-                paths: [
-                    'assets/less',
-                    'assets/components'
-                ]
-            }))
-            .on('error', console.error)
-            .pipe(gulp.dest("assets/css"));
-});
-
-gulp.task('less', function() {
-    return gulp.src("assets/less/promotion.less")
+    return gulp.src(["assets/less/{login,students,shake,promotion}.less"])
             .pipe(less({
                 paths: [
                     'assets/less',
@@ -31,4 +19,3 @@ gulp.task("watch-less", function() {
 
 
 gulp.task('default', ['less']);
-

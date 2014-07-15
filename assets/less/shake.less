@@ -1,10 +1,24 @@
 @import "bootstrap/less/bootstrap.less";
 @import "base-font.less";
 
+.mid(@width;@top) {
+    position: absolute;
+    top: @top;
+    left: 50%;
+    width: @width;
+    margin-left: -@width/2;
+}
+
 .container {
+
+    &.shake {
+        background: url(/static/img/shake/shake-bg.jpg) top center no-repeat #000;
+        background-size: 100% auto;
+    }
+
     z-index: 1000;
-    background: url(/static/img/shake/bg.jpg) top center no-repeat #333;
-    background-size: cover;
+    background: url(/static/img/shake/bg.jpg) top center no-repeat #000;
+    background-size: 100% auto;
     position: absolute;
     padding: 0px;
     top: 0;
@@ -15,11 +29,7 @@
 
     .entry {
         display: block;
-        position: absolute;
-        top: 10%;
-        left: 50%;
-        width: 240px;
-        margin-left: -120px;
+        .mid(240px;10%);
         text-align: center;
 
         a {
@@ -28,12 +38,9 @@
             .center-block();
         }
 
-
         img {
             display: inline-block;
             max-width: 100%;
-            padding: 0px;
-            border: none;
         }
     }
 
@@ -44,6 +51,24 @@
             a {
                 .size(180px, auto);
             }
+        }
+    }
+
+    .votes {
+        .mid(300px;10%);
+        .count {
+            .tickets {
+                font-size: 64px;
+            }
+            font-size: @font-size-large;
+            color: #fff;
+            text-align: center;
+        }
+
+        text-align: center;
+        img {
+            display: inline-block;
+            max-width: 70%;
         }
     }
 
@@ -87,13 +112,6 @@
 
 }
 
-.mid(@width;@top) {
-    position: absolute;
-    top: @top;
-    left: 50%;
-    width: @width;
-    margin-left: -@width/2;
-}
 
 .rules {
     .mid(270px;2%);
@@ -139,4 +157,50 @@
             .square(@exit-size);
         }
     }
+}
+
+.loader {
+    position: absolute;
+    background: transparent;
+    .mid(280px; 10%);
+    z-index: 1010;
+
+    img.preloader {
+        margin-top: 100px;
+        .size(64px;auto);
+        .center-block();
+    }
+    .selection {
+        img {
+            max-width: 100%;
+        }
+
+        ul {
+            .list-unstyled();
+            .size(180px; auto);
+            .center-block();
+
+            li {
+                margin-top: 10px;
+                a {
+                    .button-variant(#f4f4f4;#bc0a0c;transparent);
+                    border: none;
+                    border-radius: 0px;
+                    font-size: @font-size-h3;
+                }
+            }
+        }
+    }
+}
+
+.loader-overlay {
+    z-index: 1000;
+    background: url(/static/img/shake/loader-overlay.png) top center no-repeat #000;
+    background-size: 100% auto;
+    position: absolute;
+    padding: 0px;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;   
 }

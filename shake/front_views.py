@@ -7,13 +7,7 @@ from students.models import Student
 
 @require_GET
 def index(request):
-    return render(request, "shake/index.html")
-
-
-@require_GET
-@ensure_csrf_cookie
-def vote(request):
     student = Student.objects.getPlayingStudent();
-    return render(request, "shake/vote.html", {
+    return render(request, "shake/index.html", {
         'vote': student.getVote() if student else None
     })
