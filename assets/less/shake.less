@@ -63,6 +63,7 @@
             padding: 15px 0px;
             background: transparent;
             color: #CCC;
+            outline: none;
 
             &.left {
                 left: 0px;
@@ -100,10 +101,11 @@
 
     .exit {
         position: absolute;
-        top: 5px;
-        left: 0px;
+        top: 8px;
+        left: 3px;
         background: url(/static/img/shake/rules-exit.png) center center no-repeat;
         border: none;
+        outline: none;
         @exit-size: 30px;
         background-size: @exit-size, @exit-size;
         .square(@exit-size);
@@ -127,12 +129,12 @@
 
 @media (min-width: 360px) {
     .rules {
-        .mid(320px;3%);
+        .mid(320px;2%);
 
         .exit {
-            top: 5px;
-            left: 0px;
-            @exit-size: 35px;
+            top: 8px;
+            left: 3px;
+            @exit-size: 40px;
             background-size: @exit-size, @exit-size;
             .square(@exit-size);
         }

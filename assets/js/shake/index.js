@@ -1,6 +1,7 @@
 define(function(require) {
     require("jquery");
     require("bootstrap");
+    require("velocity");
 
     var $rules;
     var $rulesOverlay;
@@ -10,17 +11,17 @@ define(function(require) {
         $rulesOverlay = $(".rules-overlay");
 
         $rulesOverlay.click(function() {
-            $rules.fadeOut();
-            $rulesOverlay.fadeOut();
+            $rules.velocity('fadeOut');
+            $rulesOverlay.velocity('fadeOut');
         });
         $rules.on('click', '.exit', function() {
-            $rules.fadeOut();
-            $rulesOverlay.fadeOut();
+            $rules.velocity('fadeOut');
+            $rulesOverlay.velocity('fadeOut');
         });
 
         $(".button-bar .left").click(function() {
-            $rules.fadeIn();
-            $rulesOverlay.fadeIn();
+            $rules.velocity('fadeIn');
+            $rulesOverlay.velocity('fadeIn');
         });
     });
 });

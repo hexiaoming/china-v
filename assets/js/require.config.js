@@ -16,6 +16,7 @@ var require = {
         'shake': 'components/shake.js/shake',
         'ajax_upload': 'ajax_upload/js/ajax-upload-widget',
         'swiper': 'components/swiper/dist/idangerous.swiper.min',
+        'velocity': 'components/velocity/jquery.velocity.min',
 
         'login': 'js/login',
         'students': 'js/backend/students',
@@ -28,6 +29,9 @@ var require = {
             deps: ['jquery']
         },
         'jquery.serializeObject': {
+            deps: ['jquery']
+        },
+        'velocity': {
             deps: ['jquery']
         },
         'select2': {
