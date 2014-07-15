@@ -8,12 +8,16 @@
 </head>
 <body>
     <div class="container">
-        <a class="entry" href="./vote">
-            <img src="{{ STATIC_URL }}img/china-voice.jpg" class="img-thumbnail">
-        </a>
+        <div class="entry">
+            <a href="vote">
+                <img src="{{ STATIC_URL }}img/shake/entry.png">
+            </a>
+            <img src="{{ STATIC_URL }}img/shake/tip.png" class="tip">
+        </div>
         <div class="button-bar">
-            <button class="btn btn-default left">活动说明</button>
-            <button class="btn btn-default right">排名</button>
+            <button class="btn-cv left">活动说明</button>
+            <span class='button-seperator'></span>
+            <button class="btn-cv right">最V榜单</button>
         </div>
     </div>
 </body>

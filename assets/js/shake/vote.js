@@ -18,6 +18,7 @@ define(function(require) {
         /*@preserve
         <div class="loader" style="display: none;">
             <img src="/static/img/loading.gif" alt="">
+            <p class="alert" style="display: none; margin-bottom: 0px;">操作成功</p>
         </div>
         */
     }).trim();
@@ -25,16 +26,26 @@ define(function(require) {
     var Loader = Backbone.View.extend({
         initialize: function() {
             this.setElement($(LoaderTpl)[0]);
+            this.$alert = this.$el.find(".alert");
+            this.$img = this.$el.find("img");
         },
 
         show: function() {
-            $loaderOverlay.fadeIn();
-            this.$el.fadeIn();
+            $loaderOverlay.show();
+            this.$el.show();
         },
 
         hide: function() {
-            this.$el.fadeOut();
-            $loaderOverlay.fadeOut();
+            this.$el.hide();
+            $loaderOverlay.hide();
+            
+            this.$alert.hide();
+            this.$img.show();
+        },
+
+        tip: function() {
+            this.$alert.show();
+            this.$img.hide();
         }
     });
 
@@ -82,12 +93,15 @@ define(function(require) {
         loader.show();
         voting = true;
         vote().then(function(data) {
+            loader.tip();
             if (data.ret_code === 0 && timestamp === _timestamp) {
                 $votes.html(data.count);
             }
         }).always(function() {
-            loader.hide();
-            voting = false;
+            setTimeout(function() {
+                loader.hide();
+                voting = false;
+            }, 1000);
         });
     }
 

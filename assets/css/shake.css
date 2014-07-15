@@ -5776,6 +5776,8 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif, '微软雅黑';
 }
 .container {
+  background: url(/static/img/shake/bg.jpg) top center no-repeat #333333;
+  background-size: cover;
   position: absolute;
   padding: 0px;
   top: 0;
@@ -5786,15 +5788,33 @@ body {
 .container .entry {
   display: block;
   position: absolute;
-  top: 20%;
+  top: 10%;
   left: 50%;
-  width: 280px;
-  height: 280px;
-  margin-left: -140px;
+  width: 240px;
+  margin-left: -120px;
+  text-align: center;
+}
+.container .entry a {
+  width: 150px;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 .container .entry img {
+  display: inline-block;
+  max-width: 100%;
   padding: 0px;
   border: none;
+}
+@media (min-width: 360px) {
+  .container .entry {
+    top: 15%;
+  }
+  .container .entry a {
+    width: 180px;
+    height: auto;
+  }
 }
 .container .button-bar {
   position: absolute;
@@ -5802,14 +5822,29 @@ body {
   width: 100%;
   height: 50px;
 }
-.container .button-bar .btn {
+.container .button-bar .btn-cv {
   position: absolute;
-  width: 45%;
-  top: 8px;
+  width: 47%;
+  top: 0px;
+  border: none;
+  line-height: 20px;
+  font-size: 18px;
+  padding: 15px 0px;
+  background: transparent;
+  color: #CCC;
 }
-.container .button-bar .btn.left {
-  left: 10px;
+.container .button-bar .btn-cv.left {
+  left: 0px;
 }
-.container .button-bar .btn.right {
-  right: 10px;
+.container .button-bar .btn-cv.right {
+  right: 0px;
+}
+.container .button-bar .button-seperator {
+  position: absolute;
+  left: 47%;
+  bottom: 0px;
+  width: 6%;
+  height: 30px;
+  margin: 10px 0px;
+  background: url(/static/img/shake/button-seperator.png) center center no-repeat transparent;
 }
