@@ -17,3 +17,8 @@ def index(request):
 def rank(request):
     return render(request, "shake/rank.html")
     
+
+@require_GET
+def lottery(request):
+    return render(request, "shake/lottery.html")
+    
