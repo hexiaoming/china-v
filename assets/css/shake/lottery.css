@@ -5846,7 +5846,7 @@ body {
 }
 .container {
   z-index: 1000;
-  background: url(/static/img/shake/bg.jpg) top center no-repeat #111111;
+  background: url(/static/img/shake/bg.png) top center no-repeat #111111;
   background-size: 100% auto;
   position: absolute;
   padding: 0px;
