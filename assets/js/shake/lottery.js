@@ -12,13 +12,14 @@ define(function(require) {
 
     function draw(phone) {
         return $.post("/shake/try", {
-            phone: phone;
+            phone: phone
         });
     }
 
-    function hit(phone) {
+    function hit(phone, lottery) {
         return $.post("/shake/hit", {
-            phone: phone
+            phone: phone,
+            lottery: lottery
         });
     }
 
@@ -33,6 +34,8 @@ define(function(require) {
     var $rulesOverlay;
     var $form;
     var form;
+    var $lotteryResult;
+    var $lotteryResultOverlay;
     var phone;
     var canvas;
     var $canvas;
@@ -82,7 +85,7 @@ define(function(require) {
                     });
                 });
                 console.log('count:', count);
-                return count >= cols * rows * 0.3;
+                return count >= cols * rows * 0.4;
             } else {
                 return false;
             }
@@ -90,10 +93,17 @@ define(function(require) {
     }
 
     function onLotteryMatch() {
-        hit(phone, lottery).then(function() {
-
+        hit(phone, lottery).then(function(data) {
+            if (data.ret_code === 0) {
+                $lotteryResult.addClass(lottery).velocity('fadeIn');
+                $lotteryResultOverlay.velocity('fadeIn');
+            } else {
+                $lotteryResult.velocity('fadeIn');
+                $lotteryResultOverlay.velocity('fadeIn');
+            }
         }, function() {
-
+            $lotteryResult.velocity('fadeIn');
+            $lotteryResultOverlay.velocity('fadeIn');
         });
     }
 
@@ -149,6 +159,12 @@ define(function(require) {
     }
 
     $(function() {
+        $lotteryResult = $(".lottery-result");
+        $lotteryResultOverlay = $(".lottery-result-overlay");
+        $lotteryResult.click(function() {
+            // TODO show tip for share
+        });
+
         initCanvas();
         $form = $(".phone-prompt-form");
         form = $form[0];
@@ -187,6 +203,7 @@ define(function(require) {
                 $canvas.addClass('try-again');
             }).always(function() {
                 $form.parent().velocity('fadeOut');
+                $(".prompt-overlay").velocity('fadeOut');
                 lauchCanvas();
             });
         });

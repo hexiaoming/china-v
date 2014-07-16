@@ -28,6 +28,7 @@ body {
         margin-left: -100px;
         height: 100px;
     }
+
     .bottle {
         position: absolute;
         top: 32%;
@@ -125,4 +126,39 @@ body {
             }
         }
     }
+}
+
+.lottery-result {
+    z-index: 1040;
+    width: 280px;
+    height: 178px;
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    margin-left: -140px;
+    background: url(/static/img/shake/lottery-empty.png) center center no-repeat;
+    background-size: cover;
+
+    &.first {
+        background: url(/static/img/shake/lottery-first.png) center center no-repeat;
+        background-size: cover;
+    }
+
+    &.second {
+        background: url(/static/img/shake/lottery-second.png) center center no-repeat;
+        background-size: cover;
+    }
+
+    &.third {
+        background: url(/static/img/shake/lottery-third.png) center center no-repeat;
+        background-size: cover;
+    }
+}
+
+.prompt-overlay {
+    .rules-overlay();
+}
+
+.lottery-result-overlay {
+    .rules-overlay();
 }

@@ -5952,3 +5952,46 @@ body {
   background-size: 100% 100%;
   border: none;
 }
+.lottery-result {
+  z-index: 1040;
+  width: 280px;
+  height: 178px;
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  margin-left: -140px;
+  background: url(/static/img/shake/lottery-empty.png) center center no-repeat;
+  background-size: cover;
+}
+.lottery-result.first {
+  background: url(/static/img/shake/lottery-first.png) center center no-repeat;
+  background-size: cover;
+}
+.lottery-result.second {
+  background: url(/static/img/shake/lottery-second.png) center center no-repeat;
+  background-size: cover;
+}
+.lottery-result.third {
+  background: url(/static/img/shake/lottery-third.png) center center no-repeat;
+  background-size: cover;
+}
+.prompt-overlay {
+  z-index: 1010;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  background: url(/static/img/shake/rules-overlay.png) top center no-repeat;
+  background-size: cover;
+}
+.lottery-result-overlay {
+  z-index: 1010;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  background: url(/static/img/shake/rules-overlay.png) top center no-repeat;
+  background-size: cover;
+}
