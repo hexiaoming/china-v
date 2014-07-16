@@ -8,6 +8,39 @@
 </head>
 <body>
     <div class="container">
+        <img class='header' src="{{ STATIC_URL }}img/shake/lottery-head.png" alt="">
+        <div class="bottle">
+            <div class="bottle-body">
+                <canvas width="90" height="140"></canvas>
+            </div>
+        </div>
+        <div class="button-bar">
+            <button class="btn-cv left">活动说明</button>
+            <span class='button-seperator'></span>
+            <button class="btn-cv right">中奖名单</button>
+        </div>
     </div>
+
+    <div class="rules" style="display: none;">
+        <img src="{{ STATIC_URL }}img/shake/rules.png" alt="">
+        <button class="exit"></button>
+    </div>
+    <div class="rules-overlay" style="display: none;"></div>
+
+    <div class="phone-prompt">
+        <form class="phone-prompt-form">
+            <input type="text" name="phone" required pattern="^(13[0-9]|15[012356789]|18[0-9]|14[57])[0-9]{8}$">
+            <input type="submit" value="">
+            <p>手机号将作为发奖和参与凭证</p>
+        </form>
+    </div>
+
+    <script type="text/javascript" src="{{ STATIC_URL }}js/require.config.js">
+    </script>
+    <script type="text/javascript" src="{{ STATIC_URL }}components/requirejs/require.js">
+    </script>
+    <script type="text/javascript">
+        require(["js/shake/lottery"]);
+    </script>
 </body>
 </html>

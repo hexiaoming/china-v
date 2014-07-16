@@ -5775,6 +5775,75 @@ button.close {
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif, '微软雅黑';
 }
+.container .button-bar {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  height: 50px;
+}
+.container .button-bar .btn-cv {
+  position: absolute;
+  width: 47%;
+  top: 0px;
+  border: none;
+  line-height: 20px;
+  font-size: 18px;
+  padding: 15px 0px;
+  background: transparent;
+  color: #bbb;
+  outline: none;
+}
+.container .button-bar .btn-cv.left {
+  left: 0px;
+}
+.container .button-bar .btn-cv.right {
+  right: 0px;
+}
+.container .button-bar .button-seperator {
+  position: absolute;
+  left: 47%;
+  bottom: 0px;
+  width: 6%;
+  height: 30px;
+  margin: 10px 0px;
+  background: url(/static/img/shake/button-seperator.png) center center no-repeat transparent;
+}
+.rules {
+  position: absolute;
+  top: 2%;
+  left: 50%;
+  width: 270px;
+  margin-left: -135px;
+  z-index: 1020;
+}
+.rules .exit {
+  position: absolute;
+  top: 8px;
+  left: 3px;
+  background: url(/static/img/shake/rules-exit.png) center center no-repeat;
+  border: none;
+  outline: none;
+  background-size: 30px, 30px;
+  width: 30px;
+  height: 30px;
+}
+.rules img {
+  max-width: 100%;
+}
+.rules-overlay {
+  z-index: 1010;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  background: url(/static/img/shake/rules-overlay.png) top center no-repeat;
+  background-size: cover;
+}
+body {
+  -webkit-user-select: none;
+  user-select: none;
+}
 .container {
   z-index: 1000;
   background: url(/static/img/shake/bg.jpg) top center no-repeat #111111;
@@ -5785,4 +5854,101 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
+}
+.container img.header {
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  width: 200px;
+  margin-left: -100px;
+  height: 100px;
+}
+.container .bottle {
+  position: absolute;
+  top: 32%;
+  left: 50%;
+  width: 200px;
+  margin-left: -100px;
+}
+.container .bottle .bottle-body {
+  width: 120px;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 35px;
+  height: 200px;
+  position: relative;
+  background: url(/static/img/shake/bottle.png) center center no-repeat;
+  background-size: 100%;
+}
+.container .bottle .bottle-body canvas {
+  width: 90px;
+  height: 140px;
+  position: absolute;
+  background-color: transparent;
+  bottom: 25px;
+  left: 50%;
+  margin-left: -45px;
+}
+.container .bottle .bottle-body canvas.first {
+  background: url(/static/img/shake/first.png) center center no-repeat;
+  background-size: 80%;
+}
+.container .bottle .bottle-body canvas.second {
+  background: url(/static/img/shake/second.png) center center no-repeat;
+  background-size: 80%;
+}
+.container .bottle .bottle-body canvas.third {
+  background: url(/static/img/shake/third.png) center center no-repeat;
+  background-size: 80%;
+}
+.container .bottle .bottle-body canvas.try-again {
+  background: url(/static/img/shake/try-again.png) center center no-repeat;
+  background-size: auto 120px;
+}
+.phone-prompt {
+  z-index: 1010;
+  background: url(/static/img/shake/rules-overlay.png) top center no-repeat transparent;
+  background-size: 100% auto;
+  position: absolute;
+  padding: 0px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.phone-prompt .phone-prompt-form {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  width: 280px;
+  margin-left: -140px;
+  padding-top: 50px;
+  background: url(/static/img/shake/lottery-tip.png) left top no-repeat;
+  background-size: 50% auto;
+}
+.phone-prompt .phone-prompt-form p {
+  margin-top: 10px;
+  color: #fff;
+}
+.phone-prompt .phone-prompt-form input {
+  display: inline-block;
+  vertical-align: middle;
+}
+.phone-prompt .phone-prompt-form input[type=text] {
+  color: #fff;
+  width: 200px;
+  padding: 3px 8px;
+  font-size: 14px;
+  background: transparent;
+  border: 1px solid #ccc;
+}
+.phone-prompt .phone-prompt-form input[type=submit] {
+  width: 67px;
+  height: 30px;
+  background: url(/static/img/shake/submit.png) center center no-repeat;
+  margin-left: 8px;
+  background-size: 100% 100%;
+  border: none;
 }
