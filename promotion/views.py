@@ -19,7 +19,20 @@ from itertools import chain
 def index(request):
 	request.session.clear()	
 	if request.method == 'GET':
-		return render(request,"promotion/promotion.html")
+		student = getStudents(1)
+		studentlist = student['Data']
+		studentlist = studentlist[0:3]
+
+		Address = "http://demovoice.jdb.cn"
+		c = 0
+		for i in studentlist:
+			i['Avatar'] = Address + i['Avatar']
+		studentlist.sort(lambda x,y: cmp(y['Votes'],x['Votes']))
+		for i in studentlist:
+			c += 1
+			i['ranked'] = c 
+		return render(request,"promotion/promotion.html",{"studentlist":studentlist})
+
 @ensure_csrf_cookie
 @require_GET
 
@@ -42,7 +55,7 @@ def mobvet_post(request,studentid):
 		m.save()
 		try:
 			q =	Student.objects.all()
-			q = chain(q[int(studentid)-1::],q[0:int(studentid)-1])
+			q = chain(q[int(studentid)::],q[0:int(studentid)])
 
 		except Student.DoesNotExist:
 			return render_json({"reason":"no students please import data"})
@@ -51,7 +64,7 @@ def mobvet_post(request,studentid):
 	else:
 		try:
 			q =	Student.objects.all()
-			q = chain(q[int(studentid)-1::],q[0:int(studentid)-1])
+			q = chain(q[int(studentid)::],q[0:int(studentid)])
 
 		except Student.DoesNotExist:
 			return render_json({"reason":"no students please import data"})
@@ -68,7 +81,7 @@ def Vboard(request,studentid):
 	if request.method == 'GET':
 		try:
 			q =	Student.objects.all()
-			q = chain(q[int(studentid)-1::],q[0:int(studentid)-1])
+			q = chain(q[int(studentid)::],q[0:int(studentid)])
 		except Student.DoesNotExist:
 			return render_json({"reason":"no students please import data"})
 		return render(request,"promotion/Vboard.html",{"dovet":"dir","result":q,"studentid":studentid})
@@ -109,7 +122,7 @@ def vet(request,studentid):
 		if check_pro_num_mobile():
 			p = Provet.objects.create(circle_num=str(circle),top_num=str(top),mobile=str(mobile),timestamp=str(timestamp))
 			p.save()
-			q =	getStudents()
+			q =	getStudents(1)
 			return render(request,"promotion/Vboard.html",{"dovet":"pro","result":q})
 		else:
 			return redirect("/promotion/proerror/")
@@ -139,5 +152,10 @@ def studentlist(request):
 	mobile = request.session.get('mobile')
 	circle = request.session.get('circle')
 	top = request.session.get('top')
-	studentlist = getStudents()
+	student = getStudents(1)
+	studentlist = student['Data']
+	Address = "http://demovoice.jdb.cn"
+	for i in studentlist:
+		i['Avatar'] = Address + i['Avatar']
+	studentlist.sort(lambda x,y: cmp(y['Votes'],x['Votes']))
 	return render(request,"promotion/studentlist.html",{"studentlist":studentlist,"type":"none","mobile":mobile,"circle":circle,"top":top})

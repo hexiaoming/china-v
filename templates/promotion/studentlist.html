@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="{{ STATIC_URL }}css/promotion.css"/>
 {% endblock %}
 {% block promotion %}
+<body class="vboard_background">
 <div class="vboard-title">
 <img src="/static/promotion/image/vboard.png"/>
 </div>
@@ -17,14 +18,15 @@
 {% ifnotequal None circle %}
 {% ifnotequal None top %}
 {% for i in studentlist %}
-
 <div class="student">
-    <a href="/promotion/vet/{{ i.id }}/">
-      <img src="{{ i.avatar }}" class="avatar"/>
+<div class="avatar">
+    <a href="/promotion/Vboard/{{ i.id }}/">
+      <img src="{{ i.Avatar }}" class="avatar"/>
+      <div class="name">{{ i.Name }}</div>
     </a>
-    <p>{{ i.ticketnum }}票</p>
-    <p>{{ i.name }}</p>
-    
+</div>
+    <p>{{ i.Votes }}票</p>
+    <p><img src="/static/promotion/image/v_logo.png" class="plus_v"/></p>
 </div>
 {% endfor %}
 {% endifnotequal %}
@@ -35,12 +37,14 @@
 {% ifequal None top %}
 {% for i in studentlist %}
 <div class="student">
-    <a href="/promotion/mobvet_post/{{ i.id }}/">
-      <img src="{{ i.avatar }}" class="avatar"/>
+<div class="avatar">
+    <a href="/promotion/Vboard/{{ i.id }}/">
+      <img src="{{ i.Avatar }}" class="avatar"/>
+      <div class="name">{{ i.Name }}</div>
     </a>
-    <p>{{ i.ticketnum }}票</p>
-    <p>{{ i.name }}</p>
-   
+</div>
+    <p>{{ i.Votes }}票</p>
+    <p><img src="/static/promotion/image/v_logo.png" class="plus_v"/></p>
 </div>
 {% endfor %}
 {% endifequal %}
@@ -51,11 +55,14 @@
 {% ifequal None top %}
 {% for i in studentlist %}
 <div class="student">
+<div class="avatar">
     <a href="/promotion/Vboard/{{ i.id }}/">
-      <img src="{{ i.avatar }}" class="avatar"/>
+      <img src="{{ i.Avatar }}" class="avatar"/>
+      <div class="name">{{ i.Name }}</div>
     </a>
-    <p>{{ i.ticketnum }}票</p>
-    <p>{{ i.name }}</p>
+</div>
+    <p>{{ i.Votes }}票</p>
+    <p><img src="/static/promotion/image/v_logo.png" class="plus_v"/></p>
 </div>
 {% endfor %}
 {% endifequal %}
@@ -63,5 +70,6 @@
 {% endifequal %}
 </div>
 <div></div>
+</div>
 </div>
 {% endblock %}
