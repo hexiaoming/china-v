@@ -1,22 +1,36 @@
 {% extends "promotion/promotion_header.html" %}
 {% block promotion %}
-
+<body class="background">
 <div class="main">
+<p class="logo"><img src="/static/promotion/image/plus_V_logo.png" class="plusVlogo"/></p>
+<div>
 
 <ul class="firstThree">
-	<li><div>1</div></li>
-	<li><div>2</div></li>
-	<li><div>3</div></li>
+{% for i in studentlist %}
+	<li>
+		<div>
+			<span class="left">&nbsp;&nbsp;&nbsp;{{ i.ranked }}&nbsp;&nbsp;&nbsp;</span><img src="{{ i.Avatar }}" class="top_three_img"/>
+			<div class="right">
+			<p class="name">{{ i.Name }}</p>
+			<p>{{ i.Votes }}<img src="/static/promotion/image/piao.png"/></p>
+			</div>
+		</div>
+	</li>
+{% endfor %}
 </ul>
+<img src="/static/promotion/image/top_three_logo.png" class="top_three_logo"/>
+</div>
 
 <ul class="bottom clearfix">
+
 <li>
 	<a class="skew-button shew-button-left pull-right provet_link" href="javascript:;">罐码投票</a>
 </li>
 <li>
-	<a class="skew-button shew-button-right pull-left mobvet_link" href="javascript:;">直接投票</a>
+	<a class="skew-button shew-button-right pull-left mobvet_link" href="javascript:;">手机号码投票</a>
 </li>
 </ul>
+
 
 
 </div>

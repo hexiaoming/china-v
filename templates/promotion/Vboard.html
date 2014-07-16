@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="{{ STATIC_URL }}css/promotion.css"/>
 {% endblock %}
 {% block promotion %}
-
+<body>
 <div class="swiper-container">
   <div class="swiper-wrapper">
     {% if dovet == 'mob' %}
@@ -14,9 +14,10 @@
         	<!-- Any HTML content of the first slide goes here -->
         	
         	<img class="board_img" src="{{ i.avatar }}"></img>
-    			<a href="/promotion/studentlist/" class="btn btn-default btn-vboard">最V榜单</a>
-    			<button class="btn btn-sm btn-default postticket" data-value="1" data-type="mob" class="postticket">投票</button>
-    		  
+    			<div class="vboard_div">
+          
+    			<a class="postticket" data-value="1" data-type="mob" class="postticket">投票</a>
+    		  </div>
       	</div>
       	
     	{% endfor %}     
@@ -30,8 +31,11 @@
         	<!-- Any HTML content of the first slide goes here -->
         	
         	<img class="board_img" src="{{ i.avatar }}" />
-          <a href="/promotion/studentlist/" class="btn btn-default btn-vboard">最V榜单</a>
-          <button class="btn btn-sm btn-default postticket" data-value="1" data-type="pro">投票</button>
+          
+          <div class="vboard_div">
+          
+          <a class="postticket" data-value="1" data-type="mob" class="postticket">投票</a>
+          </div>
 		      
       	</div> 
 
@@ -43,7 +47,12 @@
           
           	<!-- Any HTML content of the first slide goes here -->
           	<img class="board_img" src="{{ i.avatar }}" />
-            <a href="/promotion/studentlist/" class="btn btn-default btn-vboard">最V榜单</a>
+            <div class="vboard_div">
+            <p class="board_name">{{ i.name }}</p>
+            <p class="board_ticket">100000票</p>
+            <p class="board_name">为Ta投票</p>
+            <a class="postticket" data-value="1" data-type="mob" class="postticket"><img src="/static/promotion/image/v_logo.png"/></a>
+          </div>
         	</div>
      
       	{% endfor %}     

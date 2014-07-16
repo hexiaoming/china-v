@@ -101,6 +101,7 @@ define(function(require) {
         }
     }
 	$(function(){
+
         //跳转到相应学员
         var mySwiper = new Swiper('.swiper-container',{
             //Your options here:
@@ -109,9 +110,7 @@ define(function(require) {
             //etc..
           });  
         
-        $(".student .avatar").css({
-            "height":$(".student .avatar").css("width")
-        });   
+          
 		$(".go_check").click(function(){
             if(!provet.check()){
                 
@@ -134,7 +133,7 @@ define(function(require) {
             }
         });
         $(".postticket").click(function(){
-            if($(this).data(type)=="mob")   {
+            if($(this).data("type")=="mob")   {
                /* var id = $(this).data("value");
                 $.post("//",{
                     "mobile":mobilenum,
@@ -144,7 +143,7 @@ define(function(require) {
                     
                 });*/
             }
-            else if($(this).data(type)=="pro")  {
+            else if($(this).data("type")=="pro")  {
                 /*var id = $(this).data("value");
                 $.post("//",{
                     "pro":mobilenum,
