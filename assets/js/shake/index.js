@@ -212,12 +212,16 @@ define(function(require) {
                 loader.show();
                 vote().then(function(data) {
                     var CODE_NO_PLAYING_STUDENT = 2001;
+                    if (data.ret_code === CODE_NO_PLAYING_STUDENT) {
+                        voting = false;
+                        return alert("非常抱歉，学员还没有上场，目前还不能投票");
+                    }
+
                     if (data.ret_code === 0 && timestamp === _timestamp) {
                         $tickets.html(data.count);
-                    } else if (data.ret_code === CODE_NO_PLAYING_STUDENT) {
-                        alert("非常抱歉，学员还没有上场，目前还不能投票");
                     }
-                }).always(function() {
+                    loader.tip();
+                }, function() {
                     loader.tip();
                 });
             }, 1500);
