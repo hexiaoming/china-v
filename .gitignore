@@ -60,3 +60,5 @@ nohup.out
 media
 dump.sql
 *.pid
+_static
+_media
