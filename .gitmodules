@@ -1,0 +1,3 @@
+[submodule "china-v-pages"]
+	path = china-v-pages
+	url = git@github.com:limijiaoyin/china-v-pages.git
