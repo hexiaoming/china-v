@@ -25,7 +25,7 @@ define(function(require) {
     wechatShare({
         link: "/shake/",
         desc: '全民摇一摇',
-        title: '边看好声音边投票，世界上第一款直播摇一摇投票神器'
+        title: '差点就刮到加多宝中国好声音总决赛门票了'
     });
 
     var $container;
