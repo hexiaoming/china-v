@@ -54,6 +54,16 @@
         }
     }
 
+    @media (max-height: 420px) {
+        .entry {
+            top: 10%;
+
+            a {
+                .size(120px, auto);
+            }
+        }
+    }
+
     .votes {
         .mid(300px;10%);
         .count {
@@ -89,21 +99,31 @@
             width:40%;
             margin-top:30%;
         }
+
         @media screen and (max-width:435px) {
             .shakehands {
                 margin-top:55%;
             }
         }
+
         @media screen and (max-width:360px) {
             .shakehands {
                 margin-top:30%;
             }
         }
+
         @media screen and (max-width:320px) {
             .shakehands {
                 margin-top:21%;
             }
         }
+
+        @media screen and (max-height:420) {
+            .shakehands {
+                margin-top:17%;
+            }
+        }
+
         text-align: center;
         img {
             display: inline-block;
@@ -148,7 +168,6 @@
             background: url(/static/img/shake/button-seperator.png) center center no-repeat transparent;
         }
     }
-
 }
 
 
@@ -170,6 +189,23 @@
 
     img {
         max-width: 100%;
+    }
+
+    @media (max-height: 420px) {
+        .mid(240px;2%);
+        z-index: 1020;
+
+        .exit {
+            position: absolute;
+            top: 4px;
+            left: 2px;
+            background: url(/static/img/shake/rules-exit.png) center center no-repeat;
+            border: none;
+            outline: none;
+            @exit-size: 30px;
+            background-size: @exit-size, @exit-size;
+            .square(@exit-size);
+        }
     }
 }
 
