@@ -380,12 +380,14 @@
 }
 .pop-window .pop-window-header {
   padding-top: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
   height: 20%;
 }
 .pop-window .pop-window-header .title {
   font-family: MFLangQian_Noncommercial;
   text-align: center;
-  font-size: 28px;
+  font-size: 20px;
   color: yellow;
 }
 .pop-window .pop-window-header .pop-close {
