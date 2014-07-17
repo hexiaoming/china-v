@@ -16,13 +16,12 @@ from promotion.do import *
 from itertools import chain
 # Create your views here.
 @require_GET
-def index(request):
+def index(request,openID):
 	request.session.clear()	
 	if request.method == 'GET':
 		student = getStudents(1)
 		studentlist = student['Data']
 		studentlist = studentlist[0:3]
-
 		Address = "http://demovoice.jdb.cn"
 		c = 0
 		for i in studentlist:
@@ -31,84 +30,106 @@ def index(request):
 		for i in studentlist:
 			c += 1
 			i['ranked'] = c 
-		return render(request,"promotion/promotion.html",{"studentlist":studentlist})
+		return render(request,"promotion/promotion.html",{"studentlist":studentlist,"openID":openID})
 
 @ensure_csrf_cookie
 @require_GET
 
-def provet(request):
+def provet(request,openID):
 	if request.method == 'GET':
-		return render(request,"promotion/provet.html")
+		return render(request,"promotion/provet.html",{"openID":openID})
 
 @require_GET
-def mobvet(request):
+def mobvet(request,openID):
 	if request.method == 'GET':
-		return render(request,"promotion/mobvet.html")
+		return render(request,"promotion/mobvet.html",{"openID":openID})
 
 
 @ensure_csrf_cookie
-def mobvet_post(request,studentid):
+def mobvet_post(request,openID):
 	if request.method == 'POST':
 		mobile = request.POST.get('mobile',None)
-		m = Mobvet.objects.create(mobile=str(mobile),timestamp=str(time.time()))
 		request.session['mobile']=str(mobile)
-		m.save()
-		try:
-			q =	Student.objects.all()
-			q = chain(q[int(studentid)::],q[0:int(studentid)])
-
-		except Student.DoesNotExist:
-			return render_json({"reason":"no students please import data"})
-
-		return render(request,"promotion/Vboard.html",{"dovet":"mob","result":q,"studentid":studentid})
+		return render(request,"promotion/Vboard.html",{"dovet":"mob","openID":openID})
 	else:
-		try:
-			q =	Student.objects.all()
-			q = chain(q[int(studentid)::],q[0:int(studentid)])
-
-		except Student.DoesNotExist:
-			return render_json({"reason":"no students please import data"})
-
-		return render(request,"promotion/Vboard.html",{"dovet":"mob","result":q,"studentid":studentid})
+		
+		student = getStudents(1)
+		studentlist = student['Data']
+		c = 1
+		studentlist.sort(lambda x,y: cmp(y['Votes'],x['Votes']))
+		
+		studentlist = studentlist[c::]+studentlist[0:c]
+		Address = "http://demovoice.jdb.cn"
+		for i in studentlist:
+			i['Avatar'] = Address + i['Avatar']
+		return render(request,"promotion/Vboard.html",{"dovet":"mob","studentlist":studentlist,"openID":openID})
 
 @require_GET
-def instruction(request):
+def instruction(request,openID):
 	if request.method == 'GET':
 		return render(request,"promotion/instruction.html")
-
+def postticket(request,openID):
+	StudentId = request.POST.get('StudentId') ;
+	res = votes(openID,StudentId);
+	if res == 1 :
+		return render(request,"promotion/vote_success.html",{"openID":openID})
+	else :
+		#返回错误页面
+		return render(request,"promotion/vote_filed.html",{"openID":openID})
 @require_GET
-def Vboard(request,studentid):
+def Vboard(request,studentid,openID):
 	if request.method == 'GET':
-		try:
-			q =	Student.objects.all()
-			q = chain(q[int(studentid)::],q[0:int(studentid)])
-		except Student.DoesNotExist:
-			return render_json({"reason":"no students please import data"})
-		return render(request,"promotion/Vboard.html",{"dovet":"dir","result":q,"studentid":studentid})
+		student = getStudents(1)
+		studentlist = student['Data']
+		c = 1
+		studentlist.sort(lambda x,y: cmp(y['Votes'],x['Votes']))
+		for i in studentlist:
+			if str(i['StudentId']) == str(studentid):
+				break
+			c += 1
+
+		studentlist = studentlist[c::]+studentlist[0:c]
+		Address = "http://demovoice.jdb.cn"
+		for i in studentlist:
+			i['Avatar'] = Address + i['Avatar']
+		return render(request,"promotion/Vboard.html",{"dovet":"dir","studentid":studentid,"studentlist":studentlist,"openID":openID})
 
 @require_GET
-def proerror(request):
+def proerror(request,openID):
 	if request.method == 'GET':
 		return render(request,"promotion/proerror.html")
+@require_GET
+def proerror_mobile(request,openID):
+	if request.method == 'GET':
+		return render(request,"promotion/proerror_mobile.html")
+@require_GET
+def error_mobile(request,openID):
+	if request.method == 'GET':
+		return render(request,"promotion/error_mobile.html")
 
 @require_POST
 @ensure_csrf_cookie
-def pro_mobvet(request):
+def pro_mobvet(request,openID):
 	#此页面只允许使用post的方式进行访问，如果方式有问题，则返回错误页面
 	if request.method == 'POST':
 		circle = request.POST.get('circle',None)
 		top = request.POST.get('top',None)
 		#罐投票验证
-		if check_pro_num():
-			return render(request,"promotion/pro_mobvet.html",{"circle":str(circle),"top":str(top)})
+		#Status=-1，接口异常
+	    #Status=0，参数不全
+	    #Status=1，增加投票权成功
+	    #Status=2，3位码或8位码错误
+	    #Status=3，已经使用
+		if check_pro_num(openID,circle,top)==1:
+			return render(request,"promotion/pro_mobvet.html",{"circle":str(circle),"top":str(top),"openID":openID})
 		else:
-			return render(request,"/promotion/proerror/")
+			return redirect("/promotion/proerror/"+openID+"/")
 	else:
-		return redirect("/promotion/proerror/")
+		return redirect("/promotion/proerror/"+openID+"/")
 
 	
 @ensure_csrf_cookie
-def vet(request,studentid):
+def vet(request,studentid,openID):
 	if request.method == 'POST':
 		mobile = request.POST.get('mobile',None)
 		circle = request.POST.get('circle',None)
@@ -119,35 +140,54 @@ def vet(request,studentid):
 		request.session['top']=str(top)
 		request.session['circle']=str(circle)
 		#结束
-		if check_pro_num_mobile():
-			p = Provet.objects.create(circle_num=str(circle),top_num=str(top),mobile=str(mobile),timestamp=str(timestamp))
-			p.save()
-			q =	getStudents(1)
-			return render(request,"promotion/Vboard.html",{"dovet":"pro","result":q})
+		if check_pro_num_mobile():	
+			student = getStudents(1)
+			studentlist = student['Data']
+			c = 1
+			studentlist.sort(lambda x,y: cmp(y['Votes'],x['Votes']))
+			for i in studentlist:
+				if str(i['StudentId']) == str(studentid):
+					break
+				c+=1
+			studentlist = studentlist[c::]+studentlist[0:c]
+			Address = "http://demovoice.jdb.cn"
+			for i in studentlist:
+				i['Avatar'] = Address + i['Avatar']
+			return render(request,"promotion/Vboard.html",{"dovet":"pro","studentlist":studentlist,"openID":openID})
 		else:
-			return redirect("/promotion/proerror/")
+			return redirect("/promotion/proerror/"+openID+"/")
 	else:
 		mobile = request.session.get('mobile')
 		top = request.session.get('top')
 		circle = request.session.get('circle')
 		if ""==mobile:
-			return redirect("/promotion/proerror/")
+			return redirect("/promotion/proerror/"+openID+"/")
 		elif ""==top or ""==circle:
-			return redirect("/promotion/proerror/")
+			return redirect("/promotion/proerror/"+openID+"/")
 		else:
 			#跳回本页面
-			q =	Student.objects.all()
-			q = chain(q[int(studentid)-1::],q[0:int(studentid)-1])
-			return render(request,"promotion/Vboard.html",{"dovet":"pro","result":q})
+			student = getStudents(1)
+			studentlist = student['Data']
+			c = 1
+			studentlist.sort(lambda x,y: cmp(y['Votes'],x['Votes']))
+			for i in studentlist:
+				if str(i['StudentId']) == str(studentid):
+					break
+				c+=1
+			studentlist = studentlist[c::]+studentlist[0:c]
+			Address = "http://demovoice.jdb.cn"
+			for i in studentlist:
+				i['Avatar'] = Address + i['Avatar']
+			return render(request,"promotion/Vboard.html",{"dovet":"pro","studentlist":studentlist,"openID":openID})
 
 @require_GET
-def vboard_show(request):
+def vboard_show(request,openID):
 	#这个是显示最V榜单
 	res = getVboard()
-	return render(request,"promotion/vboard_show.html",{"res":res})
+	return render(request,"promotion/vboard_show.html",{"res":res,"openID":openID})
 
 @require_GET
-def studentlist(request):
+def studentlist(request,openID):
 	#学员展示页面
 	mobile = request.session.get('mobile')
 	circle = request.session.get('circle')
@@ -158,4 +198,4 @@ def studentlist(request):
 	for i in studentlist:
 		i['Avatar'] = Address + i['Avatar']
 	studentlist.sort(lambda x,y: cmp(y['Votes'],x['Votes']))
-	return render(request,"promotion/studentlist.html",{"studentlist":studentlist,"type":"none","mobile":mobile,"circle":circle,"top":top})
+	return render(request,"promotion/studentlist.html",{"studentlist":studentlist,"type":"none","mobile":mobile,"circle":circle,"top":top,"openID":openID})

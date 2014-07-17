@@ -1,9 +1,21 @@
 {% extends "promotion/promotion_header.html" %}
 {% block promotion %}
 <!--<form action="/promotion/vet/1/" method="post">-->{% csrf_token %}
-<input type="text" class="form-control input-sm" name="mobile" placeholder="请输入您的手机号"/>
-<input type="hidden" value="{{ circle }}" name="circle" />
-<input type="hidden" value="{{ top }}" name="top" />
-<input type="submit" class="btn btn-sm btn-primary pro_mob_check" >
+<div class="pop-window">
+<div class="pop-window-header">
+<img class="pop-close" src="/static/promotion/image/plus.png"/>
+<p class="title">请输入您的手机号</p>
+<p class="little">每个手机号每天只能参与一次投票</p>
+</div>
+<!--<form action="/promotion/mobvet_post/1/" method="post">-->{% csrf_token %}
+<input type="text" name="mobile" class="mobile" placeholder="请输入您的手机号"/>
+<input type="text" style="display:none;" class="openId" data-value="{{ openID }}" name="openID"/>
+<div class="button_area">
+<button class="skew-button pro_mob_check">马上投票</button> 
+</div>
+<!--</form>-->
+</div>
+<input type="hidden" value="{{ circle }}" class="circle" name="circle" />
+<input type="hidden" value="{{ top }}" class="top" name="top" />
 <!--</form>-->
 {% endblock %}

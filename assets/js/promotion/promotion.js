@@ -64,11 +64,13 @@ define(function(require) {
 	};
     var mobvet = {
         check_mobile:function() {
-            var text = $(".top_num").val();
-            var regu = /^\d{13}$/;
+            var text = $(".mobile").val();
+
+            var regu = /^\d{11}$/;
             var re = new RegExp(regu);
             if(text.match(re))  {
                 return true;
+
             }
             else {
                 return false;
@@ -76,17 +78,32 @@ define(function(require) {
         }
     };
     var postticket = {
-        mobticket : function()  {
-
-        },
-        proticket : function()  {
-
+        postVotes :function (StudentId,openID) {
+            $.post("/promotion/postticket/"+openID+"/",{
+                "StudentId":StudentId
+            },function(data){
+                var height = document.documentElement.clientHeight;
+                $(".pop-window").html($(data).nextAll("div").html());
+                pop_height = $(".pop-window").css("height");
+                pop_height = pop_height.substr(0,pop_height.length-2);
+                
+                height = (height - pop_height)/2;
+                $(".pop-window").css({"top":height+"px"});
+                
+                $(".pop-window").velocity("fadeIn");
+                setTimeout(function(){
+                    $(".pop-window").velocity('fadeOut',function(){
+                        $(".pop-window").html("");
+                    });
+                },1000);
+            },"html");
         }
     };
     var ajax_window = {
         show_window :function(src) {
             var height = document.documentElement.clientHeight;
             var pop_height ;
+            $(".backblur").addClass("blur");
             $.get(src,function(data){
                 $(".pop-window").html($(data).nextAll("div").html());
                 pop_height = $(".pop-window").css("height");
@@ -96,7 +113,6 @@ define(function(require) {
                 $(".pop-window").css({"top":height+"px"});
                 
                 $(".pop-window").velocity("fadeIn");
-
             },"html");  
         }
     }
@@ -108,71 +124,83 @@ define(function(require) {
             loop:true,
             mode:'vertical',
             //etc..
-          });  
+        });  
         
-          
-		$(".go_check").click(function(){
-            if(!provet.check()){
-                
-                alert("输入不符合规则哦");
-            }
-            else {
-                if(provet.check_pro())  {
-                    
-                }
-            }
-        });
-        $(".pro_mob_check").click(function(){
-            if(!mobvet.check_mobile())  {
-                alert("输入不合理");
-            }
-            else {
-                //ajax过去验证并返回结果
-                //假设结果为1
-
-            }
-        });
+        var openID = $(".openId").data("value");
+		
         $(".postticket").click(function(){
-            if($(this).data("type")=="mob")   {
-               /* var id = $(this).data("value");
-                $.post("//",{
-                    "mobile":mobilenum,
-                    "type":"mob",
-                    "studentid":id
-                },function(data){
-                    
-                });*/
-            }
-            else if($(this).data("type")=="pro")  {
-                /*var id = $(this).data("value");
-                $.post("//",{
-                    "pro":mobilenum,
-                    "circle":拉环码,
-                    "top":罐码,
-                    "type":"mob",
-                    "studentid":id
-                },function(data){
-                    
-                });*/
-
-            }
+            var StudentId = $(this).data("value");
+            postticket.postVotes(StudentId,openID);
         }) ;
-       
+        $(document).on("click",".go_check",function(){
+            if(!provet.check()){
+                ajax_window.show_window("/promotion/proerror/"+openID+"/");
+            }
+            else {
+                 $.post("/promotion/pro_mobvet/"+openID+"/" ,{
+                    "circle":$(".circle_num").val(),
+                    "top":$(".top_num").val()
+                },function(data){
+                    $(".pop-window").html($(data).nextAll("div").html());
+                    pop_height = $(".pop-window").css("height");
+                    pop_height = pop_height.substr(0,pop_height.length-2);
+                    
+                    height = (height - pop_height)/2;
+                    $(".pop-window").css({"top":height+"px"});
+                    
+                    $(".pop-window").velocity("fadeIn");
+                });
+            }
+        });
         $(".instruction_link").click(function(){
-            ajax_window.show_window("/promotion/instruction/");
+            ajax_window.show_window("/promotion/instruction/"+openID+"/");
         });
         $(".provet_link").click(function(){
-            ajax_window.show_window("/promotion/provet/");
+            ajax_window.show_window("/promotion/provet/"+openID+"/");
         });
         $(".mobvet_link").click(function(){
-            ajax_window.show_window("/promotion/mobvet/");
+            ajax_window.show_window("/promotion/mobvet/"+openID+"/");
         });
-        
+        $(document).on("click",".Can_re",function(){
+            ajax_window.show_window("/promotion/provet/"+openID+"/");
+        });
+        $(document).on("click",".Can_mob_re",function(){
+            ajax_window.show_window("/promotion/pro_mobvet/"+openID+"/");
+        });
+        $(document).on("click",".mob_re",function(){
+            ajax_window.show_window("/promotion/mobvet/"+openID+"/");
+        });
+        $(document).on("click",".pro_mobcheck",function(){
+            if(!mobvet.check_mobile())   {
+                ajax_window.show_window("/promotion/proerror_mobile/"+openID+"/");
+            }
+            else {
+                $.post("/promotion/vet/",{
+                    "circle":$(".circle").val(),
+                    "top":$(".top").val(),
+                    "mobile":$(".mobile").val()
+                },function(data){
+                    location.href="/promotion/vet/"+openID+"/";
+                });
+            }
+        });
+          $(document).on("click",".mob_check",function(){
+            if(!mobvet.check_mobile())   {
+                ajax_window.show_window("/promotion/error_mobile/"+openID+"/");
+            }
+            else {
+                $.post("/promotion/mobvet_post/"+openID+"/",{
+                    "mobile":$(".mobile").val()
+                },function(data){
+                    location.href="/promotion/mobvet_post/"+openID+"/";
+                });
+            }
+        });
         $(document).on("click",".pop-close",function(){
             $(".pop-window").velocity('fadeOut',function(){
                 $(".pop-window").html("");
             });
-            
+            $(".backblur").removeClass("blur");
         });
 	});
 });
