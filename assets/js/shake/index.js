@@ -74,7 +74,6 @@ define(function(require) {
 
         var studentPlaying = $("#playing").val() === 'true';
         if (!studentPlaying) {
-            alert("非常抱歉，学员还没有上场，目前还不能投票");
         } else {
             function switchToVote(e) {
                 e.preventDefault();
@@ -220,7 +219,7 @@ define(function(require) {
                     if (data.ret_code === 0 && timestamp === _timestamp) {
                         $tickets.html(data.count);
                     } else if (data.ret_code === CODE_NO_PLAYING_STUDENT) {
-                        window.location = "/shake/";
+                        alert("非常抱歉，学员还没有上场，目前还不能投票");
                     }
                 }).always(function() {
                     loader.tip();
