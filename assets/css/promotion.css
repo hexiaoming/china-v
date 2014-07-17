@@ -315,15 +315,24 @@
   .hold-bottom {
     height: 10%;
   }
+  .hold-bottom a {
+    font-size: 22px;
+  }
 }
 @media screen and (max-width: 360px) {
   .hold-bottom {
     height: 7%;
   }
+  .hold-bottom li a {
+    font-size: 18px;
+  }
 }
 @media screen and (max-width: 320px) {
   .hold-bottom {
     height: 9%;
+  }
+  .hold-bottom li a {
+    font-size: 16px;
   }
 }
 .skew-button {
@@ -403,7 +412,7 @@
 .pop-window .pop-window-header .title {
   font-family: MFLangQian_Noncommercial;
   text-align: center;
-  font-size: 20px;
+  font-size: 18px;
   color: yellow;
 }
 .pop-window .pop-window-header .pop-close {
@@ -430,6 +439,39 @@
 }
 .pop-window .pop-window-header .content .yellow {
   color: yellow !important;
+}
+@media screen and (max-width: 435px) {
+  .pop-window .pop-window-header .title {
+    font-size: 24px;
+  }
+  .pop-window .pop-window-header .little {
+    font-size: 18px;
+  }
+  .pop-window .pop-window-header .content {
+    font-size: 18px;
+  }
+}
+@media screen and (max-width: 360px) {
+  .pop-window .pop-window-header .title {
+    font-size: 18px;
+  }
+  .pop-window .pop-window-header .little {
+    font-size: 14px;
+  }
+  .pop-window .pop-window-header .content {
+    font-size: 14px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .pop-window .pop-window-header .title {
+    font-size: 14px;
+  }
+  .pop-window .pop-window-header .little {
+    font-size: 10px;
+  }
+  .pop-window .pop-window-header .content {
+    font-size: 10px;
+  }
 }
 .pop-window input[type="text"] {
   display: block;

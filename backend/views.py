@@ -10,7 +10,7 @@ import django.contrib.auth as auth
 from django.views.decorators.csrf import ensure_csrf_cookie
 from django_render_json import json, render_json
 from models import *
-
+from django.middleware.csrf import get_token
 logger = logging.getLogger(__name__)
 
 
@@ -44,17 +44,23 @@ def login(request):
 
         auth.login(request, user)
         return render_json({'ret_code': 0})
+@require_GET
+def csrf_get(request):
+    csrf = get_token(request)
+    res = str(csrf)
+    return render_json({'re':res}) 
 
 @require_POST
 @ensure_csrf_cookie
 def custom_service(request):
-    problem_type = request.POST.get("problem_type")
+
+    problem_types = request.POST.get("problem_types")
     name = request.POST.get("name")
     phone = request.POST.get("phone")
     email = request.POST.get("email")
     describe = request.POST.get("describe")
     try:
-        c = custom.objects.create(problem_type=problem_type,name=name,phone=phone,email=email,describe=describe)
+        c = Costum_service.objects.create(problem_types=problem_types,name=name,phone=phone,email=email,describe=describe)
         c.save()
         return render_json({'status':'success'})
     except Exception():
