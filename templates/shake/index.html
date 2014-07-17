@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="{{ STATIC_URL }}css/shake/shake.css">
 </head>
 <body>
-<audio id="player" src="/static/music/shake_sound_male.ogg" control></audio>
+    <input type="hidden" id="playing" value="{{ playing }}">
+    
     <div class="container">
         <div class="entry">
             <a href="#vote">

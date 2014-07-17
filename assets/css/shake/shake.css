@@ -5841,21 +5841,18 @@ body {
 }
 @-webkit-keyframes spaceboots {
   0% {
-    -webkit-transform: rotate(-14deg);
+    -webkit-transform: rotate(-10deg);
   }
   50% {
-    -webkit-transform: rotate(14deg);
-  }
-  75% {
-    -webkit-transform: rotate(0deg);
+    -webkit-transform: rotate(10deg);
   }
   100% {
-    -webkit-transform: rotate(-14deg);
+    -webkit-transform: rotate(-10deg);
   }
 }
 .container .votes .shakehands-work {
   -webkit-animation-name: spaceboots;
-  -webkit-animation-duration: 0.06s;
+  -webkit-animation-duration: 0.3s;
   -webkit-transform-origin: 50% 50%;
   -webkit-animation-iteration-count: infinite;
   -webkit-animation-timing-function: linear;

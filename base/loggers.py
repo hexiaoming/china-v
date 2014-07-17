@@ -51,7 +51,7 @@ LOGGING = {
             'when': 'D',
             'interval': 1,
             'backupCount': 5,
-            'filename': 'promotion/logs/mobile.log',
+            'filename': 'logs/mobile.log',
             'formatter': 'normal'
         }
     },
