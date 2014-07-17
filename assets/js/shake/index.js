@@ -72,21 +72,17 @@ define(function(require) {
             window.location = "./rank";
         });
 
-        var studentPlaying = $("#playing").val() === 'true';
-        if (!studentPlaying) {
-        } else {
-            function switchToVote(e) {
-                e.preventDefault();
+        function switchToVote(e) {
+            e.preventDefault();
 
-                status = VOTING;
-                $entry.hide();
-                $container.addClass("shake blur");
-                $votes.show();
-                onVote();
-            }
-            $entry.find("a").click(switchToVote);
-            $entry.find("a").on('touchstart', switchToVote);
+            status = VOTING;
+            $entry.hide();
+            $container.addClass("shake blur");
+            $votes.show();
+            onVote();
         }
+        $entry.find("a").click(switchToVote);
+        $entry.find("a").on('touchstart', switchToVote);
     });
 
     function onVote() {
