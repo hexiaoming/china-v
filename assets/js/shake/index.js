@@ -10,9 +10,9 @@ define(function(require) {
     var token = require('js/shake/token');
 
     wechatShare({
-        link: window.location.href,
-        desc: '中国好声音',
-        title: '全民摇一摇'
+        link: "/shake/",
+        desc: '全民摇一摇',
+        title: '边看好声音边投票，世界上第一款直播摇一摇投票神器'
     });
 
     function getVotes() {
