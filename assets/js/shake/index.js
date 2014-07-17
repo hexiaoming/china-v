@@ -213,11 +213,12 @@ define(function(require) {
                 vote().then(function(data) {
                     var CODE_NO_PLAYING_STUDENT = 2001;
                     if (data.ret_code === 0 && timestamp === _timestamp) {
+                        loader.tip();
                         $tickets.html(data.count);
                     } else if (data.ret_code === CODE_NO_PLAYING_STUDENT) {
                         alert("非常抱歉，学员还没有上场，目前还不能投票");
                     }
-                }).always(function() {
+                }, function() {
                     loader.tip();
                 });
             }, 1500);
