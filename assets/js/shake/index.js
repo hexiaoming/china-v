@@ -21,6 +21,8 @@ define(function(require) {
         onplay: function() {}
     });
 
+    var CODE_NO_PLAYING_STUDENT = 2001;
+
     wechatShare({
         link: "/shake/",
         desc: '全民摇一摇',
@@ -47,10 +49,8 @@ define(function(require) {
     var $entry;
     var $rules;
     var $rulesOverlay;
-    var studentPlaying;
 
     $(function() {
-        studentPlaying = $("#playing").val() === 'true';
         $container = $(".container");
         $entry = $(".entry");
         $votes = $(".votes");
@@ -189,6 +189,7 @@ define(function(require) {
                 var _timestamp = new Date().getTime();
                 timestamp = _timestamp;
                 getVotes().then(function(data) {
+                    studentPlaying = data.ret_code !== CODE_NO_PLAYING_STUDENT;
                     if (data.ret_code === 0 && timestamp === _timestamp) {
                         $tickets.html(data.count);
                     }
@@ -212,21 +213,16 @@ define(function(require) {
 
                 var _timestamp = new Date().getTime();
                 timestamp = _timestamp;
-                if (studentPlaying) {
-                    loader.show();
-                }
-                vote().then(function(data) {
-                    var CODE_NO_PLAYING_STUDENT = 2001;
-                    if (data.ret_code === CODE_NO_PLAYING_STUDENT) {
-                        studentPlaying = false;
-                        loader.hide();
-                        alertify.set({
-                            delay: 2000
-                        });
-                        return alertify.log("非常抱歉，学员还没有上场，目前还不能投票");
-                    }
 
-                    studentPlaying = true;
+                if (!studentPlaying) {
+                    alertify.set({
+                        delay: 2000
+                    });
+                    return alertify.log("非常抱歉，学员还没有上场，目前还不能投票");
+                }
+
+                loader.show();
+                vote().then(function(data) {
                     if (data.ret_code === 0 && timestamp === _timestamp) {
                         $tickets.html(data.count);
                     }
