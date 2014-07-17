@@ -225,7 +225,7 @@ define(function(require) {
                     alertify.set({
                         delay: 2000
                     });
-                    return alertify.log("非常抱歉，学员还没有上场，目前还不能投票");
+                    return alertify.log("非常抱歉，学员还没有上场，目前还不能投票。");
                 }
 
                 loader.show();
