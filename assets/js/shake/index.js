@@ -76,7 +76,7 @@ define(function(require) {
         if (!studentPlaying) {
             alert("非常抱歉，学员还没有上场，目前还不能投票");
         } else {
-            $entry.find("a").click(function(e) {
+            function switchToVote(e) {
                 e.preventDefault();
 
                 status = VOTING;
@@ -84,7 +84,9 @@ define(function(require) {
                 $container.addClass("shake blur");
                 $votes.show();
                 onVote();
-            });
+            }
+            $entry.find("a").click(switchToVote);
+            $entry.find("a").on('touchstart', switchToVote);
         }
     });
 
@@ -108,7 +110,7 @@ define(function(require) {
             </div>
         </div>
         */
-        console.log
+            console.log
         }).trim();
 
         var Loader = Backbone.View.extend({
@@ -214,8 +216,11 @@ define(function(require) {
                 timestamp = _timestamp;
                 loader.show();
                 vote().then(function(data) {
+                    var CODE_NO_PLAYING_STUDENT = 2001;
                     if (data.ret_code === 0 && timestamp === _timestamp) {
                         $tickets.html(data.count);
+                    } else if (data.ret_code === CODE_NO_PLAYING_STUDENT) {
+                        window.location = "/shake/";
                     }
                 }).always(function() {
                     loader.tip();
