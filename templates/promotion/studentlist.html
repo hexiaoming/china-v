@@ -6,12 +6,12 @@
 {% endblock %}
 {% block promotion %}
 <body class="vboard_background">
+<div class="backblur">
 <div class="vboard-title">
 <img src="/static/promotion/image/vboard.png"/>
 </div>
 <div class="main">
-
-
+<input type="text" style="display:none;" class="openId" data-value="{{ openID }}" name="openID"/>
 <div class="studentlist">
 
 {% ifnotequal None mobile %}
@@ -20,7 +20,7 @@
 {% for i in studentlist %}
 <div class="student">
 <div class="avatar">
-    <a href="/promotion/Vboard/{{ i.id }}/">
+    <a href="/promotion/Vboard/{{ i.StudentId }}/{{ openID }}/">
       <img src="{{ i.Avatar }}" class="avatar"/>
       <div class="name">{{ i.Name }}</div>
     </a>
@@ -38,7 +38,7 @@
 {% for i in studentlist %}
 <div class="student">
 <div class="avatar">
-    <a href="/promotion/Vboard/{{ i.id }}/">
+    <a href="/promotion/Vboard/{{ i.StudentId }}/{{ openID }}/">
       <img src="{{ i.Avatar }}" class="avatar"/>
       <div class="name">{{ i.Name }}</div>
     </a>
@@ -56,7 +56,7 @@
 {% for i in studentlist %}
 <div class="student">
 <div class="avatar">
-    <a href="/promotion/Vboard/{{ i.id }}/">
+    <a href="/promotion/Vboard/{{ i.StudentId }}/{{ openID }}/">
       <img src="{{ i.Avatar }}" class="avatar"/>
       <div class="name">{{ i.Name }}</div>
     </a>

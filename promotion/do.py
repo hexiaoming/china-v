@@ -32,19 +32,15 @@ def getVboard():
     res = api_post(whereurl,data)
     return res
 
-def check_pro_num_mobile(openID):
+def check_pro_num(openID,ring,Can):
 	#查看手机+罐码组合
 	#调用接口二，为用户提供
     #从url get到用户openID
     ##openID 未定义 由url中get取得###
     whereurl = "/Api/AddUserVotes.aspx"
-    data = {"uid":openID,"ring":circle,"Can":top}
+    data = {"uid":openID,"ring":ring,"Can":Can}
     res = api_post(whereurl , data)
-    #Status=-1，接口异常
-    #Status=0，参数不全
-    #Status=1，增加投票权成功
-    #Status=2，3位码或8位码错误
-    #Status=3，已经使用
+    
     return res['Status']
 
 def getStudents(period):

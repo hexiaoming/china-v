@@ -21,6 +21,7 @@
 	{% block promotion %}
 
 	{% endblock %}
+</div>
 	{% block bottom %}
 	<img class="black_bottom" src="/static/promotion/image/black_bottom.png"/>
 	<ul class="hold-bottom clearfix">
@@ -29,9 +30,10 @@
 	</li>
 
 	<li class="right-bottom-li">
-		<a class="bottom-right vboard_link" href="/promotion/studentlist/">最V榜单</a>
+		<a class="bottom-right vboard_link" href="/promotion/studentlist/{{ openID }}/">最V榜单</a>
 	</li>
 </ul>
+
 <div class="pop-window" style="display:none"></div>
 {% endblock %}
 </body>
