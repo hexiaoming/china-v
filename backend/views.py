@@ -59,9 +59,7 @@ def custom_service(request):
     phone = request.POST.get("phone")
     email = request.POST.get("email")
     describe = request.POST.get("describe")
-    try:
-        c = Costum_service.objects.create(problem_types=problem_types,name=name,phone=phone,email=email,describe=describe)
-        c.save()
-        return render_json({'status':'success'})
-    except Exception():
-        return render_json({'status':'failed'})
+    c = Costum_service.objects.create(problem_types=problem_types,name=name,phone=phone,email=email,describe=describe)
+    c.save()
+    return render(request,"service_back.html");
+    
