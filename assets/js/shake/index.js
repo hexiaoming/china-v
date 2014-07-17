@@ -48,7 +48,6 @@ define(function(require) {
     var $rulesOverlay;
 
     $(function() {
-
         $container = $(".container");
         $entry = $(".entry");
         $votes = $(".votes");
@@ -75,7 +74,7 @@ define(function(require) {
 
         var studentPlaying = $("#playing").val() === 'true';
         if (!studentPlaying) {
-            return alert("非常抱歉，学员还没有上场，目前还不能投票");
+            alert("非常抱歉，学员还没有上场，目前还不能投票");
         } else {
             $entry.find("a").click(function(e) {
                 e.preventDefault();

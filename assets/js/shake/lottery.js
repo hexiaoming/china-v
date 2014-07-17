@@ -85,7 +85,7 @@ define(function(require) {
                     });
                 });
                 console.log('count:', count);
-                return count >= cols * rows * 0.4;
+                return count >= cols * rows * 0.5;
             } else {
                 return false;
             }
@@ -199,8 +199,18 @@ define(function(require) {
 
         $(".button-bar .right").click(function() {});
 
+        var studentPlaying = $("#playing").val() === 'true';
+        if (!studentPlaying) {
+            alert("非常抱歉，学员还没有上场，目前还不能投票");
+        }
+
         $form.submit(function(e) {
             e.preventDefault();
+            
+            if (!studentPlaying) {
+                return;
+            }
+
             if (form.phone.value === '') {
                 return;
             }

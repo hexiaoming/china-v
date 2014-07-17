@@ -7,7 +7,7 @@ from students.models import Student
 
 @require_GET
 def index(request):
-    student = Student.objects.getPlayingStudent();
+    student = Student.objects.getPlayingStudent()
     return render(request, "shake/index.html", {
         'playing': 'true' if student else 'false',
         'vote': student.getVote() if student else None
@@ -24,5 +24,8 @@ def rank(request):
 
 @require_GET
 def lottery(request):
-    return render(request, "shake/lottery.html")
+    student = Student.objects.getPlayingStudent()
+    return render(request, "shake/lottery.html", {
+        'playing': 'true' if student else 'false'
+    })
     
