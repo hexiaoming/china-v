@@ -219,7 +219,7 @@ define(function(require) {
                 }).always(function() {
                     loader.tip();
                 });
-            }, 1000);
+            }, 1500);
         }
 
         loader.$el.appendTo(document.body);
