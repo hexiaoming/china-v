@@ -5,7 +5,8 @@ urlpatterns = patterns('backend.views',
     url(r'^$', 'welcome'),
     url(r'^welcome$', 'welcome'),
     url(r'^login$', 'login'),
-    url(r'^logout$', 'logout')
+    url(r'^logout$', 'logout'),
+    url(r'^custom_service$','custom_service')
 )
 
 
