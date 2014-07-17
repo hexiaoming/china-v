@@ -10,11 +10,11 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 from django_render_json import json, render_json
 import re
 import time
-from students.models import *
-from promotion.models import *
 from promotion.do import *
 from itertools import chain
 # Create your views here.
+logger = logging.getLogger(__name__)
+
 @require_GET
 def index(request,openID):
 	request.session.clear()	
@@ -48,6 +48,8 @@ def mobvet(request,openID):
 @ensure_csrf_cookie
 def mobvet_post(request,openID):
 	if request.method == 'POST':
+		#log打出手机号
+
 		mobile = request.POST.get('mobile',None)
 		request.session['mobile']=str(mobile)
 		return render(request,"promotion/Vboard.html",{"dovet":"mob","openID":openID})
@@ -160,6 +162,8 @@ def vet(request,studentid,openID):
 		mobile = request.session.get('mobile')
 		top = request.session.get('top')
 		circle = request.session.get('circle')
+		#用log打出手机号
+		logger.warn(mobile)
 		if ""==mobile:
 			return redirect("/promotion/proerror/"+openID+"/")
 		elif ""==top or ""==circle:
