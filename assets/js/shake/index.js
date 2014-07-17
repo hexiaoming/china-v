@@ -189,14 +189,20 @@ define(function(require) {
                 var _timestamp = new Date().getTime();
                 timestamp = _timestamp;
                 getVotes().then(function(data) {
+                    if(timestamp !== _timestamp) {
+                        return;
+                    }
+
                     studentPlaying = data.ret_code !== CODE_NO_PLAYING_STUDENT;
-                    if (data.ret_code === 0 && timestamp === _timestamp) {
+                    if (data.ret_code === 0) {
                         $tickets.html(data.count);
+                    } else {
+                        $tickets.html(0);
                     }
                 }).always(function() {
                     refreshVotes();
                 });
-            }, 2000);
+            }, 1000);
         }
 
         function onShake() {
@@ -215,6 +221,7 @@ define(function(require) {
                 timestamp = _timestamp;
 
                 if (!studentPlaying) {
+                    voting = false;
                     alertify.set({
                         delay: 2000
                     });
