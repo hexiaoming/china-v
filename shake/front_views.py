@@ -15,7 +15,10 @@ def index(request):
 
 @require_GET
 def rank(request):
-    return render(request, "shake/rank.html")
+    students = Student.objects.all();
+    return render(request, "shake/rank.html", {
+        'students': students
+    })
     
 
 @require_GET

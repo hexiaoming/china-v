@@ -60,3 +60,4 @@ nohup.out
 media
 dump.sql
 *.pid
+logs
