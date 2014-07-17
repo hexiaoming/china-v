@@ -5,7 +5,6 @@ define(function(require) {
     require("shake");
     var wechatShare = require('wechat-share');
     var _ = require("underscore");
-    var multiline = require("multiline");
     var Backbone = require('backbone/backbone');
     var token = require('js/shake/token');
     var lottery = null;

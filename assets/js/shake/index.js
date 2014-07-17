@@ -108,6 +108,7 @@ define(function(require) {
             </div>
         </div>
         */
+        console.log
         }).trim();
 
         var Loader = Backbone.View.extend({
