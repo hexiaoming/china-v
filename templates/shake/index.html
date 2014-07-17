@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ STATIC_URL }}css/shake/shake.css">
 </head>
 <body>
+<audio id="player" src="/static/music/shake_sound_male.ogg" control></audio>
     <div class="container">
         <div class="entry">
             <a href="#vote">
@@ -16,7 +17,9 @@
         </div>
         <div class="votes" style="display: none;">
             <div class="count"><span class='tickets'>{{ vote|default:0 }}</span>票</div>
+            
             <img src="{{ STATIC_URL }}img/shake/shake-tip.png">
+            <img src="{{ STATIC_URL }}img/shake/shakehands.png" class="shakehands"/>
         </div>
 
         <div class="button-bar">
