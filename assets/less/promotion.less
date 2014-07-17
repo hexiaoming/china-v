@@ -309,7 +309,8 @@ p {
 .hold-bottom {
     position:fixed;
     bottom:0;
-    height:10%;
+    
+    height:7%;
     margin:0;
     padding:0;
     width:100%;
@@ -320,12 +321,28 @@ p {
         text-align:center;
         list-style:none;
         a {
+            vertical-align:center;
             width:100%;
-            font-size:28px;
+            font-size:22px;
             color:#fff;
             text-decoration:none;
             text-align:center;
         }
+    }
+}
+@media screen and (max-width:435px) {
+    .hold-bottom {
+        height:10%;
+    }
+}
+@media screen and (max-width:360px) {
+    .hold-bottom {
+       height:7%;
+    }
+}
+@media screen and (max-width:320px) {
+    .hold-bottom {
+        height:9%; 
     }
 }
 

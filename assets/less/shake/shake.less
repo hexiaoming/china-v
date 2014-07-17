@@ -54,6 +54,16 @@
         }
     }
 
+    @media (max-height: 420px) {
+        .entry {
+            top: 10%;
+
+            a {
+                .size(120px, auto);
+            }
+        }
+    }
+
     .votes {
         .mid(300px;10%);
         .count {
@@ -63,6 +73,55 @@
             font-size: @font-size-large;
             color: #fff;
             text-align: center;
+        }
+
+        .shakehands-work {
+            margin-top:20%;
+            width:40%;
+        }
+
+        @-webkit-keyframes spaceboots {
+            0% { -webkit-transform:  rotate(-10deg);  }
+            50% { -webkit-transform:  rotate(10deg);  }
+            100% { -webkit-transform: rotate(-10deg);  }
+        }
+
+        .shakehands-work {
+            -webkit-animation-name: spaceboots;
+            -webkit-animation-duration: 0.3s;
+            -webkit-transform-origin:50% 50%;
+            -webkit-animation-iteration-count: infinite;
+            -webkit-animation-timing-function: linear;
+
+        }
+        .shakehands {
+            display:inline-block;
+            width:40%;
+            margin-top:30%;
+        }
+
+        @media screen and (max-width:435px) {
+            .shakehands {
+                margin-top:55%;
+            }
+        }
+
+        @media screen and (max-width:360px) {
+            .shakehands {
+                margin-top:30%;
+            }
+        }
+
+        @media screen and (max-width:320px) {
+            .shakehands {
+                margin-top:21%;
+            }
+        }
+
+        @media screen and (max-height:420) {
+            .shakehands {
+                margin-top:17%;
+            }
         }
 
         text-align: center;
@@ -109,7 +168,6 @@
             background: url(/static/img/shake/button-seperator.png) center center no-repeat transparent;
         }
     }
-
 }
 
 
@@ -131,6 +189,23 @@
 
     img {
         max-width: 100%;
+    }
+
+    @media (max-height: 420px) {
+        .mid(240px;2%);
+        z-index: 1020;
+
+        .exit {
+            position: absolute;
+            top: 4px;
+            left: 2px;
+            background: url(/static/img/shake/rules-exit.png) center center no-repeat;
+            border: none;
+            outline: none;
+            @exit-size: 30px;
+            background-size: @exit-size, @exit-size;
+            .square(@exit-size);
+        }
     }
 }
 

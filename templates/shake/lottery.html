@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ STATIC_URL }}css/shake/lottery.css">
 </head>
 <body>
+    <input type="hidden" id="playing" value="{{ playing }}">
     <div class="container">
         <img class='header' src="{{ STATIC_URL }}img/shake/lottery-head.png" alt="">
         <div class="bottle">
@@ -41,9 +42,9 @@
         </form>
     </div>
 
-    <script type="text/javascript" src="{{ STATIC_URL }}js/require.config.js">
-    </script>
     <script type="text/javascript" src="{{ STATIC_URL }}components/requirejs/require.js">
+    </script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/shake/lottery.bundle.js">
     </script>
     <script type="text/javascript">
         require(["js/shake/lottery"]);

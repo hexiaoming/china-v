@@ -3,11 +3,22 @@ define(function(require) {
     require("bootstrap");
     require("velocity");
     require("shake");
+    require("components/howler.js/howler.min");
     var wechatShare = require('wechat-share');
     var _ = require("underscore");
     var multiline = require("multiline");
     var Backbone = require('backbone/backbone');
     var token = require('js/shake/token');
+    var player = new Howl({
+        urls: [
+            "/static/music/shake_sound_male.ogg",
+            "/static/music/shake_sound_male.mp3"
+        ],
+        onload: function() {},
+        volume: 1,
+        onloaderror: function() {},
+        onplay: function() {}
+    });
 
     wechatShare({
         link: "/shake/",
@@ -28,6 +39,7 @@ define(function(require) {
     var ENTERING = "entering";
     var VOTING = "voting";
     var status = ENTERING;
+    var voting = false;
 
     var $container;
     var $votes;
@@ -60,19 +72,23 @@ define(function(require) {
             window.location = "./rank";
         });
 
-        $entry.find("a").click(function(e) {
-            e.preventDefault();
+        var studentPlaying = $("#playing").val() === 'true';
+        if (!studentPlaying) {
+            alert("非常抱歉，学员还没有上场，目前还不能投票");
+        } else {
+            $entry.find("a").click(function(e) {
+                e.preventDefault();
 
-            status = VOTING;
-            $entry.hide();
-            $container.addClass("shake blur");
-            $votes.show();
-            onVote();
-        });
+                status = VOTING;
+                $entry.hide();
+                $container.addClass("shake blur");
+                $votes.show();
+                onVote();
+            });
+        }
     });
 
     function onVote() {
-        var voting = false;
 
         var $loaderOverlay = $('<div class="loader-overlay" style="display: none;"></div>');
         $loaderOverlay.appendTo(document.body);
@@ -92,6 +108,7 @@ define(function(require) {
             </div>
         </div>
         */
+        console.log
         }).trim();
 
         var Loader = Backbone.View.extend({
@@ -186,16 +203,24 @@ define(function(require) {
                 return console.log("Voting, ignore shake event!");
             }
 
-            var _timestamp = new Date().getTime();
-            timestamp = _timestamp;
-            loader.show();
             voting = true;
-            vote().then(function(data) {
-                loader.tip();
-                if (data.ret_code === 0 && timestamp === _timestamp) {
-                    $tickets.html(data.count);
-                }
-            });
+
+            player.play();
+            $(".shakehands").addClass("shakehands-work");
+            setTimeout(function() {
+                $(".shakehands").removeClass("shakehands-work");
+
+                var _timestamp = new Date().getTime();
+                timestamp = _timestamp;
+                loader.show();
+                vote().then(function(data) {
+                    if (data.ret_code === 0 && timestamp === _timestamp) {
+                        $tickets.html(data.count);
+                    }
+                }).always(function() {
+                    loader.tip();
+                });
+            }, 1500);
         }
 
         loader.$el.appendTo(document.body);

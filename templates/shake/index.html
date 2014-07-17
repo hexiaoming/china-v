@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="{{ STATIC_URL }}css/shake/shake.css">
 </head>
 <body>
+    <input type="hidden" id="playing" value="{{ playing }}">
+    
     <div class="container">
         <div class="entry">
             <a href="#vote">
@@ -16,7 +18,9 @@
         </div>
         <div class="votes" style="display: none;">
             <div class="count"><span class='tickets'>{{ vote|default:0 }}</span>票</div>
+            
             <img src="{{ STATIC_URL }}img/shake/shake-tip.png">
+            <img src="{{ STATIC_URL }}img/shake/shakehands.png" class="shakehands"/>
         </div>
 
         <div class="button-bar">
@@ -32,9 +36,9 @@
     <div class="rules-overlay" style="display: none;">
     </div>
 
-    <script type="text/javascript" src="{{ STATIC_URL }}js/require.config.js">
-    </script>
     <script type="text/javascript" src="{{ STATIC_URL }}components/requirejs/require.js">
+    </script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/shake/index.bundle.js">
     </script>
     <script type="text/javascript">
         require(["js/shake/index"]);

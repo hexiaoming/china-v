@@ -5819,6 +5819,15 @@ body {
     height: auto;
   }
 }
+@media (max-height: 420px) {
+  .container .entry {
+    top: 10%;
+  }
+  .container .entry a {
+    width: 120px;
+    height: auto;
+  }
+}
 .container .votes {
   position: absolute;
   top: 10%;
@@ -5834,6 +5843,53 @@ body {
 }
 .container .votes .count .tickets {
   font-size: 64px;
+}
+.container .votes .shakehands-work {
+  margin-top: 20%;
+  width: 40%;
+}
+@-webkit-keyframes spaceboots {
+  0% {
+    -webkit-transform: rotate(-10deg);
+  }
+  50% {
+    -webkit-transform: rotate(10deg);
+  }
+  100% {
+    -webkit-transform: rotate(-10deg);
+  }
+}
+.container .votes .shakehands-work {
+  -webkit-animation-name: spaceboots;
+  -webkit-animation-duration: 0.3s;
+  -webkit-transform-origin: 50% 50%;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+}
+.container .votes .shakehands {
+  display: inline-block;
+  width: 40%;
+  margin-top: 30%;
+}
+@media screen and (max-width: 435px) {
+  .container .votes .shakehands {
+    margin-top: 55%;
+  }
+}
+@media screen and (max-width: 360px) {
+  .container .votes .shakehands {
+    margin-top: 30%;
+  }
+}
+@media screen and (max-width: 320px) {
+  .container .votes .shakehands {
+    margin-top: 21%;
+  }
+}
+@media screen and (max-height: 420) {
+  .container .votes .shakehands {
+    margin-top: 17%;
+  }
 }
 .container .votes img {
   display: inline-block;
@@ -5893,6 +5949,27 @@ body {
 }
 .rules img {
   max-width: 100%;
+}
+@media (max-height: 420px) {
+  .rules {
+    position: absolute;
+    top: 2%;
+    left: 50%;
+    width: 240px;
+    margin-left: -120px;
+    z-index: 1020;
+  }
+  .rules .exit {
+    position: absolute;
+    top: 4px;
+    left: 2px;
+    background: url(/static/img/shake/rules-exit.png) center center no-repeat;
+    border: none;
+    outline: none;
+    background-size: 30px, 30px;
+    width: 30px;
+    height: 30px;
+  }
 }
 .rules-overlay {
   z-index: 1010;
