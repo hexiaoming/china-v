@@ -6,52 +6,54 @@
 {% endblock %}
 {% block promotion %}
 <body>
+<div class="backblur">
+<input type="text" style="display:none;" class="openId" data-value="{{ openID }}" name="openID"/>
 <div class="swiper-container">
   <div class="swiper-wrapper">
     {% if dovet == 'mob' %}
-      {% for i in result %}
+      {% for i in studentlist %}
   		  <div class="swiper-slide"> 
-        	<!-- Any HTML content of the first slide goes here -->
-        	
-        	<img class="board_img" src="{{ i.avatar }}"></img>
-    			<div class="vboard_div">
           
-    			<a class="postticket" data-value="1" data-type="mob" class="postticket">投票</a>
-    		  </div>
-      	</div>
+            <!-- Any HTML content of the first slide goes here -->
+            <img class="board_img" src="{{ i.Avatar }}" />
+            <div class="vboard_div">
+            <p class="board_name">{{ i.Name }}</p>
+            <p class="board_ticket">{{ i.Votes }}票</p>
+            <p class="board_name">为Ta投票</p>
+            <a class="postticket" href="javascript:;" data-value="{{ i.StudentId }}" data-type="mob" class="postticket"><img src="/static/promotion/image/v_logo.png"/></a>
+          </div>
+          </div>
       	
     	{% endfor %}     
     	{% endif %}
 
     	{% if dovet == 'pro' %}
 
-  		{% for i in result %}
+  		{% for i in studentlist %}
   		
       	<div class="swiper-slide"> 
-        	<!-- Any HTML content of the first slide goes here -->
-        	
-        	<img class="board_img" src="{{ i.avatar }}" />
           
-          <div class="vboard_div">
-          
-          <a class="postticket" data-value="1" data-type="mob" class="postticket">投票</a>
+            <!-- Any HTML content of the first slide goes here -->
+            <img class="board_img" src="{{ i.Avatar }}" />
+            <div class="vboard_div">
+            <p class="board_name">{{ i.Name }}</p>
+            <p class="board_ticket">{{ i.Votes }}票</p>
+            <p class="board_name">为Ta投票</p>
+            <a class="postticket" href="javascript:;" data-value="{{ i.StudentId }}" data-type="mob" class="postticket"><img src="/static/promotion/image/v_logo.png"/></a>
           </div>
-		      
-      	</div> 
+          </div>
 
       	{% endfor %}     
       	{% endif %}
       	{% if dovet == 'dir' %}
-    		{% for i in result %}
+    		{% for i in studentlist %}
         	<div class="swiper-slide"> 
           
           	<!-- Any HTML content of the first slide goes here -->
-          	<img class="board_img" src="{{ i.avatar }}" />
+          	<img class="board_img" src="{{ i.Avatar }}" />
             <div class="vboard_div">
-            <p class="board_name">{{ i.name }}</p>
-            <p class="board_ticket">100000票</p>
-            <p class="board_name">为Ta投票</p>
-            <a class="postticket" data-value="1" data-type="mob" class="postticket"><img src="/static/promotion/image/v_logo.png"/></a>
+            <p class="board_name">{{ i.Name }}</p>
+            <p class="board_ticket">{{ i.Votes }}票</p>
           </div>
         	</div>
      
