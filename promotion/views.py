@@ -10,11 +10,11 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 from django_render_json import json, render_json
 import re
 import time
-from students.models import *
-from promotion.models import *
 from promotion.do import *
 from itertools import chain
 # Create your views here.
+logger = logging.getLogger(__name__)
+
 @require_GET
 def index(request,openID):
 	request.session.clear()	
@@ -48,6 +48,8 @@ def mobvet(request,openID):
 @ensure_csrf_cookie
 def mobvet_post(request,openID):
 	if request.method == 'POST':
+		#log打出手机号
+
 		mobile = request.POST.get('mobile',None)
 		request.session['mobile']=str(mobile)
 		return render(request,"promotion/Vboard.html",{"dovet":"mob","openID":openID})
@@ -62,7 +64,7 @@ def mobvet_post(request,openID):
 		Address = "http://demovoice.jdb.cn"
 		for i in studentlist:
 			i['Avatar'] = Address + i['Avatar']
-		return render(request,"promotion/Vboard.html",{"dovet":"mob","studentlist":studentlist,"openID":openID})
+		return render(request,"promotion/studentlist.html",{"dovet":"mob","studentlist":studentlist,"openID":openID})
 
 @require_GET
 def instruction(request,openID):
@@ -76,6 +78,7 @@ def postticket(request,openID):
 	else :
 		#返回错误页面
 		return render(request,"promotion/vote_filed.html",{"openID":openID})
+
 @require_GET
 def Vboard(request,studentid,openID):
 	if request.method == 'GET':
@@ -92,7 +95,17 @@ def Vboard(request,studentid,openID):
 		Address = "http://demovoice.jdb.cn"
 		for i in studentlist:
 			i['Avatar'] = Address + i['Avatar']
-		return render(request,"promotion/Vboard.html",{"dovet":"dir","studentid":studentid,"studentlist":studentlist,"openID":openID})
+		mobile = request.session.get('mobile')
+		top = request.session.get('top')
+		circle = request.session.get('circle')
+		if None == mobile and None == top and None == circle:
+			return render(request,"promotion/Vboard.html",{"dovet":"dir","studentid":studentid,"studentlist":studentlist,"openID":openID})
+		elif None != mobile and None == top and None == circle:	
+			return render(request,"promotion/Vboard.html",{"dovet":"mob","studentid":studentid,"studentlist":studentlist,"openID":openID})
+		elif None != mobile and None != top and None != circle:
+			return render(request,"promotion/Vboard.html",{"dovet":"pro","studentid":studentid,"studentlist":studentlist,"openID":openID})
+
+		
 
 @require_GET
 def proerror(request,openID):
@@ -153,13 +166,15 @@ def vet(request,studentid,openID):
 			Address = "http://demovoice.jdb.cn"
 			for i in studentlist:
 				i['Avatar'] = Address + i['Avatar']
-			return render(request,"promotion/Vboard.html",{"dovet":"pro","studentlist":studentlist,"openID":openID})
+			return render(request,"promotion/studentlist.html",{"dovet":"pro","studentlist":studentlist,"openID":openID})
 		else:
 			return redirect("/promotion/proerror/"+openID+"/")
 	else:
 		mobile = request.session.get('mobile')
 		top = request.session.get('top')
 		circle = request.session.get('circle')
+		#用log打出手机号
+		logger.warn(mobile)
 		if ""==mobile:
 			return redirect("/promotion/proerror/"+openID+"/")
 		elif ""==top or ""==circle:
@@ -178,7 +193,7 @@ def vet(request,studentid,openID):
 			Address = "http://demovoice.jdb.cn"
 			for i in studentlist:
 				i['Avatar'] = Address + i['Avatar']
-			return render(request,"promotion/Vboard.html",{"dovet":"pro","studentlist":studentlist,"openID":openID})
+			return render(request,"promotion/studentlist.html",{"dovet":"pro","studentlist":studentlist,"openID":openID})
 
 @require_GET
 def vboard_show(request,openID):

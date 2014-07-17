@@ -180,22 +180,45 @@ define(function(require) {
                 });
             }, 2000);
         }
-
+       
+        
+        /*$(document).click(function(){
+            document.getElementById("player").play();
+           
+        });   */
+       /* $(document).click(function(){
+$(".shakehands").addClass("shakehands-work");
+        });*/
+            
         function onShake() {
             if (voting) {
                 return console.log("Voting, ignore shake event!");
             }
-
+            
+            setTimeout(function(){
+                var player = document.getElementById("player");
+                player.play();
+               $(".shakehands").addClass("shakehands-work");
+            },1000);
             var _timestamp = new Date().getTime();
             timestamp = _timestamp;
             loader.show();
             voting = true;
             vote().then(function(data) {
+
                 loader.tip();
                 if (data.ret_code === 0 && timestamp === _timestamp) {
+                    
                     $tickets.html(data.count);
                 }
+            
             });
+         
+                
+           
+            /*
+           */
+           
         }
 
         loader.$el.appendTo(document.body);

@@ -64,7 +64,45 @@
             color: #fff;
             text-align: center;
         }
+        .shakehands-work {
+            margin-top:20%;
+            width:40%;
+        }
+        @-webkit-keyframes spaceboots {
+            0% { -webkit-transform:  rotate(-14deg);  }
+            50% { -webkit-transform:  rotate(14deg);  }
+            75% { -webkit-transform:  rotate(0deg);  }
+            100% { -webkit-transform: rotate(-14deg);  }
 
+        }
+        .shakehands-work {
+            -webkit-animation-name: spaceboots;
+            -webkit-animation-duration: 0.06s;
+            -webkit-transform-origin:50% 50%;
+            -webkit-animation-iteration-count: infinite;
+            -webkit-animation-timing-function: linear;
+
+        }
+        .shakehands {
+            display:inline-block;
+            width:40%;
+            margin-top:30%;
+        }
+        @media screen and (max-width:435px) {
+            .shakehands {
+                margin-top:55%;
+            }
+        }
+        @media screen and (max-width:360px) {
+            .shakehands {
+                margin-top:30%;
+            }
+        }
+        @media screen and (max-width:320px) {
+            .shakehands {
+                margin-top:21%;
+            }
+        }
         text-align: center;
         img {
             display: inline-block;

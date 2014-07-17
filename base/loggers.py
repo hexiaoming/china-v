@@ -45,6 +45,14 @@ LOGGING = {
             'backupCount': 5,
             'filename': 'logs/analysis.log',
             'formatter': 'normal'
+        },
+        'promotion': {
+            'class': 'logging.handlers.TimedRotatingFileHandler',
+            'when': 'D',
+            'interval': 1,
+            'backupCount': 5,
+            'filename': 'promotion/logs/mobile.log',
+            'formatter': 'normal'
         }
     },
     'loggers': {
