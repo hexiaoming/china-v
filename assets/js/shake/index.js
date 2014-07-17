@@ -4,6 +4,7 @@ define(function(require) {
     require("velocity");
     require("shake");
     require("components/howler.js/howler.min");
+    var alertify = require("js/alertify");
     var wechatShare = require('wechat-share');
     var _ = require("underscore");
     var multiline = require("multiline");
@@ -213,8 +214,11 @@ define(function(require) {
                 vote().then(function(data) {
                     var CODE_NO_PLAYING_STUDENT = 2001;
                     if (data.ret_code === CODE_NO_PLAYING_STUDENT) {
-                        voting = false;
-                        return alert("非常抱歉，学员还没有上场，目前还不能投票");
+                        loader.hide();
+                        alertify.set({
+                            delay: 2000
+                        });
+                        return alertify.log("非常抱歉，学员还没有上场，目前还不能投票");
                     }
 
                     if (data.ret_code === 0 && timestamp === _timestamp) {
