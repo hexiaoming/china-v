@@ -69,8 +69,8 @@ define(function(require) {
 
         return function(x, y) {
             console.log('x, y:', x, y);
-            var j = Math.ceil(x / size);
-            var i = Math.ceil(y / size);
+            var j = Math.floor(x / size);
+            var i = Math.floor(y / size);
             console.log(i, j);
             var rows = rects.length;
             var cols = rects[0].length;
