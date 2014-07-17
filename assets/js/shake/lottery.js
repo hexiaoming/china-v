@@ -157,7 +157,7 @@ define(function(require) {
                 fill();
             }
 
-            if (match(x, y)) {
+            if (!over && match(x, y)) {
                 over = true;
                 onLotteryMatch();
             }
