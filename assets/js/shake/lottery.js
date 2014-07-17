@@ -50,8 +50,8 @@ define(function(require) {
 
         ctx.fillStyle = 'transparent';
         ctx.fillRect(0, 0, w, h);
-        //ctx.fillStyle = '#DF0422';
-        ctx.fillStyle = '#ccc';
+        ctx.fillStyle = '#DF0422';
+        //ctx.fillStyle = '#ccc';
         ctx.fillRect(0, 0, w, h);
     }
 
@@ -93,6 +93,12 @@ define(function(require) {
     }
 
     function onLotteryMatch() {
+        if (!lottery) {
+            $lotteryResult.velocity('fadeIn');
+            $lotteryResultOverlay.velocity('fadeIn');
+            return;
+        }
+        
         hit(phone, lottery).then(function(data) {
             if (data.ret_code === 0) {
                 $lotteryResult.addClass(lottery).velocity('fadeIn');
@@ -161,9 +167,6 @@ define(function(require) {
     $(function() {
         $lotteryResult = $(".lottery-result");
         $lotteryResultOverlay = $(".lottery-result-overlay");
-        $lotteryResult.click(function() {
-            // TODO show tip for share
-        });
 
         initCanvas();
         $form = $(".phone-prompt-form");
