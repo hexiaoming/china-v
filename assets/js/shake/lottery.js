@@ -25,8 +25,8 @@ define(function(require) {
 
     wechatShare({
         link: "/shake/",
-        desc: '中国好声音',
-        title: '全民摇一摇'
+        desc: '全民摇一摇',
+        title: '边看好声音边投票，世界上第一款直播摇一摇投票神器'
     });
 
     var $container;
@@ -69,8 +69,8 @@ define(function(require) {
 
         return function(x, y) {
             console.log('x, y:', x, y);
-            var j = Math.ceil(x / size);
-            var i = Math.ceil(y / size);
+            var j = Math.floor(x / size);
+            var i = Math.floor(y / size);
             console.log(i, j);
             var rows = rects.length;
             var cols = rects[0].length;
@@ -98,18 +98,26 @@ define(function(require) {
             $lotteryResultOverlay.velocity('fadeIn');
             return;
         }
-        
+
         hit(phone, lottery).then(function(data) {
             if (data.ret_code === 0) {
                 $lotteryResult.addClass(lottery).velocity('fadeIn');
                 $lotteryResultOverlay.velocity('fadeIn');
             } else {
+                if (lottery) {
+                    alert('OH!太牛气了！恭喜中奖！点击【确定】小宝就记录收到您的中奖信息啦！也可以拨打01067718828确认！');
+                } else {
+                    $lotteryResult.velocity('fadeIn');
+                    $lotteryResultOverlay.velocity('fadeIn');
+                }
+            }
+        }, function() {
+            if (lottery) {
+                alert('OH!太牛气了！恭喜中奖！点击【确定】小宝就记录收到您的中奖信息啦！也可以拨打01067718828确认！');
+            } else {
                 $lotteryResult.velocity('fadeIn');
                 $lotteryResultOverlay.velocity('fadeIn');
             }
-        }, function() {
-            $lotteryResult.velocity('fadeIn');
-            $lotteryResultOverlay.velocity('fadeIn');
         });
     }
 
@@ -149,7 +157,7 @@ define(function(require) {
                 fill();
             }
 
-            if (match(x, y)) {
+            if (!over && match(x, y)) {
                 over = true;
                 onLotteryMatch();
             }
