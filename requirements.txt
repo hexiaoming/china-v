@@ -1,4 +1,4 @@
-#--index-url http://pypi.douban.com/simple
+--index-url http://pypi.douban.com/simple
 
 Django
 Mysql-python
