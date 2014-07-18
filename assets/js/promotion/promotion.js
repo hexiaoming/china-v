@@ -96,6 +96,12 @@ define(function(require) {
                         $(".pop-window").html("");
                     });
                 },1000);
+                //更新票数
+                $.post("/promotion/getticket/"+openID+"/",{
+                    "sid":StudentId
+                },function(data){
+                    $("#"+StudentId).prevAll(".board_ticket").html(data.vote+"票");
+                });
             },"html");
         }
     };
@@ -129,7 +135,7 @@ define(function(require) {
         var openID = $(".openId").data("value");
 		
         $(".postticket").click(function(){
-            var StudentId = $(this).data("value");
+            var StudentId = $(this).attr("id");
             postticket.postVotes(StudentId,openID);
         }) ;
         $(document).on("click",".go_check",function(){
