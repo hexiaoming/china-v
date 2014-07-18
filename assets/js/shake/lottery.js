@@ -25,7 +25,8 @@ define(function(require) {
     wechatShare({
         link: "/shake/",
         desc: '全民摇一摇',
-        title: '差点就刮到加多宝中国好声音总决赛门票了'
+        title: '差点就刮到加多宝中国好声音总决赛门票了',
+        imgUrl: "http://wx.jdb.cn/static/img/share.jpg"
     });
 
     var $container;
