@@ -11,6 +11,7 @@ pkgs.baseUrl = './assets';
 gulp.task('less-shake', function() {
     return gulp.src("assets/less/shake/*.less")
         .pipe(less({
+            compress: true,
             paths: [
                 'assets/less',
                 'assets/components'
