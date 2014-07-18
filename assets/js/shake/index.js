@@ -5,7 +5,6 @@ define(function(require) {
     require("shake");
     require("components/howler.js/howler.min");
     var alertify = require("js/alertify");
-    var wechatShare = require('wechat-share');
     var _ = require("underscore");
     var multiline = require("multiline");
     var Backbone = require('backbone/backbone');
@@ -22,13 +21,6 @@ define(function(require) {
     });
 
     var CODE_NO_PLAYING_STUDENT = 2001;
-
-    wechatShare({
-        link: "http://wx.jdb.cn/shake/",
-        desc: '全民摇一摇',
-        title: '史上最强电视直播投票神器，摇一摇帮好声音选手上头条',
-        imgUrl: "http://wx.jdb.cn/static/img/share.jpg"
-    });
 
     function getVotes() {
         return $.get("/students/vote", {}, "json");
