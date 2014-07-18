@@ -32,6 +32,11 @@ def getVboard():
     res = api_post(whereurl,data)
     return res
 
+def getTicket(sid):
+    whereurl = "/Api/GetStudent.aspx"
+    data = {"sid":sid}
+    res = api_post(whereurl,data)
+    return res
 def check_pro_num(openID,ring,Can):
 	#查看手机+罐码组合
 	#调用接口二，为用户提供
@@ -46,7 +51,7 @@ def check_pro_num(openID,ring,Can):
 def getStudents(period):
 	#获取本期所有学员信息
     whereurl = "/Api/GetPeriodStudents.aspx"
-    data = {"period":period,"keyword":"","start":1,"end":20}
+    data = {"period":period,"keyword":"","start":1,"end":30}
     res = api_post(whereurl,data)
     return res
 
