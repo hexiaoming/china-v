@@ -43,6 +43,9 @@ module.exports = {
         'jquery.cookie': {
             deps: ['jquery']
         },
+        'jquery.iframe-transport': {
+            deps: ['jquery']
+        },
         'ajax_upload': {
             deps: ['jquery', 'jquery.iframe-transport']
         }
