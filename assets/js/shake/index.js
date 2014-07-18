@@ -26,7 +26,7 @@ define(function(require) {
     wechatShare({
         link: "http://wx.jdb.cn/shake/",
         desc: '全民摇一摇',
-        title: '边看好声音边投票，世界上第一款直播摇一摇投票神器',
+        title: '史上最强电视直播投票神器，摇一摇帮好声音选手上头条',
         imgUrl: "http://wx.jdb.cn/static/img/share.jpg"
     });
 
