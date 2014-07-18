@@ -41,7 +41,7 @@ def check_pro_num(openID,ring,Can):
 	#查看手机+罐码组合
 	#调用接口二，为用户提供
     #从url get到用户openID
-    ##openID 未定义 由url中get取得###
+    #openID 未定义 由url中get取得###
     whereurl = "/Api/AddUserVotes.aspx"
     data = {"uid":openID,"ring":ring,"Can":Can}
     res = api_post(whereurl , data)

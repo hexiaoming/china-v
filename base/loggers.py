@@ -69,7 +69,14 @@ LOGGING = {
         '': {
             'handlers': ['base'],
             'level': 'DEBUG'
-        }
+        },
+        'promotion': {
+            'handlers': ['promotion'],
+            'propagate': False,
+            'level': 'DEBUG'
+        },
+
+
     }
 }
 
