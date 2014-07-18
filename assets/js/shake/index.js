@@ -50,6 +50,7 @@ define(function(require) {
     var $entry;
     var $rules;
     var $rulesOverlay;
+    var $shareFlyOverlay;
 
     $(function() {
         $container = $(".container");
@@ -57,6 +58,11 @@ define(function(require) {
         $votes = $(".votes");
         $rules = $(".rules");
         $rulesOverlay = $(".rules-overlay");
+        $shareFlyOverlay = $(".share-fly-overlay");
+
+        $shareFlyOverlay.click(function() {
+            $shareFlyOverlay.velocity('fadeOut');
+        });
 
         $rulesOverlay.click(function() {
             $rules.velocity('fadeOut');
@@ -135,7 +141,7 @@ define(function(require) {
             },
 
             onShare: function() {
-
+                $shareFlyOverlay.velocity('fadeIn');
             },
 
             onVote: function() {
