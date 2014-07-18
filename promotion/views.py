@@ -195,6 +195,16 @@ def vet(request,studentid,openID):
 				i['Avatar'] = Address + i['Avatar']
 			return render(request,"promotion/studentlist.html",{"dovet":"pro","studentlist":studentlist,"openID":openID})
 
+@require_POST
+def getticket(request,openID):
+	sid = request.POST.get("sid")
+	res = getTicket(sid)
+	vote = res['Data']['Votes']
+	if res['Status']==1:
+		return render_json({"vote":vote})
+	else:
+		return render_json({"vote":0})
+
 @require_GET
 def vboard_show(request,openID):
 	#这个是显示最V榜单
