@@ -1,6 +1,7 @@
 var gulp = require("gulp");
 var less = require("gulp-less");
 var uglify = require("gulp-uglify");
+var imagemin = require('gulp-imagemin');
 var async = require("async");
 var rjs = require("requirejs");
 var _ = require("underscore");
@@ -38,6 +39,14 @@ gulp.task('rjs', function() {
     }, function(err) {
         callback(err);
     });
+});
+
+gulp.task('image', function() {
+	return gulp.src("assets/_img/**/*")
+			.pipe(imagemin({
+				progressive: true
+			}))
+			.pipe(gulp.dest("assets/img"));
 });
 
 gulp.task('uglify', function() {
