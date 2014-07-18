@@ -42,6 +42,17 @@
         </form>
     </div>
 
+    <script type="text/javascript" src="{{ STATIC_URL }}components/wechat-share/browser.js">
+    </script>
+    <script>
+    wechatshare({
+        link: "http://wx.jdb.cn/shake/",
+        desc: '全民摇一摇',
+        title: '差点就刮到加多宝中国好声音总决赛门票了',
+        imgUrl: "http://wx.jdb.cn/static/img/share.jpg"
+    });
+    </script>
+
     <script type="text/javascript" src="{{ STATIC_URL }}components/requirejs/require.js">
     </script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/shake/lottery.bundle.js">
