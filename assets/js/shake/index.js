@@ -24,7 +24,7 @@ define(function(require) {
     var CODE_NO_PLAYING_STUDENT = 2001;
 
     wechatShare({
-        link: "/shake/",
+        link: "http://wx.jdb.cn/shake/",
         desc: '全民摇一摇',
         title: '边看好声音边投票，世界上第一款直播摇一摇投票神器',
         imgUrl: "http://wx.jdb.cn/static/img/share.jpg"
