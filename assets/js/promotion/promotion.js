@@ -81,7 +81,8 @@ define(function(require) {
     var postticket = {
         postVotes :function (StudentId,openID) {
             $.post("/promotion/postticket/",{
-                "StudentId":StudentId
+                "StudentId":StudentId,
+                "openID":openID
             },function(data){
                 var height = document.documentElement.clientHeight;
                 $(".pop-window").html($(data).nextAll("div").html());
@@ -140,6 +141,7 @@ define(function(require) {
       
 		
         $(".postticket").click(function(){
+
             var StudentId = $(this).attr("id");
             postticket.postVotes(StudentId,openID);
         }) ;
@@ -201,6 +203,7 @@ define(function(require) {
                 ajax_window.show_window("/promotion/error_mobile/");
             }
             else {
+
                 $.post("/promotion/mobvet_post/",{
                     "mobile":$(".mobile").val(),
                     "openID":openID

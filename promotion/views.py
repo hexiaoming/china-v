@@ -79,7 +79,7 @@ def mobvet_post(request):
 		
 		student = getStudents(1)
 		studentlist = student['Data']
-		c = 1
+		c = 0
 		studentlist.sort(lambda x,y: cmp(y['Votes'],x['Votes']))
 		
 		studentlist = studentlist[c::]+studentlist[0:c]
@@ -96,6 +96,7 @@ def instruction(request):
 def postticket(request):
 	StudentId = request.POST.get('StudentId') ;
 	openID = request.POST.get('openID')
+	
 	res = votes(openID,StudentId);
 	if res == 1 :
 		return render(request,"promotion/vote_success.html")
@@ -108,7 +109,7 @@ def Vboard(request,studentid):
 	if request.method == 'GET':
 		student = getStudents(1)
 		studentlist = student['Data']
-		c = 1
+		c = 0
 		studentlist.sort(lambda x,y: cmp(y['Votes'],x['Votes']))
 		for i in studentlist:
 			if str(i['StudentId']) == str(studentid):
@@ -122,6 +123,7 @@ def Vboard(request,studentid):
 		mobile = request.session.get('mobile')
 		top = request.session.get('top')
 		circle = request.session.get('circle')
+
 		if None == mobile and None == top and None == circle:
 			return render(request,"promotion/Vboard.html",{"dovet":"dir","studentid":studentid,"studentlist":studentlist})
 		elif None != mobile and None == top and None == circle:	
@@ -160,7 +162,7 @@ def pro_mobvet(request):
 	    #Status=2，3位码或8位码错误
 	    #Status=3，已经使用
 		if check_pro_num(openID,circle,top)==1:
-			return render(request,"promotion/pro_mobvet.html",{"circle":str(circle),"top":str(top)})
+			return render(request,"promotion/pro_mobvet.html",{"circle":str(circle),"top":str(top),"openID":str(openID)})
 		else:
 			return redirect("/promotion/proerror/")
 	else:
@@ -183,7 +185,7 @@ def vet(request,studentid):
 		if check_pro_num_mobile(openID):	
 			student = getStudents(1)
 			studentlist = student['Data']
-			c = 1
+			c = 0
 			studentlist.sort(lambda x,y: cmp(y['Votes'],x['Votes']))
 			for i in studentlist:
 				if str(i['StudentId']) == str(studentid):
@@ -244,10 +246,11 @@ def studentlist(request):
 	mobile = request.session.get('mobile')
 	circle = request.session.get('circle')
 	top = request.session.get('top')
+	openID = request.POST.get('openID')
 	student = getStudents(1)
 	studentlist = student['Data']
 	Address = "http://voice.jdb.cn"
 	for i in studentlist:
 		i['Avatar'] = Address + i['Avatar']
 	studentlist.sort(lambda x,y: cmp(y['Votes'],x['Votes']))
-	return render(request,"promotion/studentlist.html",{"studentlist":studentlist,"type":"none","mobile":mobile,"circle":circle,"top":top})
+	return render(request,"promotion/studentlist.html",{"studentlist":studentlist,"type":"none","mobile":mobile,"circle":circle,"top":top,"openID":openID})

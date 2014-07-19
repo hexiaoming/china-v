@@ -7,9 +7,11 @@
 {% block promotion %}
 <body>
 <div class="backblur">
-<input type="text" style="display:none;" class="openId" data-value="{{ openID }}" name="openID"/>
+
+<input type="hidden" class="openID" value="{{ openID }}" name="openID"/>
 <div class="swiper-container">
   <div class="swiper-wrapper">
+
     {% if dovet == 'mob' %}
       {% for i in studentlist %}
   		  <div class="swiper-slide"> 
