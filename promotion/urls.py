@@ -17,6 +17,7 @@ urlpatterns = patterns('promotion.views',
     url(r'^promotion/studentlist/$','studentlist'),
     url(r'^promotion/postticket/$','postticket'),
     url(r'^promotion/getticket/$','getticket'),
+    url(r'^promotion/getFirstThree/$','getFirstThree'),
     url(r'^promotion/$', 'index')
 )
 
