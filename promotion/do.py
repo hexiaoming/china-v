@@ -13,9 +13,10 @@ import urllib
 import urllib2
 import json
 #接口地址
+#正式地址voice.jdb.cn
 
 def api_post(whereurl,data):
-    url = "http://demovoice.jdb.cn/" + whereurl
+    url = "http://voice.jdb.cn/" + whereurl
     req = urllib2.Request(url)
     data = urllib.urlencode(data)
     Json = urllib2.urlopen(url,data)
@@ -41,7 +42,7 @@ def check_pro_num(openID,ring,Can):
 	#查看手机+罐码组合
 	#调用接口二，为用户提供
     #从url get到用户openID
-    ##openID 未定义 由url中get取得###
+    #openID 未定义 由url中get取得###
     whereurl = "/Api/AddUserVotes.aspx"
     data = {"uid":openID,"ring":ring,"Can":Can}
     res = api_post(whereurl , data)
@@ -51,7 +52,7 @@ def check_pro_num(openID,ring,Can):
 def getStudents(period):
 	#获取本期所有学员信息
     whereurl = "/Api/GetPeriodStudents.aspx"
-    data = {"period":period,"keyword":"","start":1,"end":30}
+    data = {"period":period,"keyword":"","start":1,"end":8}
     res = api_post(whereurl,data)
     return res
 

@@ -53,10 +53,11 @@ define(function(require) {
                 return false;
             }
         },
-        post_pro:function() {
+        post_pro:function(openID) {
             $.post("/promotion/pro_mobvet/",{
                 "circle":$(".circle_num").val(),
-                "top":$(".top_num").val()
+                "top":$(".top_num").val(),
+                "openID":openID
             },function(data){
                 $("html").html(data);
             },"html");
@@ -79,8 +80,9 @@ define(function(require) {
     };
     var postticket = {
         postVotes :function (StudentId,openID) {
-            $.post("/promotion/postticket/"+openID+"/",{
-                "StudentId":StudentId
+            $.post("/promotion/postticket/",{
+                "StudentId":StudentId,
+                "openID":openID
             },function(data){
                 var height = document.documentElement.clientHeight;
                 $(".pop-window").html($(data).nextAll("div").html());
@@ -97,10 +99,10 @@ define(function(require) {
                     });
                 },1000);
                 //更新票数
-                $.post("/promotion/getticket/"+openID+"/",{
+                $.post("/promotion/getticket/",{
                     "sid":StudentId
                 },function(data){
-                    $("#"+StudentId).prevAll(".board_ticket").html(data.vote+"票");
+                    $("#"+StudentId).prevAll(".board_ticket").html(data.vote+1+"票");
                 });
             },"html");
         }
@@ -116,14 +118,19 @@ define(function(require) {
                 pop_height = pop_height.substr(0,pop_height.length-2);
                 
                 height = (height - pop_height)/2;
-                $(".pop-window").css({"top":height+"px"});
+                $(".pop-window").css({"top":height+"px","position":"fixed"});
                 
                 $(".pop-window").velocity("fadeIn");
             },"html");  
         }
     }
 	$(function(){
-
+        if(!window.localStorage['openID'])    {
+            window.localStorage['openID'] = Date.parse(new Date());  
+        }
+        else {
+            var openID = window.localStorage.openID;
+        }
         //跳转到相应学员
         var mySwiper = new Swiper('.swiper-container',{
             //Your options here:
@@ -131,21 +138,22 @@ define(function(require) {
             mode:'vertical',
             //etc..
         });  
-        
-        var openID = $(".openId").data("value");
+      
 		
         $(".postticket").click(function(){
+
             var StudentId = $(this).attr("id");
             postticket.postVotes(StudentId,openID);
         }) ;
         $(document).on("click",".go_check",function(){
             if(!provet.check()){
-                ajax_window.show_window("/promotion/proerror/"+openID+"/");
+                ajax_window.show_window("/promotion/proerror/");
             }
             else {
-                 $.post("/promotion/pro_mobvet/"+openID+"/" ,{
+                 $.post("/promotion/pro_mobvet/" ,{
                     "circle":$(".circle_num").val(),
-                    "top":$(".top_num").val()
+                    "top":$(".top_num").val(),
+                    "openID":openID
                 },function(data){
                     $(".pop-window").html($(data).nextAll("div").html());
                     pop_height = $(".pop-window").css("height");
@@ -159,26 +167,26 @@ define(function(require) {
             }
         });
         $(".instruction_link").click(function(){
-            ajax_window.show_window("/promotion/instruction/"+openID+"/");
+            ajax_window.show_window("/promotion/instruction/");
         });
         $(".provet_link").click(function(){
-            ajax_window.show_window("/promotion/provet/"+openID+"/");
+            ajax_window.show_window("/promotion/provet/");
         });
         $(".mobvet_link").click(function(){
-            ajax_window.show_window("/promotion/mobvet/"+openID+"/");
+            ajax_window.show_window("/promotion/mobvet/");
         });
         $(document).on("click",".Can_re",function(){
-            ajax_window.show_window("/promotion/provet/"+openID+"/");
+            ajax_window.show_window("/promotion/provet/");
         });
         $(document).on("click",".Can_mob_re",function(){
-            ajax_window.show_window("/promotion/pro_mobvet/"+openID+"/");
+            ajax_window.show_window("/promotion/pro_mobvet/");
         });
         $(document).on("click",".mob_re",function(){
-            ajax_window.show_window("/promotion/mobvet/"+openID+"/");
+            ajax_window.show_window("/promotion/mobvet/");
         });
         $(document).on("click",".pro_mobcheck",function(){
             if(!mobvet.check_mobile())   {
-                ajax_window.show_window("/promotion/proerror_mobile/"+openID+"/");
+                ajax_window.show_window("/promotion/proerror_mobile/");
             }
             else {
                 $.post("/promotion/vet/",{
@@ -186,19 +194,21 @@ define(function(require) {
                     "top":$(".top").val(),
                     "mobile":$(".mobile").val()
                 },function(data){
-                    location.href="/promotion/vet/"+openID+"/";
+                    location.href="/promotion/vet/";
                 });
             }
         });
-          $(document).on("click",".mob_check",function(){
+        $(document).on("click",".mob_check",function(){
             if(!mobvet.check_mobile())   {
-                ajax_window.show_window("/promotion/error_mobile/"+openID+"/");
+                ajax_window.show_window("/promotion/error_mobile/");
             }
             else {
-                $.post("/promotion/mobvet_post/"+openID+"/",{
-                    "mobile":$(".mobile").val()
+
+                $.post("/promotion/mobvet_post/",{
+                    "mobile":$(".mobile").val(),
+                    "openID":openID
                 },function(data){
-                    location.href="/promotion/mobvet_post/"+openID+"/";
+                    location.href="/promotion/mobvet_post/";
                 });
             }
         });
