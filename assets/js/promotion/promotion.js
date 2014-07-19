@@ -102,7 +102,7 @@ define(function(require) {
                 $.post("/promotion/getticket/",{
                     "sid":StudentId
                 },function(data){
-                    $("#"+StudentId).prevAll(".board_ticket").html(data.vote+"票");
+                    $("#"+StudentId).prevAll(".board_ticket").html(data.vote+1+"票");
                 });
             },"html");
         }

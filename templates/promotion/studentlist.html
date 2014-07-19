@@ -69,7 +69,16 @@
 {% endifequal %}
 {% endifequal %}
 </div>
-<div></div>
+<div class="tip" style="display:none;"></div>
 </div>
 </div>
+<script>
+    window.onload = function() {
+        jQuery(".tip").html("本次为正宗好声音加V投票活动通过加多宝活动官网、手机官网、加多宝凉茶官方微信同时进行，票数为三方平台实时统计。");
+        jQuery(".tip").velocity("fadeIn");
+        setTimeout(function(){
+            jQuery(".tip").velocity("fadeOut");
+        },5000);
+    }
+</script>
 {% endblock %}
