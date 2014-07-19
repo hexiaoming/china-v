@@ -15,13 +15,15 @@
   		  <div class="swiper-slide"> 
           
             <!-- Any HTML content of the first slide goes here -->
-            <img class="board_img" src="{{ i.Photo }}" />
-            <div class="vboard_div">
+                      <div class="vboard_div">
             <p class="board_name">{{ i.Name }}</p>
             <p class="board_ticket">{{ i.Votes }}票</p>
             <p class="board_name">为Ta投票</p>
             <a class="postticket" href="javascript:;" id="{{ i.StudentId }}" class="postticket"><img src="/static/promotion/image/v_logo.png"/></a>
-          </div>
+            </div>
+            <img class="board_img" src="/static/promotion/image/period1/{{ i.Name }}.jpg" />
+  
+          
           </div>
       	
     	{% endfor %}     
@@ -34,13 +36,15 @@
       	<div class="swiper-slide"> 
           
             <!-- Any HTML content of the first slide goes here -->
-            <img class="board_img" src="{{ i.Photo }}" />
-            <div class="vboard_div">
+             <div class="vboard_div">
             <p class="board_name">{{ i.Name }}</p>
             <p class="board_ticket">{{ i.Votes }}票</p>
             <p class="board_name">为Ta投票</p>
             <a class="postticket" href="javascript:;" id="{{ i.StudentId }}" class="postticket"><img src="/static/promotion/image/v_logo.png"/></a>
-          </div>
+            </div>
+            <img class="board_img" src="/static/promotion/image/period1/{{ i.Name }}.jpg" />
+           
+          
           </div>
 
       	{% endfor %}     
@@ -50,11 +54,13 @@
         	<div class="swiper-slide"> 
           
           	<!-- Any HTML content of the first slide goes here -->
-          	<img class="board_img" src="{{ i.Photo }}" />
             <div class="vboard_div">
             <p class="board_name">{{ i.Name }}</p>
             <p class="board_ticket">{{ i.Votes }}票</p>
-          </div>
+            </div>
+          	<img class="board_img" src="/static/promotion/image/period1/{{ i.Name }}.jpg" />
+            
+          
         </div>
 
       	{% endfor %}     

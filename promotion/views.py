@@ -22,12 +22,31 @@ def index(request):
 	if request.method == 'GET':
 		student = getStudents(1)
 		studentlist = student['Data']
-		studentlist = studentlist[0:3]
-		Address = "http://demovoice.jdb.cn"
+		
+		Address = "http://voice.jdb.cn"
 		c = 0
 		for i in studentlist:
 			i['Avatar'] = Address + i['Avatar']
 		studentlist.sort(lambda x,y: cmp(y['Votes'],x['Votes']))
+		studentlist = studentlist[0:3]
+		for i in studentlist:
+			c += 1
+			i['ranked'] = c 
+		return render(request,"promotion/promotion.html",{"studentlist":studentlist})
+
+@require_GET
+def getFirstThree(request):
+
+	if request.method == 'GET':
+		student = getStudents(1)
+		studentlist = student['Data']
+		
+		Address = "http://voice.jdb.cn"
+		c = 0
+		for i in studentlist:
+			i['Avatar'] = Address + i['Avatar']
+		studentlist.sort(lambda x,y: cmp(y['Votes'],x['Votes']))
+		studentlist = studentlist[0:3]
 		for i in studentlist:
 			c += 1
 			i['ranked'] = c 
@@ -52,9 +71,9 @@ def mobvet_post(request):
 
 		mobile = request.POST.get('mobile',None)
 		#log打出手机号
-		logger.warn(mobile)
+		
 		request.session['mobile']=str(mobile)
-
+		logger.warn(mobile)
 		return render(request,"promotion/Vboard.html",{"dovet":"mob"})
 	else:
 		
@@ -64,7 +83,7 @@ def mobvet_post(request):
 		studentlist.sort(lambda x,y: cmp(y['Votes'],x['Votes']))
 		
 		studentlist = studentlist[c::]+studentlist[0:c]
-		Address = "http://demovoice.jdb.cn"
+		Address = "http://voice.jdb.cn"
 		for i in studentlist:
 			i['Avatar'] = Address + i['Avatar']
 		return render(request,"promotion/studentlist.html",{"dovet":"mob","studentlist":studentlist})
@@ -97,7 +116,7 @@ def Vboard(request,studentid):
 			c += 1
 
 		studentlist = studentlist[c::]+studentlist[0:c]
-		Address = "http://demovoice.jdb.cn"
+		Address = "http://voice.jdb.cn"
 		for i in studentlist:
 			i['Avatar'] = Address + i['Avatar']
 		mobile = request.session.get('mobile')
@@ -111,6 +130,7 @@ def Vboard(request,studentid):
 			return render(request,"promotion/Vboard.html",{"dovet":"pro","studentid":studentid,"studentlist":studentlist})
 
 		
+
 
 @require_GET
 def proerror(request):
@@ -170,7 +190,7 @@ def vet(request,studentid):
 					break
 				c+=1
 			studentlist = studentlist[c::]+studentlist[0:c]
-			Address = "http://demovoice.jdb.cn"
+			Address = "http://voice.jdb.cn"
 			for i in studentlist:
 				i['Avatar'] = Address + i['Avatar']
 			return render(request,"promotion/studentlist.html",{"dovet":"pro","studentlist":studentlist})
@@ -197,7 +217,7 @@ def vet(request,studentid):
 					break
 				c+=1
 			studentlist = studentlist[c::]+studentlist[0:c]
-			Address = "http://demovoice.jdb.cn"
+			Address = "http://voice.jdb.cn"
 			for i in studentlist:
 				i['Avatar'] = Address + i['Avatar']
 			return render(request,"promotion/studentlist.html",{"dovet":"pro","studentlist":studentlist})
@@ -226,7 +246,7 @@ def studentlist(request):
 	top = request.session.get('top')
 	student = getStudents(1)
 	studentlist = student['Data']
-	Address = "http://demovoice.jdb.cn"
+	Address = "http://voice.jdb.cn"
 	for i in studentlist:
 		i['Avatar'] = Address + i['Avatar']
 	studentlist.sort(lambda x,y: cmp(y['Votes'],x['Votes']))

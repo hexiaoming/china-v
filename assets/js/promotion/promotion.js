@@ -117,7 +117,7 @@ define(function(require) {
                 pop_height = pop_height.substr(0,pop_height.length-2);
                 
                 height = (height - pop_height)/2;
-                $(".pop-window").css({"top":height+"px"});
+                $(".pop-window").css({"top":height+"px","position":"fixed"});
                 
                 $(".pop-window").velocity("fadeIn");
             },"html");  
