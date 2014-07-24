@@ -69,7 +69,7 @@ gulp.task('less-base', function() {
         .pipe(gulp.dest("assets/css"));
 });
 
-gulp.task('sprites', function () {
+gulp.task('sprites-shake', function () {
   return gulp.src(['assets/img/shake/shake/*.png'])
     .pipe(sprite({
       name: 'shake.png',
@@ -80,26 +80,37 @@ gulp.task('sprites', function () {
     .pipe(gulpif('*.png', gulp.dest('assets/img/shake/'), gulp.dest('assets/less/shake/')))
 });
 
-gulp.task('base64', function () {
-  return gulp.src('assets/img/shake/rules-overlay.png')
+gulp.task('sprites-lottery', function () {
+  return gulp.src(['assets/img/shake/lottery/*.png'])
     .pipe(sprite({
-      base64: true,
-      style: 'base64.less',
+      name: 'lottery.png',
+      style: 'sprite1.less',
+      cssPath: '/static/img/shake/',
       processor: 'less'
-    }))
-    .pipe(gulp.dest('assets/less/shake/'));
+    })) 
+    .pipe(gulpif('*.png', gulp.dest('assets/img/shake/'), gulp.dest('assets/less/shake/')))
 });
-
-gulp.task('image',function() {
-    return gulp.src('disc/img/*.png')
-        .pipe(imagemin({
-            progressive:true
-        }))
-        .pipe(gulp.dest('disc/img/test1'));
-});
-
+//
+//gulp.task('base64', function () {
+//  return gulp.src('assets/img/shake/rules-overlay.png')
+//    .pipe(sprite({
+//      base64: true,
+//      style: 'base64.less',
+//      processor: 'less'
+//    }))
+//    .pipe(gulp.dest('assets/less/shake/'));
+//});
+//
+//gulp.task('image',function() {
+//    return gulp.src('disc/img/*.png')
+//        .pipe(imagemin({
+//            progressive:true
+//        }))
+//        .pipe(gulp.dest('disc/img/test1'));
+//});
+//
 gulp.task('change',function(){
-    gulp.src('assets/img/shake/shake.png')
+    gulp.src(['assets/img/shake/shake.png','assets/img/shake/lottery.png'])
         .pipe(optipng(options))
         .pipe(gulp.dest('assets/img/shake/'));
 });
