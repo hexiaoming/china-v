@@ -14,15 +14,14 @@
     <div class="container">
         <div class="entry">
             <a href="#vote">
-                <img src="{{ STATIC_URL }}img/shake/entry.png">
+                <div class="entry-entry" id="#vote"></div>
             </a>
-            <img src="{{ STATIC_URL }}img/shake/tip.png" class="tip">
+        <div class="entry-tip"> </div>
         </div>
         <div class="votes" style="display: none;">
             <div class="count"><span class='tickets'>{{ vote|default:0 }}</span>票</div>
-            
-            <img src="{{ STATIC_URL }}img/shake/shake-tip.png">
-            <img src="{{ STATIC_URL }}img/shake/shakehands.png" class="shakehands"/>
+            <div class="shake-tip"></div>
+            <div class="shakehands shake-hands"></div>
         </div>
 
         <div class="button-bar">
@@ -32,15 +31,12 @@
         </div>
     </div>
     <div class="rules" style="display: none;">
-        <img src="{{ STATIC_URL }}img/shake/rules.png" alt="">
         <button class="exit"></button>
     </div>
     <div class="rules-overlay" style="display: none;">
     </div>
 
-    <div class="share-fly-overlay" style="display: none;">
-        <img src="{{ STATIC_URL }}img/shake/share-arrow.png">
-    </div>
+    <div class="share-fly-overlay" style="display: none;"></div>
 
     <script type="text/javascript" src="{{ STATIC_URL }}components/wechat-share/browser.js">
     </script>
