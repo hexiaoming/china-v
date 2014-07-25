@@ -7,7 +7,7 @@ from django.shortcuts import render, redirect
 from django.views.decorators.http import require_GET, require_http_methods, require_POST
 from django.contrib.auth.models import User
 import django.contrib.auth as auth
-from django.views.decorators.csrf import ensure_csrf_cookie
+from django.views.decorators.csrf import ensure_csrf_cookie, csrf_exempt
 from django_render_json import json, render_json
 from models import *
 from django.middleware.csrf import get_token
@@ -44,6 +44,7 @@ def login(request):
 
         auth.login(request, user)
         return render_json({'ret_code': 0})
+
 @require_GET
 def csrf_get(request):
     csrf = get_token(request)
@@ -51,7 +52,7 @@ def csrf_get(request):
     return render_json({'re':res}) 
 
 @require_POST
-@ensure_csrf_cookie
+@csrf_exempt
 def custom_service(request):
 
     problem_types = request.POST.get("problem_types")

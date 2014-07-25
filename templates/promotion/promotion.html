@@ -3,7 +3,9 @@
 <body class="background">
 <div class="backblur">
 <div class="main">
+<div>
 <p class="logo"><img src="/static/promotion/image/plus_V_logo.png" class="plusVlogo"/></p>
+</div>
 <div>
 <input type="text" style="display:none;" class="openId" data-value="{{ openID }}" name="openID"/>
 <ul class="firstThree">
@@ -36,4 +38,21 @@
 
 </div>
 
+<script>
+    var cnt = 0;
+	function getmessage(){
+		jQuery.get("/promotion/getFirstThree/", {}).then(function(data){
+	        jQuery(".firstThree").html(jQuery(data).find(".firstThree").html());
+		      
+		    setTimeout(function(){
+		    	getmessage();
+		    },2000);
+	    });
+	}
+	window.onload = function() {
+		setTimeout(function ()	{
+	        getmessage();
+	    }, 2000);
+	}
+</script>
 {% endblock %}
