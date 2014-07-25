@@ -9,7 +9,7 @@
 <body>
     <input type="hidden" id="playing" value="{{ playing }}">
     <div class="container">
-        <img class='header' src="{{ STATIC_URL }}img/shake/lottery-head.png" alt="">
+        <div class="lottery-head"></div>
         <div class="bottle">
             <div class="bottle-body">
                 <canvas width="90" height="140"></canvas>
@@ -23,7 +23,6 @@
     </div>
 
     <div class="rules" style="display: none;">
-        <img src="{{ STATIC_URL }}img/shake/rules.png" alt="">
         <button class="exit"></button>
     </div>
     <div class="rules-overlay" style="display: none;"></div>
@@ -31,7 +30,7 @@
 
     <div class="lottery-result" style="display: none;"></div>
     <div class="lottery-result-overlay" style="display: none;">
-        <img src="{{ STATIC_URL }}img/shake/share-arrow.png" alt="">
+        <div class="share-arrow"></div>
     </div>
 
     <div class="phone-prompt">
