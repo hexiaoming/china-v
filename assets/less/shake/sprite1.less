@@ -1,0 +1,42 @@
+@bottle: -5px, -5px, 246px, 410px;
+@first: -5px, -425px, 139px, 222px;
+@lottery-empty: -5px, -657px, 500px, 317px;
+@lottery-first: -5px, -984px, 541px, 340px;
+@lottery-head: -5px, -1334px, 420px, 210px;
+@lottery-second: -5px, -1554px, 541px, 340px;
+@lottery-third: -5px, -1904px, 541px, 340px;
+@lottery-tip: -5px, -2254px, 354px, 101px;
+@rules-overlay: -5px, -2365px, 640px, 1119px;
+@rules: -5px, -3494px, 525px, 870px;
+@second: -5px, -4374px, 139px, 222px;
+@share-arrow: -5px, -4606px, 463px, 166px;
+@third: -5px, -4782px, 139px, 222px;
+@try-again: -5px, -5014px, 48px, 218px;
+
+.sprite-width(@sprite) {
+  width: extract(@sprite, 3);
+}
+
+.sprite-height(@sprite) {
+  height: extract(@sprite, 4);
+}
+
+.sprite-position(@sprite) {
+  @sprite-offset-x: extract(@sprite, 1);
+  @sprite-offset-y: extract(@sprite, 2);
+  background-position: @sprite-offset-x  @sprite-offset-y;
+}
+
+.sprite(@sprite) {
+  .sprite-position(@sprite);
+  background-repeat: no-repeat;
+  overflow: hidden;
+  display: block;
+  .sprite-width(@sprite);
+  .sprite-height(@sprite);
+}
+
+.icon {
+  background-image: url('/static/img/shake/lottery.png');
+}
+
