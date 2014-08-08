@@ -9,18 +9,43 @@
 <body>
     <div class='container bg'></div>
     <div class="container">
-        <div class="cells">
-            <h4>第一周</h4>
-            {% for student in students %}
-            <div class="cell">
-                <img src="{{ student.avatar }}" alt="{{ student.name }}">
-                <p class="name">{{ student.name }}</p>
-                <p class="vote">{{ student.getVote }}票</p>
-            </div>
-            {% endfor %}
+        <div id="rank">
         </div>
     </div>
     <script src="{{ STATIC_URL }}/components/wechat-share/browser.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}components/requirejs/require.js">
+    </script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/shake/rank.bundle.js">
+    </script>
+    <script type="text/javascript">
+        require(["js/shake/rank"]);
+    </script>
+    <script id="tpl" type="text/template">
+        <div class="column" style="position:relative">
+            <div>
+                <h4 style='position: relative'>
+                    ${name}
+                    <div style="position:absolute;right:0px;bottom:0px">
+                    <p style="font-size:12px;color:#5B5B5B;margin-bottom: 0px;">
+                        向左滑动查看 
+                        <span class="glyphicon glyphicon-chevron-right" style="font-size:12px"></span>
+                    </p>
+                    </div>
+                </h4>
+            </div>
+            <div style="overflow: auto;">
+            <div class="detail" style="width:${width}px;overflow: auto;">
+                {@each list as item}
+                <div class="cell">
+                    <img src="${item.image}" alt="${item.name}">
+                    <p class="name">${item.name}</p>
+                    <p class="vote">${item.values}票</p>
+                </div>
+                {@/each}
+            </div>
+            </div>
+        </div>
+    </script>
     <script>
     wechatshare({
         link: "http://wx.jdb.cn/shake/",
