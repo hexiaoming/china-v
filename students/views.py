@@ -186,7 +186,7 @@ def vote(request):
         vote = student.addVote()
         return render_json({
             'ret_code': 0,
-            'count': vote
+            'count': 0 #vote
         })
     else:
         student = Student.objects.getPlayingStudent()
@@ -195,7 +195,7 @@ def vote(request):
 
         return render_json({
             'ret_code': 0, 
-            'count': student.getVote()
+            'count': 0 #student.getVote()
         })
 
 

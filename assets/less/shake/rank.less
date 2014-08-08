@@ -18,7 +18,60 @@
         .opacity(.6);
     }
 }
+.column {
+    .clearfix();
+    margin-top:20px;
+    padding-left:20px;
+    padding-right:20px;
+    padding-bottom: 5px;
+    background:url(/static/img/shake/break-up.png) bottom center no-repeat transparent;
+    background-size: 80% auto;
 
+    &:last-child {
+        background: none;
+        padding-bottom: 0px;
+    }
+}
+
+.detail {
+    width:500px;
+    .cell {
+        float: left;
+        padding-right:8px;
+        font-size: 12px;
+        margin-bottom: 10px;
+
+        p { 
+            margin-bottom: 3px;
+            margin-top: 3px;
+        }   
+
+        .name, .vote {
+            .text-overflow();
+        }
+
+        .vote {
+            margin-top: 1px;
+            .text-overflow();
+            background: url(/static/img/shake/avatar-vote.png) left center no-repeat;
+            background-size: 10px 14px;
+            padding-left: 12px;
+            padding-right: 5px;
+            color: @gray-dark;
+        }   
+    }  
+    .center-block();
+//    .size(280px, auto);
+    .cell {
+        width: 70px;
+        img {
+            border-radius: 9px;
+            display: block;
+            .square(55px);
+        }
+    } 
+    margin-left: 0px;
+}
 .cells {
     .clearfix();
     margin-top: 20px;

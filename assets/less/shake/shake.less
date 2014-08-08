@@ -63,44 +63,46 @@
             .make(@tip,240px);
         }   
         @media (min-width: 360px) {
+            a { 
+                .size(180px, auto);
+            }
             .entry-entry {
             top: 15%;
                 .make(@entry,180px);
-                a { 
-                    .size(180px, auto);
-                }   
             }   
         } 
         @media (max-height: 420px) {
+            a {
+                .size(120px,auto);
+            }
             .entry-entry {
                 top: 10%;
                 .make(@entry,120px);
-                a {
-                    .size(120px, auto);
-                }
             }
         }  
     }
 
-    @media (min-width: 360px) {
-        .entry-entry {
-            top: 15%;
-            .make(@entry,180px);
-            a {
-                .size(180px, auto);
-            }
-        }
-    }
-
-    @media (max-height: 420px) {
-        .entry-entry {
-            top: 10%;
-            .make(@entry,120px);
-            a {
-                .size(120px, auto);
-            }
-        }
-    }
+//    @media (min-width: 360px) {
+//        .entry-entry {
+//            top: 15%;
+//            .make(@entry,180px);
+//            a {
+//                .size(180px, auto);
+//            }
+//        }
+//    }
+//
+//    @media (max-height: 420px) {
+//        
+//        
+//        .entry-entry {
+//            top: 10%;
+//            .make(@entry,120px);
+//            a {
+//                .size(120px, auto);
+//            }
+//        }
+//    }
 
     .votes {
         .mid(300px;10%);
@@ -281,6 +283,7 @@
 @media (min-width: 360px) {
     .rules {
         .mid(320px;2%);
+        .make(@rules,320px);
 
         .exit {
             top: 8px;

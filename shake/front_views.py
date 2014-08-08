@@ -10,7 +10,7 @@ def index(request):
     student = Student.objects.getPlayingStudent()
     return render(request, "shake/index.html", {
         'playing': 'true' if student else 'false',
-        'vote': student.getVote() if student else None
+        'vote': 0 #student.getVote() if student else None
     })
 
 
