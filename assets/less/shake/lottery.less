@@ -4,6 +4,18 @@
 @import "shake/lib/button-bar.less";
 @import "shake/lib/rules.less";
 
+.make(@icon,@width){
+    .icon();
+    .sprite(@icon);
+    height: extract(@icon,4)* @width/ extract(@icon,3);
+    @size: 650* @width/ extract(@icon,3);
+    background-size: @size auto;
+    width: @width;
+    @ex: @width/ extract(@icon,3);
+    background-position: @ex* @sprite-offset-x @ex* @sprite-offset-y;
+    max-width: 100%;    
+}
+
 body {
     -webkit-user-select: none;
     user-select: none;
@@ -28,6 +40,13 @@ body {
         margin-left: -100px;
         height: 100px;
     }
+    .lottery-head {
+        .make(@lottery-head,200px);
+        position: absolute;
+        top: 12%;
+        left: 50%;
+        margin-left: -100px;    
+    }
 
     .bottle {
         position: absolute;
@@ -40,11 +59,8 @@ body {
             .size(120px;auto);
             .center-block();
             margin-top: 35px;
-            height: 200px;
-            position: relative;
-            background: url(/static/img/shake/bottle.png) center center no-repeat;
-            background-size: 100%;
-
+            .make(@bottle,120px);
+            
             canvas {
                 .size(90px;140px;);
                 position: absolute;
@@ -79,7 +95,7 @@ body {
 
 .phone-prompt {
     z-index: 1010;
-    background: url(/static/img/shake/rules-overlay.png) top center no-repeat transparent;
+    background:rgba(72,0,0,0.7);
     background-size: 100% auto;
     position: absolute;
     padding: 0px;
@@ -130,28 +146,22 @@ body {
 
 .lottery-result {
     z-index: 1040;
-    width: 280px;
-    height: 178px;
     position: absolute;
+    .make(@lottery-empty,280px);
     top: 25%;
     left: 50%;
     margin-left: -140px;
-    background: url(/static/img/shake/lottery-empty.png) center center no-repeat;
-    background-size: cover;
 
     &.first {
-        background: url(/static/img/shake/lottery-first.png) center center no-repeat;
-        background-size: cover;
+        .make(@lottery-first,280px);
     }
 
     &.second {
-        background: url(/static/img/shake/lottery-second.png) center center no-repeat;
-        background-size: cover;
+        .make(@lottery-second,280px);
     }
 
     &.third {
-        background: url(/static/img/shake/lottery-third.png) center center no-repeat;
-        background-size: cover;
+        .make(@lottery-third,280px);
     }
 }
 
@@ -161,7 +171,13 @@ body {
 
 .lottery-result-overlay {
     .rules-overlay();
-    
+   
+    .share-arrow {
+        .make(@share-arrow,250px);
+        position: absolute;
+        top: 20px;
+        right: 20px;
+    } 
     img {
         width: 250px;
         position: absolute;

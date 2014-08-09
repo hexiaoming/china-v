@@ -21,14 +21,15 @@ define(function(require) {
     });
 
     var CODE_NO_PLAYING_STUDENT = 2001;
+    var VOTE_ID = 6;
 
     function getVotes() {
-        return $.get("/students/vote", {}, "json");
+        return $.get("/votes/backend/get?vote_id=".concat(VOTE_ID.toString()), {}, "json");
     }
 
     function vote() {
-        return $.post("/students/vote", {
-            'audience': token
+        return $.post("/votes/backend/post",{
+            'vote_id': VOTE_ID
         }, "json");
     }
 
@@ -174,12 +175,12 @@ define(function(require) {
         }
 
         function getVotes() {
-            return $.get("/students/vote", {}, "json");
+            return $.get("/votes/backend/get?vote_id=".concat(VOTE_ID.toString()), {}, "json");
         }
 
         function vote() {
-            return $.post("/students/vote", {
-                'audience': token
+            return $.post("/votes/backend/post",{
+                'vote_id':VOTE_ID
             }, "json");
         }
 

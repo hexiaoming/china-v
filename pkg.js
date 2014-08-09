@@ -22,7 +22,8 @@ module.exports = {
         'students': 'js/backend/students',
         'shake-vote': 'js/shake/vote',
         'login': 'js/login',
-        'promotion': 'js/promotion/promotion'
+        'promotion': 'js/promotion/promotion',
+        'juicer' : 'components/juicer/src/juicer'
     },
     shim: {
         'jquery-placeholder': {
