@@ -10,12 +10,14 @@
     <div class='container bg'></div>
     <div class="container">
         <div class="cells">
-            <h4>第一周</h4>
+            <!--<h4>第一周</h4>-->
             {% for student in students %}
             {% if student.getVote > 1 %}
             <div class="cell">
                 <img src="{{ student.avatar }}" alt="{{ student.name }}">
-                <p class="name">{{ student.name }}</p>
+                <p class="name"
+style="margin-right: 8px;overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
+>{{ student.name }}</p>
                 <p class="vote">{{ student.getVote }}票</p>
             </div>
             {% endif %}
