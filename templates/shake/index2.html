@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>全民摇一摇</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/shake/shake.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/alertify.core.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/alertify.default.css">
+</head>
+<body>
+    <input type="hidden" id="playing" value="{{ playing }}">
+    
+    <div class="container">
+<!--
+        <div class="entry">
+            <a href="#vote">
+                <div class="entry-entry" id="#vote"></div>
+            </a>
+        <div class="entry-tip"> </div>
+        </div>
+-->
+        <div class="entry">
+            <div class="pk-support"></div>
+            <div id="entry" class="detail">
+                <a href="#vote">
+                <div class="cell" style="float:left">
+                    <img src="http://ent.sdnews.com.cn/xw/dlxw/201407/W020140720374425711081.png" alt="${item.name}">
+                    <p class="name">1号选手</p>    
+                </div>
+                </a>
+                <div class="vs"></div>
+                <a href="#vote">
+                <div class="cell" style="float:right">
+                    <img src="http://ent.sdnews.com.cn/xw/dlxw/201407/W020140720374425711081.png" alt="${item.name}">
+                    <p class="name">2号选手</p>    
+                </div>          
+                </a>      
+            </div>
+            <div class="enter-vote"></div>
+        </div>   
+        <div class="votes" style="display: none;">
+            <div class="count"><span class='tickets'>{{ vote|default:0 }}</span>票</div>
+            <div class="shake-tip"></div>
+            <div class="shakehands shake-hands"></div>
+        </div>
+
+        <div class="button-bar">
+            <button class="btn-cv left">活动说明</button>
+            <span class='button-seperator'></span>
+            <button class="btn-cv right">最V榜单</button>
+        </div>
+    </div>
+    <div class="rules" style="display: none;">
+        <button class="exit"></button>
+    </div>
+    <div class="rules-overlay" style="display: none;">
+    </div>
+
+    <div class="share-fly-overlay" style="display: none;"></div>
+
+    <script type="text/javascript" src="{{ STATIC_URL }}components/wechat-share/browser.js">
+    </script>
+    <script>
+    wechatshare({
+        link: "http://wx.jdb.cn/shake/",
+        desc: '全民摇一摇',
+        title: '史上最强电视直播投票神器，摇一摇帮好声音选手上头条',
+        imgUrl: "http://wx.jdb.cn/static/img/share.jpg"
+    });
+    </script>
+    <script id="tpl" type="text/template">
+    <a href="#vote" id="choice1">
+        <div class="cell" style="float:left">
+            <img src="${image1}" alt="${name1}">
+            <p class="name">${name1}</p>    
+        </div>
+    </a>
+    <div class="vs"></div>
+    <a href="#vote" id="choice2">
+        <div class="cell" style="float:right">
+            <img src="${image2}" alt="${name2}">
+            <p class="name">${name2}</p>    
+        </div>          
+    </a>
+    </script>
+    <script id="tpl2" type="text/template">
+    <a href="#vote">
+        <div class="cell" style="float:left">
+            <img src="http://ent.sdnews.com.cn/xw/dlxw/201407/W020140720374425711081.png" alt="${item.name}">
+            <p class="name">1号选手</p>    
+        </div>
+    </a>
+    <div class="vs"></div>
+    <a href="#vote">
+        <div class="cell" style="float:right">
+            <img src="http://ent.sdnews.com.cn/xw/dlxw/201407/W020140720374425711081.png" alt="${item.name}">
+            <p class="name">2号选手</p>    
+        </div>          
+    </a>    
+    </script> 
+    <script type="text/javascript" src="{{ STATIC_URL }}components/requirejs/require.js">
+    </script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/shake/index.bundle.js">
+    </script>
+    <script type="text/javascript">
+        require(["js/shake/index"]);
+    </script>
+
+    {% include "ba.html"  %}
+</body>
+</html>
