@@ -61,3 +61,5 @@ media
 dump.sql
 *.pid
 logs
+_media
+_static

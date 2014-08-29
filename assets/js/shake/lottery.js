@@ -8,6 +8,13 @@ define(function(require) {
     var token = require('js/shake/token');
     var lottery = null;
 
+    var VOTE_ID = 7;
+	function getStudent(){
+        return $.post("/votes/backend/pk",{
+            'vote_id': VOTE_ID
+        }, "json");    
+    }
+
     function draw(phone) {
         return $.post("/shake/try", {
             phone: phone
@@ -191,34 +198,35 @@ define(function(require) {
 
         $(".button-bar .right").click(function() {});
 
-        var studentPlaying = $("#playing").val() === 'true';
-        if (!studentPlaying) {
-            alert("非常抱歉，学员还没有上场，目前还不能投票");
-        }
+		getStudent().then(function(data) {
+			if(data.ret_code == 1999) {
+        		return alert("非常抱歉，学员还没有上场，目前还不能投票");
+			}
 
-        $form.submit(function(e) {
-            e.preventDefault();
+			$form.submit(function(e) {
+            	e.preventDefault();
             
-            if (!studentPlaying) {
-                return;
-            }
+            	if (!studentPlaying) {
+                	return;
+            	}
 
-            if (form.phone.value === '') {
-                return;
-            }
+            	if (form.phone.value === '') {
+                	return;
+            	}
 
-            phone = form.phone.value;
-            draw(phone).then(function(data) {
-                lottery = data.ret_code === 0 ? data.lottery : null;
-                $canvas.addClass(lottery || 'try-again');
-            }, function() {
-                lottery = null;
-                $canvas.addClass('try-again');
-            }).always(function() {
-                $form.parent().velocity('fadeOut');
-                $(".prompt-overlay").velocity('fadeOut');
-                lauchCanvas();
-            });
-        });
+            	phone = form.phone.value;
+            	draw(phone).then(function(data) {
+                	lottery = data.ret_code === 0 ? data.lottery : null;
+                	$canvas.addClass(lottery || 'try-again');
+            	}, function() {
+                	lottery = null;
+                	$canvas.addClass('try-again');
+            	}).always(function() {
+                	$form.parent().velocity('fadeOut');
+                	$(".prompt-overlay").velocity('fadeOut');
+                	lauchCanvas();
+            	});
+        	});
+		});
     });
 });
