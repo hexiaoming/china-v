@@ -8,7 +8,7 @@ define(function(require) {
     var token = require('js/shake/token');
     var lottery = null;
 
-    var VOTE_ID = 7;
+    var VOTE_ID = 6;
 	function getStudent(){
         return $.post("/votes/backend/pk",{
             'vote_id': VOTE_ID
