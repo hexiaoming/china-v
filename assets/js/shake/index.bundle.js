@@ -4297,7 +4297,7 @@ define('js/shake/index',['require','jquery','bootstrap','velocity','shake','juic
     });
 
     var CODE_NO_PLAYING_STUDENT = 2001;
-    var VOTE_ID = 6;
+    var VOTE_ID = 7;
 
     function getVotes() {
         return $.get("/votes/backend/get?vote_id=".concat(VOTE_ID.toString())+"&option_id="+option_id.toString(), {}, "json");
