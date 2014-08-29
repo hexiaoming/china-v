@@ -3290,10 +3290,11 @@ define('js/shake/lottery',['require','jquery','bootstrap','velocity','shake','un
 
         $(".button-bar .right").click(function() {});
 
-        var studentPlaying = $("#playing").val() === 'true';
-        if (!studentPlaying) {
-            alert("非常抱歉，学员还没有上场，目前还不能投票");
-        }
+		var studentPlaying = true;
+        //var studentPlaying = $("#playing").val() === 'true';
+        //if (!studentPlaying) {
+        //    alert("非常抱歉，学员还没有上场，目前还不能投票");
+        //}
 
         $form.submit(function(e) {
             e.preventDefault();

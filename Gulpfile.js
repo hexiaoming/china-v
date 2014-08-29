@@ -5,10 +5,10 @@ var async = require("async");
 var rjs = require("requirejs");
 var _ = require("underscore");
 var gulpif = require('gulp-if');
-var sprite = require('css-sprite').stream;
+//var sprite = require('css-sprite').stream;
 var imagemin = require('gulp-imagemin');
-var pngcrush = require('imagemin-pngcrush');
-var optipng = require('gulp-optipng');
+//var pngcrush = require('imagemin-pngcrush');
+//var optipng = require('gulp-optipng');
 
 var options = ['-o2'];
 
@@ -70,27 +70,27 @@ gulp.task('less-base', function() {
         .pipe(gulp.dest("assets/css"));
 });
 
-gulp.task('sprites-shake', function () {
-  return gulp.src(['assets/img/shake/shake/*.png'])
-    .pipe(sprite({
-      name: 'shake.png',
-      style: 'sprite.less',
-      cssPath: '/static/img/shake/',
-      processor: 'less'
-    }))
-    .pipe(gulpif('*.png', gulp.dest('assets/img/shake/'), gulp.dest('assets/less/shake/')))
-});
-
-gulp.task('sprites-lottery', function () {
-  return gulp.src(['assets/img/shake/lottery/*.png'])
-    .pipe(sprite({
-      name: 'lottery.png',
-      style: 'sprite1.less',
-      cssPath: '/static/img/shake/',
-      processor: 'less'
-    })) 
-    .pipe(gulpif('*.png', gulp.dest('assets/img/shake/'), gulp.dest('assets/less/shake/')))
-});
+//gulp.task('sprites-shake', function () {
+//  return gulp.src(['assets/img/shake/shake/*.png'])
+//    .pipe(sprite({
+//      name: 'shake.png',
+//      style: 'sprite.less',
+//      cssPath: '/static/img/shake/',
+//      processor: 'less'
+//    }))
+//    .pipe(gulpif('*.png', gulp.dest('assets/img/shake/'), gulp.dest('assets/less/shake/')))
+//});
+//
+//gulp.task('sprites-lottery', function () {
+//  return gulp.src(['assets/img/shake/lottery/*.png'])
+//    .pipe(sprite({
+//      name: 'lottery.png',
+//      style: 'sprite1.less',
+//      cssPath: '/static/img/shake/',
+//      processor: 'less'
+//    })) 
+//    .pipe(gulpif('*.png', gulp.dest('assets/img/shake/'), gulp.dest('assets/less/shake/')))
+//});
 //
 //gulp.task('base64', function () {
 //  return gulp.src('assets/img/shake/rules-overlay.png')
@@ -110,12 +110,12 @@ gulp.task('sprites-lottery', function () {
 //        .pipe(gulp.dest('disc/img/test1'));
 //});
 //
-gulp.task('change',function(){
-    gulp.src(['assets/img/shake/shake.png','assets/img/shake/lottery.png'])
-        .pipe(optipng(options))
-        .pipe(gulp.dest('assets/img/shake/'));
-});
-
+//gulp.task('change',function(){
+//    gulp.src(['assets/img/shake/shake.png','assets/img/shake/lottery.png'])
+//        .pipe(optipng(options))
+//        .pipe(gulp.dest('assets/img/shake/'));
+//});
+//
 gulp.task("less", ["less-base", "less-shake"]);
 
 gulp.task("watch-less", function() {
