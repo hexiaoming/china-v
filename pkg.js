@@ -23,7 +23,7 @@ module.exports = {
         'shake-vote': 'js/shake/vote',
         'login': 'js/login',
         'promotion': 'js/promotion/promotion',
-        'juicer' : 'components/juicer/src/juicer'
+        'juicer' : 'js/juicer-min'
     },
     shim: {
         'jquery-placeholder': {
