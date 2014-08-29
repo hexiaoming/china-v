@@ -3808,7 +3808,7 @@ define('js/shake/index',['require','jquery','bootstrap','velocity','shake','juic
     });
 
     var CODE_NO_PLAYING_STUDENT = 2001;
-    var VOTE_ID = 6;
+    var VOTE_ID = 7;
 
     function getVotes() {
         return $.get("/votes/backend/get?vote_id=".concat(VOTE_ID.toString())+"&option_id="+option_id.toString(), {}, "json");
@@ -3833,7 +3833,6 @@ define('js/shake/index',['require','jquery','bootstrap','velocity','shake','juic
     var $rulesOverlay;
     var $shareFlyOverlay;
     $detail= $(".detail");
-
         function switchToVote(e) {
 
             status = VOTING;
@@ -3878,7 +3877,9 @@ define('js/shake/index',['require','jquery','bootstrap','velocity','shake','juic
         var tpl = document.getElementById('tpl2').innerHTML;
         $("#entry").text("");
         $("#entry").append(tpl);
-        alert("抱歉，现在选手还没有上场。");
+        $detail.find(".heqingyang").on('touchstart',function(){
+            alertify.log("非常抱歉，学员还没有上场，目前还不能投票。");
+        });
     }
     function makehtml(){
         function getStudent(){
@@ -3903,7 +3904,7 @@ define('js/shake/index',['require','jquery','bootstrap','velocity','shake','juic
         }
         getStudent().then(function(data){
             if (data.ret_code===1999) {
-                alert("抱歉，现在选手还没有上场。");
+//                alert("抱歉，现在选手还没有上场。");
             }else{
                 var jsObject = eval(data);
                 var tpl = document.getElementById('tpl').innerHTML;
@@ -3930,6 +3931,9 @@ define('js/shake/index',['require','jquery','bootstrap','velocity','shake','juic
                     option_id=id2;
                     switchToVote();
                 });
+                $detail.find(".heqingyang").on('touchstart',function(){
+                    alertify.log("非常抱歉，学员还没有上场，目前还不能投票。");    
+                });
             }
         });
     }
@@ -3947,6 +3951,9 @@ define('js/shake/index',['require','jquery','bootstrap','velocity','shake','juic
             $shareFlyOverlay.velocity('fadeOut');
         });
 
+        $detail.find(".heqingyang").on('touchstart',function(){
+            alertify.log("非常抱歉，学员还没有上场，目前还不能投票。");    
+        }); 
         $rulesOverlay.click(function() {
             $rules.velocity('fadeOut');
             $rulesOverlay.velocity('fadeOut');
