@@ -65,18 +65,23 @@ define(function(require) {
             'vote_id': VOTE_ID
         }, "json");    
     }
-    judge = false; 
-    before = false;    
+    judge = 0; 
+    before = 0;    
     function setTime(){
             t=setTimeout(function() {
                 getStudent().then(function(data) {
-                    if (data.ret_code === 0) {
-                        judge=true;
+                    if (data.ret_code === 2) {
+                        judge=2;
                         if (judge!==before)
                             makehtml();
                         before = judge;
+                    }else if(data.ret_code === 1){
+                        judge=1;
+                        if (judge!==before) 
+                            makehtml();
+                        before = judge;  
                     }else{
-                        judge=false;
+                        judge=0;
                         if(judge!==before)
                             makehtml2();
                         before = judge;
@@ -123,13 +128,17 @@ define(function(require) {
                 var temp={};
                 temp.name1 = jsObject.data[0].name;
                 temp.image1 = jsObject.data[0].image;
-                temp.name2 = jsObject.data[1].name;
-                temp.image2 = jsObject.data[1].image;
+                (data.ret_code===2)? temp.name2 = jsObject.data[1].name :temp.name2 = jsObject.data[0].name;
+                (data.ret_code===2)? temp.image2 = jsObject.data[1].image :temp.image2 = jsObject.data[0].image;
                 id1 = jsObject.data[0].id;
-                id2 = jsObject.data[1].id;
+                (data.ret_code===2)? id2 = jsObject.data[1].id :id2 = jsObject.data[0].id
                 var html = juicer(tpl,temp);
                 $("#entry").text("");
                 $("#entry").append(html);
+                if (data.ret_code === 1){
+                    $("#single-vs").hide();
+                    $("#single-vote").hide();                
+                }
                 $detail.find("#choice1").on('touchstart',function(){
                     option_id=id1;
                     switchToVote();
