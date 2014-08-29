@@ -198,9 +198,11 @@ define(function(require) {
 
         $(".button-bar .right").click(function() {});
 
+		studentPlaying = true;
 		getStudent().then(function(data) {
 			if(data.ret_code == 1999) {
-        		return alert("非常抱歉，学员还没有上场，目前还不能投票");
+        		alert("非常抱歉，学员还没有上场，目前还不能投票");
+				studentPlaying = false;
 			}
 
 			$form.submit(function(e) {
