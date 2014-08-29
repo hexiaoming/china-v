@@ -3,7 +3,11 @@ define(function(require) {
     require("bootstrap");
     require("velocity");
     require("shake");
+    require("juicer");
     require("components/howler.js/howler.min");
+    var id1;
+    var id2;
+    var option_id;
     var alertify = require("js/alertify");
     var _ = require("underscore");
     var multiline = require("multiline");
@@ -21,17 +25,19 @@ define(function(require) {
     });
 
     var CODE_NO_PLAYING_STUDENT = 2001;
+    var VOTE_ID = 6;
 
     function getVotes() {
-        return $.get("/students/vote", {}, "json");
+        return $.get("/votes/backend/get?vote_id=".concat(VOTE_ID.toString())+"&option_id="+option_id.toString(), {}, "json");
     }
 
     function vote() {
-        return $.post("/students/vote", {
-            'audience': token
+        return $.post("/votes/backend/post",{
+            'vote_id': VOTE_ID,            
+            'option_id':option_id
         }, "json");
     }
-
+        
     var ENTERING = "entering";
     var VOTING = "voting";
     var status = ENTERING;
@@ -43,7 +49,109 @@ define(function(require) {
     var $rules;
     var $rulesOverlay;
     var $shareFlyOverlay;
+    $detail= $(".detail");
 
+        function switchToVote(e) {
+
+            status = VOTING;
+            $entry.hide();
+            $container.addClass("shake blur");
+            $votes.show();
+            onVote();
+        }
+   
+    function getStudent(){
+        return $.post("/votes/backend/pk",{
+            'vote_id': VOTE_ID
+        }, "json");    
+    }
+    judge = 0; 
+    before = 0;    
+    function setTime(){
+            t=setTimeout(function() {
+                getStudent().then(function(data) {
+                    if (data.ret_code === 2) {
+                        judge=2;
+                        if (judge!==before)
+                            makehtml();
+                        before = judge;
+                    }else if(data.ret_code === 1){
+                        judge=1;
+                        if (judge!==before) 
+                            makehtml();
+                        before = judge;  
+                    }else{
+                        judge=0;
+                        if(judge!==before)
+                            makehtml2();
+                        before = judge;
+                    }
+                }).always(function(){
+                        setTime();
+                })
+            }, 1000);
+        }
+    function makehtml2(){
+        var tpl = document.getElementById('tpl2').innerHTML;
+        $("#entry").text("");
+        $("#entry").append(tpl);
+        alert("抱歉，现在选手还没有上场。");
+    }
+    function makehtml(){
+        function getStudent(){
+            $.ajaxSetup({
+                async: false
+            });
+            return $.post("/votes/backend/pk",{
+                'vote_id': VOTE_ID
+            }, "json");    
+        }
+        function setTime(){
+            setTimeout(function() {
+                getStudent().then(function(data) {
+                    if (data.ret_code === 0) {
+                        makehtml();
+                    }
+                }).always(function(){
+                    if (data.ret_code !== 0)
+                        setTime();
+                })
+            }, 1000);
+        }
+        getStudent().then(function(data){
+            if (data.ret_code===1999) {
+                alert("抱歉，现在选手还没有上场。");
+            }else{
+                var jsObject = eval(data);
+                var tpl = document.getElementById('tpl').innerHTML;
+                console.log(jsObject);
+                var temp={};
+                temp.name1 = jsObject.data[0].name;
+                temp.image1 = jsObject.data[0].image;
+                (data.ret_code===2)? temp.name2 = jsObject.data[1].name :temp.name2 = jsObject.data[0].name;
+                (data.ret_code===2)? temp.image2 = jsObject.data[1].image :temp.image2 = jsObject.data[0].image;
+                id1 = jsObject.data[0].id;
+                (data.ret_code===2)? id2 = jsObject.data[1].id :id2 = jsObject.data[0].id
+                var html = juicer(tpl,temp);
+                $("#entry").text("");
+                $("#entry").append(html);
+                if (data.ret_code === 1){
+                    $("#single-vs").hide();
+                    $("#choice2").hide();                
+                }
+                $detail.find("#choice1").on('touchstart',function(){
+                    option_id=id1;
+                    switchToVote();
+                });
+                $detail.find("#choice2").on('touchstart',function(){
+                    option_id=id2;
+                    switchToVote();
+                });
+            }
+        });
+    }
+    makehtml();
+    setTime();
     $(function() {
         $container = $(".container");
         $entry = $(".entry");
@@ -74,17 +182,48 @@ define(function(require) {
             window.location = "./rank";
         });
 
-        function switchToVote(e) {
-            e.preventDefault();
+//        function switchToVote(e) {
 
-            status = VOTING;
-            $entry.hide();
-            $container.addClass("shake blur");
-            $votes.show();
-            onVote();
-        }
-        $entry.find("a").click(switchToVote);
-        $entry.find("a").on('touchstart', switchToVote);
+//            status = VOTING;
+//            $entry.hide();
+//            $container.addClass("shake blur");
+//            $votes.show();
+//            onVote();
+//        }
+//        $entry.find("#choice1").click(function(){
+//        $("#choice1").click(function(){
+//            switchToVote;
+//            option_id=id1;
+//        });
+//        $entry.find("#choice1").on('touchstart', function(){
+//        $("#choice1").on('touchstart',function(){
+//            switchToVote;
+//            option_id=id1
+//        });
+//        $entry.find("#choice2").click(function(){
+//            switchToVote;
+//            option_id=id2;
+//        });
+//        $entry.find("#choice2").on('touchstart', function(){
+//            switchToVote;
+//            option_id=id2;
+//        });
+//        $detail.find("#choice1").click(function(){
+//            option_id=id1;
+//            switchToVote('click');
+//        });
+//        $detail.find("#choice1").click(option_id=id1);
+//        $detail.find("#choice1").click(switchToVote);
+//        $detail.find("a").on('touchstart', switchToVote);
+//        $detail.find("#choice1").on('touchstart',function(){
+//            option_id=id1;
+//            switchToVote();
+//        });
+//        $detail.find("#choice2").on('touchstart',function(){
+//            option_id=id2;
+//            switchToVote();
+//        });
+
     });
 
     function onVote() {
@@ -174,12 +313,13 @@ define(function(require) {
         }
 
         function getVotes() {
-            return $.get("/students/vote", {}, "json");
+            return $.get("/votes/backend/get?vote_id=".concat(VOTE_ID.toString())+"&option_id="+option_id.toString(), {}, "json");
         }
 
         function vote() {
-            return $.post("/students/vote", {
-                'audience': token
+            return $.post("/votes/backend/post",{
+                'vote_id':VOTE_ID,
+                'option_id':option_id
             }, "json");
         }
 

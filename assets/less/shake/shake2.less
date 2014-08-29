@@ -12,7 +12,7 @@
 .make(@icon,@width){
     .icon();
     .sprite(@icon);
-    height: 1+extract(@icon,4)* @width/  extract(@icon,3);
+    height: extract(@icon,4)* @width/  extract(@icon,3);
     @size: 535* @width/ extract(@icon,3);
     background-size: @size auto;
     width: @width;
@@ -42,22 +42,15 @@
     
     .entry {
         display: block;
-        .mid(280px;15%);
+//        .mid(240px;10%);
+        .mid(280px;10%);
         text-align: center;
         
-        .detail{
-            width:220px;
-            height:auto;
-            margin:0 auto;
-            .jdb-icon{
-                border:2px solid white;
-            }
-            margin-top:30px;
-            margin-bottom:20px;
-        } 
         @entry_width:160px;
         a {
-            .size(90px,auto);
+            display: block;
+            .size(@entry_width; auto);
+            .center-block();
         }
 
         img {
@@ -74,68 +67,72 @@
             .make(@pk-support,272px);
         }  
         .vs {
-            img {
-                width:40px;
-                padding-top:15%;
-            }
+            .make(@vs,29px);
         } 
         .enter-vote{
             .make(@enter-vote,270px);
         }
         @media (min-width: 360px) {
             a { 
-                .size(90px, auto);
+                .size(180px, auto);
             }
             .entry-entry {
-                top: 15%;
+            top: 15%;
                 .make(@entry,180px);
             }   
         } 
-        
-        
-        @media (max-height: 420px)
-        {   
-            .mid(280px;10%);
-            .detail{
-                margin-top:20px;
-                margin-bottom:10px;
-            }   
-            .pk-support{
-                .make(@pk-support,250px);
-            }   
-            .enter-vote{
-                .make(@enter-vote,250px);
+        @media (max-height: 420px) {
+            a {
+                .size(120px,auto);
             }
-            .cell{
-                width: 70px;
-                img {
-                    border-radius: 8px;
-                    display:inline-block;
-                    .square(70px);
-                }
-            }   
-        }   
-
+            .entry-entry {
+                top: 10%;
+                .make(@entry,120px);
+            }
+        } 
         .cell {
-            font-size: 15px;
+            float: left;
+            padding-right:8px;
+            font-size: 13px;
             margin-bottom: 10px;
-            display:inline-block; 
+    
             p { 
                 margin-bottom: 3px;
                 margin-top: 3px;
-                color: white;
             } 
-        }
+        .center-block();
+        .size(280px, auto);
         .cell {
-            width: 80px;
+            width: 90px;
             img {
                 border-radius: 9px;
-                display: inline-block;
-                .square(80px);
+                display: block;
+                .square(78px);
             }
         }   
     }
-
+}
+//    @media (min-width: 360px) {
+//        .entry-entry {
+//            top: 15%;
+//            .make(@entry,180px);
+//            a {
+//                .size(180px, auto);
+//            }
+//        }
+//    }
+//
+//    @media (max-height: 420px) {
+//        
+//        
+//        .entry-entry {
+//            top: 10%;
+//            .make(@entry,120px);
+//            a {
+//                .size(120px, auto);
+//            }
+//        }
+//    }
 
     .votes {
         .mid(300px;10%);

@@ -30,7 +30,7 @@ gulp.task('less-shake', function() {
 });
 
 gulp.task('rjs', function() {
-    async.eachSeries(['js/shake/index', 'js/shake/lottery'], function(pkg, cb) {
+    async.eachSeries(['js/shake/index', 'js/shake/lottery','js/shake/rank'], function(pkg, cb) {
         console.log(pkg);
         rjs.optimize(_.extend(pkgs, {
             name: pkg,
@@ -41,6 +41,7 @@ gulp.task('rjs', function() {
             cb();
         }, function(err) {
             console.log(pkg, "error!");
+            console.log(err);
             cb(err);
         });
     }, function(err) {
