@@ -4409,7 +4409,7 @@ define('js/shake/index',['require','jquery','bootstrap','velocity','shake','juic
                 $("#entry").append(html);
                 if (data.ret_code === 1){
                     $("#single-vs").hide();
-                    $("#single-vote").hide();                
+                    $("#choice2").hide();                
                 }
                 $detail.find("#choice1").on('touchstart',function(){
                     option_id=id1;
